@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta charset=`UTF-8` />
 <script>
     /*
     PROBLEMA: CALCULAR DESCONTO NA COMPRA DE UM COMPUTADOR
@@ -13,9 +13,23 @@
 
     //ENTRADA
 
+    const valorComputador = Number(prompt(`Informe o valor do computador:`));
+    const formaPagamento = prompt(`Informe a forma de pagamento (B - Boleto, D - Dinheiro, P - PIX):`).toUpperCase().trim();
 
     //PROCESSAMENTO
 
+    if (formaPagamento == `B`){
+        valorF = (valorComputador - (valorComputador * 0.03));
+        alert(`O valor a pagar será de ${valorF}R$`)
+    } else if (formaPagamento == `D`){
+        valorF = (valorComputador - (valorComputador * 0.05));
+        alert(`O valor a pagar será de ${valorF}R$`)
+    } else if (formaPagamento == `P`){
+        valorF = (valorComputador - (valorComputador * 0.1));
+        alert(`O valor a pagar será de ${valorF}R$`)
+    } else {
+        alert(`ERROR\nUtilize apenas (B - Boleto, D - Dinheiro, P - PIX)`);
+    }
     
     //SAÍDA
 

@@ -1,4 +1,3 @@
-<meta charset="UTF-8" />
 <script>
     /*
     PROBLEMA: IDADE HUMANA
@@ -11,10 +10,28 @@
 
     //ENTRADA
 
-    
+    const iddCachorro = Number(prompt(`Qual a idade do cachorro`));
+    const porteCachorro = prompt(`Qual o porte do cachorro\n Ultilize:\n G-grande\n M-medio\n P-pequeno`).toUpperCase().trim();
+    let idadeCachorro;
+    const G = 7;
+    const M = 6;
+    const P = 5;
+
     //PROCESSAMENTO
 
-    
+    if (porteCachorro == `G`){
+        idadeCachorro = iddCachorro * G;
+        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
+    } else if (porteCachorro == `M`){
+        idadeCachorro = iddCachorro * M;
+        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
+    } else if (porteCachorro == `P`){
+        idadeCachorro = iddCachorro * P;
+        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
+    } else {
+        alert(`Utilize as caracteres dentro dos parâmetros\n G-grande\n M-medio\n P-pequeno`);
+    }
+
     //SAÍDA
 
 </script>

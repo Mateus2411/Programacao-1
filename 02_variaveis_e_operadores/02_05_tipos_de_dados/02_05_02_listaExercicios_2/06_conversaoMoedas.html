@@ -2,15 +2,18 @@
 <script>
     /*
     PROBLEMA: Conversão de moedas
-    O usuário do programa pretende viajar para os Estados Unidos da América. Peça para ele informar quantos dólares levará para gastar durante a viagem. Também peça para o usuário informar a cotação do dólar. Ao final, apresente, em reais, quanto o usuário gastará na viagem.
+    O usuário do programa pretende viajar para os Estados Unidos da América.
+    Peça para ele informar quantos dólares levará para gastar durante a viagem.
+    Também peça para o usuário informar a cotação do dólar. Ao final, apresente, em reais, quanto o usuário gastará na viagem.
     */
 
     //ENTRADA
+    const quantidadeDolar= Number(prompt(`Informe quantos dolares levará para a viagem`))
+    const cotacaoDolar = Number(prompt(`Informe a cotação do dolar atualmente`))
 
-    
     //PROCESSAMENTO
-    
+    dolarReal = (quantidadeDolar * cotacaoDolar) 
     
     //SAÍDA
-    
+    document.write(`O valor gasto seria de R$ ${dolarReal} reais.`)
 </script>

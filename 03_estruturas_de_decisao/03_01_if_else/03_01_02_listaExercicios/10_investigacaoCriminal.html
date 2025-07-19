@@ -7,15 +7,48 @@
     - "Mora perto da vítima?"
     - "Devia para a vítima?"
     - "Já trabalhou com a vítima?"
-    O script deve no final emitir uma classificação sobre a participação da pessoa no crime. Se a pessoa responder positivamente a 2 questões ela deve ser classificada como "Suspeita", entre 3 e 4 como "Cúmplice" e 5 como "Assassino". Caso contrário, ele será classificado como "Inocente".
+    O script deve no final emitir uma classificação sobre a participação da pessoa no crime.
+    Se a pessoa responder positivamente a 2 questões ela deve ser classificada como "Suspeita", entre 3 e 4 como "Cúmplice" e 5 como "Assassino". Caso contrário,
+    ele será classificado como "Inocente".
     */
 
     //ENTRADA
-
+    const p1 = String(prompt(`Telefonou para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p2 = String(prompt(`Esteve no local do crime? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p3 = String(prompt(`Mora perto da vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p4 = String(prompt(`Devia para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p5 = String(prompt(`Já trabalhou com a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
 
     //PROCESSAMENTO
+    let pontos = 0;
 
-    
-    //SAÍDA
-
+    if (p1 == `s`){
+        pontos = pontos + 1;
+    }
+    if (p2 == `s`){
+        pontos = pontos + 1;
+    }
+    if (p3 == `s`){
+        pontos = pontos + 1;
+    }
+    if (p4 == `s`){
+        pontos = pontos + 1;
+    }
+    if (p5 == `s`){
+        pontos = pontos + 1;
+    }
+    if (p1 !== `s` && p1 !== `n` || p2 !== `s` && p2 !== `n` || p3 !== `s` && p3 !== `n` || p4 !== `s` && p4 !== `n` || p5 !== `s` && p5 !== `n`){
+        alert(`Caracteres invalidas utilize: Sim (s) ou Não (n)`);
+    } else {
+        if (pontos == 2){
+            alert(`Suspeito`);
+        } else if (pontos >= 3 && pontos <= 4){
+            alert(`Cúmplice`);
+        } else if (pontos == 5){
+            alert(`Assassino`);
+        } else {
+            alert(`Inocente`);
+        }
+    }
+    //Saida
 </script>

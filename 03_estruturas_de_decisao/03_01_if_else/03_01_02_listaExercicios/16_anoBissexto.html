@@ -1,4 +1,3 @@
-<meta charset="UTF-8" />
 <script>
     /*
     PROBLEMA: ANO BISSEXTO
@@ -6,9 +5,13 @@
     */
 
     //ENTRADA
-
-    
+    const ano = Number(prompt(`Qual o ano que você esta?`));
     //PROCESSAMENTO
+    if ((ano % 4 == 0) || (ano % 400 && ano % 4 == 0)){
+        alert(`É um ano bissexto`)
+    } else {
+        alert(`Não é um ano bissexto`)
+    }
 
     
     //SAÍDA

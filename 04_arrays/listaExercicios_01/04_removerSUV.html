@@ -9,11 +9,25 @@
     */
 
     //ENTRADA
-
+    let carrosSUV = ["Tiggo", "Sportage", "Tucson", "EcoSport"];
+    let carrosSUV2 = ["Tiggo", "Sportage", "Tucson", "EcoSport"];
+    let retirar = prompt(`Digite um carro que deseja retirar\n Tiggo\n Sportage\n Tucson\n EcoSport`);
 
     //PROCESSAMENTO
+    let novo = carrosSUV;
+    let antiga = carrosSUV2
+    switch(retirar){
+        case `Tiggo`: carrosSUV.splice(0, 1);
+        break;
+        case `Sportage`: carrosSUV.splice(1, 1);
+        break;
+        case `Tucson`: carrosSUV.splice(2, 1);
+        break;
+        case `EcoSport`: carrosSUV.splice(3, 1);
+        break;
+    }
 
-
+    alert(`A lista antiga era ${antiga.join(` - `)}\n\nA lista nova é ${novo.join(` - `)}`);
     //SAÍDA
 
 </script>

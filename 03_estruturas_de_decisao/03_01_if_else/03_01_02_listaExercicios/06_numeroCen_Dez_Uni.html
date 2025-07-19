@@ -11,11 +11,42 @@
     */
 
     //ENTRADA
-
+    const numero = Number(prompt(`Informe um número inteiro menor que 1000: `));
 
     //PROCESSAMENTO
-
+    const centenas = Math.floor(numero / 100);
+    const dezenas = Math.floor((numero % 100) / 10);
+    const unidades = numero % 10;
     
     //SAÍDA
+    let mensagemFinal = ``;
+    if (centenas > 0) {
+        mensagemFinal = mensagemFinal + `${centenas} centena`;
+        if (centenas > 1) {
+            mensagemFinal = mensagemFinal + `s`;
+        }
+        if (dezenas > 0 && unidades > 0) {
+            mensagemFinal = mensagemFinal + `, `;
+        }
+        else if (dezenas > 0 || unidades > 0) {
+            mensagemFinal = mensagemFinal + ` e `;
+        }
+    }
+    if (dezenas > 0) {
+        mensagemFinal = mensagemFinal + `${dezenas} dezena`;
+        if (dezenas > 1) {
+            mensagemFinal = mensagemFinal + `s`;
+        }
+        if (unidades > 0) {
+            mensagemFinal = mensagemFinal + ` e `;
+        }
+    }
+    if (unidades > 0) {
+        mensagemFinal = mensagemFinal + `${unidades} unidade`;
+        if (unidades > 1) {
+            mensagemFinal = mensagemFinal + `s`;
+        }
+    }
 
+    alert(mensagemFinal);
 </script>

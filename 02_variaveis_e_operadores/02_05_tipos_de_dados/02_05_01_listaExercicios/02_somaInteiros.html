@@ -2,15 +2,21 @@
 <script>
     /*
     Problema: Soma de Inteiros
-    Peça para o usuário informar dois números inteiros. Após, o programa deverá apresentar uma mensagem com o resultado da soma dos números informados.
+    Peça para o usuário informar dois números inteiros.
+     Após, o programa deverá apresentar uma mensagem com o resultado da soma dos números informados.
     */
 
     //ENTRADA
 
+    const numero1 = Number (prompt(`Digite um numero inteiro`));
+    const numero2 = Number (prompt(`Digite um numero inteiro novamente`));
     
     //PROCESSAMENTO
 
+    let soma = (numero1) + (numero2);
     
     //SAÍDA
+
+    document.write(`A soma dos números é ${soma}`);
 
 </script>

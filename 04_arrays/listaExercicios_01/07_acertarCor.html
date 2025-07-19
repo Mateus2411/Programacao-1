@@ -13,11 +13,20 @@
     */
 
     //ENTRADA
-
+    const nomeCores = ["azul", "amarelo", "verde", "branco", "preto", "marrom", "cinza"];
+    const num = Math.floor((Math.random() * 7));
+    const cor = prompt(`Digite uma cor\n\n(azul, amarelo, verde, branco, preto, marrom, cinza):`).toUpperCase;
 
     //PROCESSAMENTO
-
-
+    if (cor !== `azul` || cor !== `amarelo` || cor !== `verde` || cor !== `branco` || cor !== `preto` || cor !== `marrom` || cor !== `cinza`) {
+        alert(`Digite uma cor valida`);
+    } else {
+        if (cor == nomeCores[num]) {
+            alert(`Acertou, a cor é ${nomeCores[num]}`);
+        } else {
+            alert(`NÃO FOI DESSA VEZ... TENTE NOVAMENTE!`)
+        }
+    }
     //SAÍDA
 
 

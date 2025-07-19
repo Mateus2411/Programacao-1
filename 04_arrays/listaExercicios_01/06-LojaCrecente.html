@@ -1,0 +1,94 @@
+<meta charset="UTF-8" />
+<script>
+  /*
+  PROBLEMA: LOJA DE VEÍCULOS
+  Crie os seguintes arrays:
+  let carrosSUV = ["Tiggo", "Sportage", "Tucson", "EcoSport"];
+  let cassosSedan = ["Civic", "Corolla", "Arizzo", "Fusion"];
+  let carrosHatch = ["308", "Focus", "i30"];
+
+  Peça para o usuário informar mais três veículos para serem inseridos na lista. Para inserir na lista correta,
+  peça também para o usuário identificar o tipo de veículo que deseja inserir, se é SUV, Sedan ou Hatch.
+
+  Apresente a lista final de cada tipo de veículo.
+  */
+
+  //ENTRADA
+
+  const cr1 = prompt(`Informe um carro para adicionar na lista`);
+  const cr10 = prompt(`Qual seria o tipo do carro?\n SUV\n Sedan\n Hatch`);
+
+  const cr2 = prompt(`Informe outro carro para adicionar na lista`);
+  const cr20 = prompt(`Qual seria o tipo do carro?\n SUV\n Sedan\n Hatch`);
+
+  const cr3 = prompt(`Informe novamente mais um carro carro para adicionar na lista`);
+  const cr30 = prompt(`Qual seria o tipo do carro?\n SUV\n Sedan\n Hatch`);
+
+  //PROCESSAMENTO
+
+  let carrosSUV = ["Tiggo", "Sportage", "Tucson", "EcoSport"];
+  let carrosSedan = ["Civic", "Corolla", "Arizzo", "Fusion"];
+  let carrosHatch = ["308", "Focus", "i30"];
+
+  //VALIDAÇÃO DOS CARROS
+  //carro1
+  if (typeof cr1 !== 'string' || cr1.trim() === '' || typeof cr10 !== 'string' || cr10.trim() === '') {
+    alert('Dados insuficientes para o primeiro carro');
+  } else {
+    carro1();
+  }
+
+  //carro2
+  if (typeof cr2 !== 'string' || cr2.trim() === '' || typeof cr20 !== 'string' || cr20.trim() === '') {
+    alert('Dados insuficientes para o segundo carro');
+  } else {
+    carro2();
+  }
+
+  //carro3
+  if (typeof cr3 !== 'string' || cr3.trim() === '' || typeof cr30 !== 'string' || cr30.trim() === '') {
+    alert('Dados insuficientes para o terceiro carro');
+  } else {
+    carro3();
+  }
+
+  //FUNÇÕES, ORGANIZAÇÃO DOS CARROS
+  //Carro 1
+  function carro1() {
+    switch(cr10){
+        case `SUV`: carrosSUV.push(cr1);
+        break;
+        case `Sedan`: carrosSedan.push(cr1);
+        break;
+        case `Hatch`: carrosHatch.push(cr1);
+        break;
+    }
+  }
+
+  // Carro 2
+  function carro2() {
+    switch(cr20){
+        case `SUV`: carrosSUV.push(cr2);
+        break;
+        case `Sedan`: carrosSedan.push(cr2);
+        break;
+        case `Hatch`: carrosHatch.push(cr2);
+        break;
+    }
+  }
+
+  //Carro 3
+  function carro3() {
+    switch(cr30){
+        case `SUV`: carrosSUV.push(cr3);
+        break;
+        case `Sedan`: carrosSedan.push(cr3);
+        break;
+        case `Hatch`: carrosHatch.push(cr3);
+        break;
+    }
+  }
+
+  //SAÍDA
+  alert(`${carrosSUV.join(` - `)}\n${carrosSedan.join(` - `)}\n${carrosHatch.join(` - `)}`)
+</script>

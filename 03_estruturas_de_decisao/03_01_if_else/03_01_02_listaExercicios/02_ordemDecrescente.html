@@ -5,11 +5,58 @@
     */
 
     //ENTRADA
+    const nun1 = Number(prompt(`Digite o primeiro numero`));
+    const nun2 = Number(prompt(`Digite o segundo numero`));
+    const nun3 = Number(prompt(`Digite o terceiro numero`));
 
-    
+
+
     //PROCESSAMENTO
+    let maior;
+    let meio;
+    let menor;
     
+    if (nun1 >= nun2 && nun1 >= nun3){
+        maior = nun1;
+        if (nun2 >= nun3){
+            meio = nun2;
+            menor = nun3;
+        } else {
+            meio = nun3;
+            menor = nun2;
+        }
 
-    //SAÍDA
+        alert(`Maior ${maior}, Meio ${meio}, Menor ${menor}.`);
+    }
+
+    else if (nun2 >= nun1 && nun2 >= nun3){
+        maior = nun2;
+        if (nun1 >= nun3){
+            meio = nun1;
+            menor = nun3;
+        } else {
+            meio = nun3;
+            menor = nun1;
+        }
+
+        alert(`Maior ${maior}, Meio ${meio}, Menor ${menor}.`);
+
+    }
+    else if (nun3 >= nun1 && nun3 >= nun2){
+        maior = nun3;
+        if (nun2 >= nun1){
+            meio = nun2;
+            menor = nun1;
+        } else {
+            meio = nun1;
+            menor = nun2;
+        }
+
+        alert(`Maior ${maior}, Meio ${meio}, Menor ${menor}.`);
+
+    } else {
+        alert(`Erro, use um numero`);
+    }
+
     
 </script>

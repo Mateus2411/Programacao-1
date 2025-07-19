@@ -9,11 +9,16 @@
     */
 
     //ENTRADA
-
-
+    const palavra = prompt(`Informe uma palavra:`).trim().toUpperCase();
+    const letra = prompt(`Informe a letra que você deseja encontrar:`).trim().toUpperCase();
+    let array = [palavra];
     //PROCESSAMENTO
 
-
+    let posicao = palavra.indexOf(letra) + 1;
+    if (!palavra.includes(letra)) {
+        alert(`Digite uma letra que contenha na palavra`);
+    } else {
+        alert(`A letra "${letra}" está presente na palavra: ${palavra}\nA posição é: ${posicao}`)
+    }
     //SAÍDA
-
 </script>

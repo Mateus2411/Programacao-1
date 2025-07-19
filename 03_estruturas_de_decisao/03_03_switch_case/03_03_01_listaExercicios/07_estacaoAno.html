@@ -8,10 +8,109 @@
 
     //ENTRADA
 
-    
+    const hemisferio = prompt(`Em qual hemisfério você está? (Norte/Sul)`).toLowerCase();
+    const mes = Number(prompt(`Digite o mês atual, utilize apenas numeros`));
+
     //PROCESSAMENTO
 
+    let estacao = ``;
+    
+    // HEMISFÉRIO SUL
+
+    switch(hemisferio === `sul`){
+        // Verão: dezembro, janeiro, fevereiro
+
+        case true:
+            switch(mes == 1 || mes == 2 || mes == 12){
+                case true:
+                    estacao = `Verão`;
+                    break;
+                default:
+                    switch(mes == 3 || mes == 4 || mes == 5){
+                        // Outono: março, abril, maio
+
+                        case true:
+                            estacao = `Outono`;
+                        break;
+                        default:
+                            switch(mes == 6 || mes == 7 || mes == 8){
+                                // Inverno: junho, julho, agosto
+
+                                case true:
+                                    estacao = `Inverno`;
+                                break;
+                                default:
+                                    switch(mes == 9 || mes == 10 || mes == 11){
+                                        // Primavera: setembro, outubro, novembro
+
+                                        case true:
+                                            estacao = `Primavera`;
+                                            break;
+                                        default: alert(`Mês incorreto, utilize apenas numeros`);
+                                        break;
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
+        break;
+
+    // HEMISFÉRIO NORTE
+
+        default:
+            switch(mes == 1 || mes == 2 || mes == 12){
+                case true:
+                    estacao = `Inverno`;
+                break;
+                default:
+                    switch(mes == 3 || mes == 4 || mes == 5){
+                        // Primavera: março, abril, maio
+                            
+                        case true:
+                            estacao = `Primavera`;
+                        break;
+                        default:
+                            switch(mes == 6 || mes == 7 || mes == 8){
+                                // Verão: junho, julho, agosto
+
+                                case true:
+                                    estacao = `Verão`;
+                                break;
+                                default:
+                                    switch(mes == 9 || mes == 10 || mes == 11){
+                                        // Outono: setembro, outubro, novembro
+
+                                        case true:
+                                            estacao = `Outono`;
+                                        break;
+                                        default: alert(`Mês incorreto, utilize apenas numeros`);
+                                        break;
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
+            break;
+    }
 
     //SAÍDA
 
+    switch(estacao){
+        case `Inverno`:
+            alert(`A estacão é ${estacao}, ta frio 🥶`);
+            break;
+        case `Verão`:
+            alert(`A estacão é ${estacao}, ta quente 🥵`);
+            break;
+        case `Primavera`:
+            alert(`A estacão é ${estacao}, as flores estão lindas 😍`);
+            break;
+        default:
+            alert(`A estacão é ${estacao}, esta um nevoeiro 😶‍🌫️`);
+            break;
+    }
 </script>

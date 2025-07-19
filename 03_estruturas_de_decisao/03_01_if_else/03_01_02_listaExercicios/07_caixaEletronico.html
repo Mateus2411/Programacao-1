@@ -1,18 +1,34 @@
 <script>
     /*
     PROBLEMA: CAIXA ELETRÔNICO
-    Faça um script para um caixa eletrônico. O script deverá perguntar ao usuário a valor do saque e depois informar quantas notas de cada valor serão fornecidas. As notas disponíveis serão as de 1, 5, 10, 50 e 100 reais. O valor mínimo é de 10 reais e o máximo de 600 reais. O script não deve se preocupar com a quantidade de notas existentes na máquina.
+    Faça um script para um caixa eletrônico. O script deverá perguntar ao usuário a valor do saque e depois informar quantas notas de cada valor serão fornecidas.
+    As notas disponíveis serão as de 1, 5, 10, 50 e 100 reais. O valor mínimo é de 10 reais e o máximo de 600 reais.
+    O script não deve se preocupar com a quantidade de notas existentes na máquina.
 
     Exemplo: Para sacar a quantia de 256 reais, o script fornece duas notas de 100, uma nota de 50, uma nota de 5 e uma nota de 1;
     Exemplo: Para sacar a quantia de 399 reais, o script fornece três notas de 100, uma nota de 50, quatro notas de 10, uma nota de 5 e quatro notas de 1.
     */
 
     //ENTRADA
-
-    
+    const valorSaque = Number(prompt(`Digite o valor a ser sacado(Mínimo: 10 R$ ; Maximo: 600 R$)`));
     //PROCESSAMENTO
+    const valorMX = 600;
+    const valorMN = 10;
 
-    
+
+    if (valorSaque > valorMX || valorSaque < valorMN){
+        alert(`Digite um valor dentro dos parametros`);
+    } else {
+        alert(`Tranzação realizada`);
+
+        const Rnota100 = Math.floor(valorSaque / 100);
+        const Rnota50 = Math.floor((valorSaque % 100) / 50);
+        const Rnota10 = Math.floor(((valorSaque % 100) % 50) / 10 );
+        const Rnota5 = Math.floor((((valorSaque % 100) % 50) % 10 ) / 5) ;
+        const Rnota1 = Math.floor(((valorSaque % 100) % 50) % 10 ) % 5 ;
+
+        alert(` ${Rnota100} de notas de: R$100.\n ${Rnota50} de notas de: R$50.\n ${Rnota10} de notas de: R$10.\n ${Rnota5} de notas de: R$5.\n ${Rnota1} de notas de: R$1.`);
+    }
     //SAÍDA
 
 </script>

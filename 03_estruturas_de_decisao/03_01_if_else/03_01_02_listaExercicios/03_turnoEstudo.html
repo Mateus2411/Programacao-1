@@ -12,12 +12,22 @@
     */
 
     //ENTRADA
-
+    const qualTurno = prompt(`Qual turno você estuda? \n(M-matutino ou V-Vespertino ou N-Noturno)`).toUpperCase().trim();
     
     //PROCESSAMENTO
-
+    if (qualTurno == `M`){
+        alert(`Bom Dia!`);
+    }
+    else if (qualTurno == `V`){
+        alert(`Bom Tarde!`);
+    }
+    else if (qualTurno == `N`){
+        alert(`Boa noite!`);
+    }
+    else {
+        alert(`Valor inválido`);
+    }
     
     //SAÍDA
-    
 
 </script>

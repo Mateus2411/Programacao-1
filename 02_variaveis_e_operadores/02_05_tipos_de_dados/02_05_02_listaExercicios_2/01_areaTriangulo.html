@@ -2,15 +2,20 @@
 <script>
     /*
     Problema:  Área do triângulo
-    Peça para o usuário informar a base e a altura do triângulo e calcule a área do triângulo. Para o cálculo do triângulo, utilize: área = (base x altura) / 2. Apresente o resultado ao final do programa.
+    Peça para o usuário informar a base e a altura do triângulo e calcule a área do triângulo. Para o cálculo do triângulo,
+    utilize: área = (base x altura) / 2. Apresente o resultado ao final do programa.
     */
 
     //ENTRADA
+    const base = Number(prompt(`Digite a largura do triangulo`));
+    const alt = Number(prompt(`Digite a altura do triangulo`));
 
     
     //PROCESSAMENTO
+    area = (base * alt) / 2 ;
     
     
     //SAÍDA
+    document.write(`A area do triangulo é ${area}`);
 
 </script>

@@ -1,4 +1,3 @@
-<meta charset="UTF-8" />
 <script>
     /*
     PROBLEMA: NOTA PARA CONCEITO
@@ -11,12 +10,25 @@
     Entre 5.9 e zero            E
     */
 
-    //ENTRADA
+    // ENTRADA
+    const nota = Number(prompt(`Digite a nota (0 a 10):`));
 
-    
-    //PROCESSAMENTO
+    // PROCESSAMENTO
 
-    
-    //SAÍDA
+    if (nota >= 9 && nota <= 10) {
+        conceito = `A`;
+    } else if (nota >= 8 && nota < 9) {
+        conceito = `B`;
+    } else if (nota >= 7 && nota < 8) {
+        conceito = `C`;
+    } else if (nota >= 6 && nota < 7) {
+        conceito = `D`;
+    } else if (nota >= 0 && nota < 6) {
+        conceito = `E`;
+    } else {
+        conceito = `Nota inválida`;
+    }
 
+    // SAÍDA
+    alert(`Conceito: ${conceito}`);
 </script>

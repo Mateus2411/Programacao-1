@@ -6,11 +6,25 @@
     */
 
     // ENTRADA
+    const letra = prompt(`Informe uma letra`).charAt().toLocaleLowerCase();
 
-    
     // PROCESSAMENTO
 
-    
+    switch(letra){
+        case `a`: mensagem = `É uma vogal`;
+        break;
+        case `e`: mensagem = `É uma vogal`;
+        break;
+        case `i`: mensagem = `É uma vogal`;
+        break;
+        case `o`: mensagem = `É uma vogal`;
+        break;
+        case `u`: mensagem = `É uma vogal`;
+        break;
+        default: mensagem = `Não é vogal`;
+        break;
+    }
     // SAÍDA
+    alert(mensagem)
 
 </script>

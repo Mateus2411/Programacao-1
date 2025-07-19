@@ -8,11 +8,73 @@
     */
 
     //ENTRADA
-
+    const n1 = Number(prompt(`Qual o primeiro número?`));
+    const op = prompt(`Qual operação deseja realizar?\n (+ adição; - subtração; * multiplicação; / divisão.)`);
+    const n2 = Number(prompt(`Qual o segundo número?`));
 
     //PROCESSAMENTO
-
+    let resultado = 0;
+    let operadorReal = true;
+    let final = '';
+    let tipo = '';
+    let sinal = '';
+    let classe = '';
     
+    //OPERAÇÃO
+    if (op === '+') {
+        resultado = n1 + n2;
+        verificador();
+    } else if (op === '-') {
+        resultado = n1 - n2;
+        verificador();
+    } else if (op === '*') {
+        resultado = n1 * n2;
+        verificador();
+    } else if (op === '/') {
+        if (n2 === 0) {
+            resultado = 0;
+            verificador();
+        } else {
+            resultado = n1 / n2;
+            verificador();
+        }
+    } else {
+        operadorReal = false;
+        alert('Seu operador não é válido. (+ adição; - subtração; * multiplicação; / divisão)');
+    }
+    //VERIFICACOES
+    function verificador() {
+
+        switch(true) {
+            case (resultado % 2 === 0):
+                tipo = 'par';
+                final = `O seu número é ${tipo}, `;
+                break;
+            default:
+                tipo = 'impar';
+                final = `O seu número é ${tipo}, `;
+        }
+        switch(true) {
+            case (resultado < 0):
+                sinal = 'negativo';
+                final = final + `${sinal} e `;
+                break;
+            default:
+                sinal = 'positivo';
+                final = final + `${sinal} e `;
+        }
+        switch(true) {
+            case (Number.isInteger(resultado)):
+                classe = 'inteiro';
+                final = final + `${classe}.`;
+                break;
+            default:
+                classe = 'decimal';
+                final = final + `${classe}.`;
+        }
+        alert(`O resultado é ${resultado}\n${final}`);
+    }
+    // Reportar e entender como fazer diferente
     //SAÍDA
 
 </script>

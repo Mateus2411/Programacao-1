@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta charset=`UTF-8` />
 <script>
     /*
     PROBLEMA: REAJUSTE SALARIAL
@@ -16,10 +16,28 @@
 
     //ENTRADA
 
-
+    const salario = prompt(`Informe o valor do seu salário:`);
+    
     //PROCESSAMENTO
 
-    
-    //SAÍDA
+    let percentual = 0;
+    if (salario === Number){
+        if (salario <= 2000) {
+            percentual = 0.15;
+        } else if (salario > 2000 && salario <= 4000) {
+            percentual = 0.10;
+        } else if (salario > 4000 && salario <= 7000) {
+            percentual = 0.075;
+        } else {
+            percentual = 0.05;
+    }
+
+    aumento = salario * percentual;
+    novoSalario = salario + aumento;
+    alert(`Novo salário: R$ ${novoSalario.toFixed(2)}`);
+
+    } else {
+    alert(`Utilize numeros`)
+    }
 
 </script>

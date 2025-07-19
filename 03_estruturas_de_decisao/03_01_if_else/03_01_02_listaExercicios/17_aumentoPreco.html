@@ -10,11 +10,21 @@
     */
 
     //ENTRADA
+    const preco = Number(prompt("Digite o preço do produto:"));
+    let pfinal = 0;
 
-    
     //PROCESSAMENTO
-
-    
-    //SAÍDA
-
+    if (preco <= 280) {
+        pfinal = preco + preco * 0.20;
+        alert(`Novo preço: R$ ${pfinal.toFixed(2)} após o aumento`);
+    } else if (preco > 280 & preco <= 700) {
+        pfinal = preco + preco * 0.15;
+        alert(`Novo preço: R$ ${pfinal.toFixed(2)} após o aumento`);
+    } else if (preco > 700 & preco <= 1500) {
+        pfinal = preco + preco * 0.10;
+        alert(`Novo preço: R$ ${pfinal.toFixed(2)} após o aumento`);
+    } else {
+        pfinal = preco + preco * 0.05;
+        alert(`Novo preço: R$ ${pfinal.toFixed(2)} após o aumento`);
+    }
 </script>

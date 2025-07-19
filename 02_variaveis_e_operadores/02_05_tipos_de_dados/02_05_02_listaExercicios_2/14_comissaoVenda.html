@@ -2,15 +2,25 @@
 <script>
     /*
     Problema: Comissão por venda de veículos
-    Considere que uma revendedora paga a seus funcionários um salário fixo por mês, mais R$ 225,00 para cada carro vendido e, além disso, 5% do valor das vendas efetuadas por ele. Pergunte ao usuário qual o seu salário fixo, quantos carros foram vendidos e o valor total das vendas. Calcule e apresente qual a remuneração final do vendedor, funcionário da revendedora. Também apresente qual será o salário após o desconto de 20% de impostos.
+    Considere que uma revendedora paga a seus funcionários um salário fixo por mês, mais R$ 225,00 para cada carro vendido e,
+    além disso, 5% do valor das vendas efetuadas por ele. Pergunte ao usuário qual o seu salário fixo,
+    quantos carros foram vendidos e o valor total das vendas. Calcule e apresente qual a remuneração final do vendedor,
+    funcionário da revendedora. Também apresente qual será o salário após o desconto de 20% de impostos.
     */
 
     //ENTRADA
-    
-    
+    const salariofx = Number(prompt(`Digite o valor de seu salario fixo`))
+    const quantidadeCarros = Number(prompt(`Digite a quantidade de carros vendidos`))
+    const valorTotalVendas = Number(prompt(`Digite o valor faturado total faturado com os carros`))
+
     //PROCESSAMENTO
-    
+    bonus1 = quantidadeCarros * 225
+    bonus2 = valorTotalVendas * 0.05
+    bonusTotal = bonus1 + bonus2
+    salarioBruto = salariofx + bonusTotal
+    salarioLiquido = salarioBruto * 0.20
     
     //SAÍDA
+    document.write(`Seu salario bruto será de R$ ${salarioBruto} . Seu salario liquido será de R$ ${salarioLiquido} .`)
     
 </script>

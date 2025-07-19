@@ -11,11 +11,24 @@
     */
 
     //ENTRADA
+    //Frutas
 
+    const fruta1 = prompt(`Digite a 1° fruta`);
+    const fruta2 = prompt(`Digite a 2° fruta`);
+    const fruta3 = prompt(`Digite a 3° fruta`);
+
+    //Bebidas
+
+    const bebida1 = prompt(`Digite a 1° bebida`);
+    const bebida2 = prompt(`Digite a 2° bebida`);
+    const bebida3 = prompt(`Digite a 3° bebida`);
 
     //PROCESSAMENTO
 
+    const fruta = [fruta1, fruta2, fruta3];
+    const bebida = [bebida1, bebida2, bebida3];
+    const total = fruta.concat(bebida).join(` - `);
 
     //SAÍDA
-
+    alert(`${total}`);
 </script>

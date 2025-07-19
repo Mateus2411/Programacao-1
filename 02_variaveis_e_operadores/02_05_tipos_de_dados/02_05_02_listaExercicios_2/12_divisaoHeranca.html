@@ -2,15 +2,23 @@
 <script>
     /*
     Problema: Divisão de herança
-    Peça para o usuário informar a quantidade de cabeças de gado que um fazendeiro possui e também informar quantos herdeiros possui. Antes de falecer, o fazendeiro doará 15% dessas cabeças de gado. Calcule e apresente quantas cabeças de gado restarão para cada herdeiro.
+    Peça para o usuário informar a quantidade de cabeças de gado que um fazendeiro possui e
+    também informar quantos herdeiros possui. Antes de falecer, o fazendeiro doará 15% dessas cabeças de gado.
+    Calcule e apresente quantas cabeças de gado restarão para cada herdeiro.
     */
 
     //ENTRADA
+    const cabecaGado = Number(prompt("Informe a quantidade de cabeças de gado:"));
+    const herdeiros = Number(prompt("Informe a quantidade de herdeiros:"));
+    const doacao = 0.15;
     
     
     //PROCESSAMENTO
-    
+    doacaoGado = cabecaGado * doacao;
+    gadoRestante = cabecaGado - doacaoGado;
+    gadoPorHerdeiro = Math.round (gadoRestante / herdeiros);
     
     //SAÍDA
+    document.write(`A quantidade de cabeças de gado que restará para cada herdeiro é: ${gadoPorHerdeiro}`);
     
 </script>

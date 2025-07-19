@@ -7,9 +7,19 @@
 
     //ENTRADA
 
+    let inteiro1 = Number(prompt("Digite o primeiro número inteiro:"));
+    let inteiro2 = Number(prompt("Digite o segundo número inteiro:"));
 
     //PROCESSAMENTO
-
+    if (inteiro1 === inteiro2){
+        alert(`São os mesmos numeros. \n Primeiro numero ${inteiro1} \n Segundo numero ${inteiro2}`);
+    }
+    else if (inteiro1 !== inteiro2){ 
+        alert(` Antes \n Primeiro numero ${inteiro1} \n Segundo numero ${inteiro2}\n Depois \n Segundo numero ${inteiro2} \n Primeiro numero ${inteiro1}`);
+    }
+    else {
+        alert(`Erro, refaça o questionario`);
+    }
 
     //SAÍDA
 

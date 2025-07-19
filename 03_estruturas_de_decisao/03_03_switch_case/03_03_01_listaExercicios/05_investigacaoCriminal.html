@@ -12,11 +12,77 @@
     */
 
     //ENTRADA
-
+    const p1 = String(prompt(`Telefonou para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p2 = String(prompt(`Esteve no local do crime? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p3 = String(prompt(`Mora perto da vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p4 = String(prompt(`Devia para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const p5 = String(prompt(`Já trabalhou com a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
     
     //PROCESSAMENTO
+    let mensagem = ``;
+    let resultado = 0;
 
+    //Validar se é "s"ou"n"
 
+    switch((p1 || p2 || p3 || p4 || p5) != `s` || `n`){
+        case true: alert(`utilize apenas "s" ou "n"`);
+        break;
+        default: tudo();
+        break;
+    }
+
+    //Contagem 
+    function tudo(){
+        switch (p1){
+            case `s`: resultado++;
+            break;
+            default: resultado + 0;
+            break; 
+        }
+        switch (p2){
+            case `s`: resultado++;
+            break;
+            default: resultado + 0;
+            break; 
+        }
+        switch (p3){
+            case `s`: resultado++;
+            break;
+            default: resultado + 0;
+            break; 
+        }
+        switch (p4){
+            case `s`: resultado++;
+            break;
+            default: resultado + 0;
+            break; 
+        }
+        switch (p5){
+            case `s`: resultado++;
+            break;
+            default: resultado + 0;
+            break; 
+        }
+        
+        //Validção do tipo da pessoa
+        
+        switch (resultado > 2){
+            case true: mensagem = `Suspeita`;
+            break;
+            default: mensagem = `Inocente`;
+            break;
+        }
+        switch (resultado >= 3 && resultado <= 4){
+            case true: mensagem = `Cúmplice`;
+            break;
+        }
+    switch (resultado === 5){
+        case true: mensagem = `Assassino`;
+        break;
+    }
+    
     //SAÍDA
-
+    
+    alert(mensagem);
+}
 </script>

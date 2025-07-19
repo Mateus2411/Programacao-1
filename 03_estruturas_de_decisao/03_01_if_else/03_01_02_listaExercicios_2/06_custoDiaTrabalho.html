@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta charset=`UTF-8` />
 <script>
     /*
     PROBLEMA: CUSTO DO DIA DE TRABALHO
@@ -6,20 +6,40 @@
     
     Considere que o valor da diária é de R$ 100,00 (100).
     
-    - Se o usuário ocupar o cargo de "Motorista" e realizou até 10 viagens, haverá um adicional de 20% (20/100).
-    - Se o usuário ocupar o cargo de "Motorista" e realizou mais de 10 viagens, haverá um adicional de 35% (35/100).
-    - Contudo, se o cargo do usuário for "Cobrador" e realizou até 10 viagens, não haverá adicional.
-    - Se o usuário ocupar o cargo de "Cobrador" e realizou mais de 10 viagens, haverá um adicional de 10% (10/100).
+    - Se o usuário ocupar o cargo de `Motorista` e realizou até 10 viagens, haverá um adicional de 20% (20/100).
+    - Se o usuário ocupar o cargo de `Motorista` e realizou mais de 10 viagens, haverá um adicional de 35% (35/100).
+    - Contudo, se o cargo do usuário for `Cobrador` e realizou até 10 viagens, não haverá adicional.
+    - Se o usuário ocupar o cargo de `Cobrador` e realizou mais de 10 viagens, haverá um adicional de 10% (10/100).
     
     Apresente em tela o cargo do usuário e também o valor final recebido pelas viagens realizadas.
     */
 
     //ENTRADA
 
-
+    const cargo = prompt(`Qual o seu cargo? (Motorista/Cobrador)`).trim().toLowerCase();
+    const viagens = Number(prompt(`Quantas viagens foram realizadas por dia?`));
     //PROCESSAMENTO
 
+    const diaria = 100;
+    let adicional = 0;
+    if (cargo === `motorista`) {
+        if (viagens <= 10) {
+            adicional = diaria * 0.2;
+        } else {
+            adicional = diaria * 0.35;
+        }
+    } else if (cargo === `cobrador`) {
+        if (viagens > 10) {
+            adicional = diaria * 0.1;
+        } else {
+            adicional = 0;
+        }
+    } else {
+        alert(`Cargo inválido!`);
+    }
+    const valorFinal = diaria + adicional;
     
     //SAÍDA
 
+    alert(`Cargo: ${cargo} \nValor final recebido: R$ ${valorFinal.toFixed(2)}`);
 </script>

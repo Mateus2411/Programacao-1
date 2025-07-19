@@ -9,11 +9,13 @@
     */
 
     //ENTRADA
-    
+    var peso = prompt(`Informe o seu peso: `);
     
     //PROCESSAMENTO
-    
+    var pesoEmagrecer = peso - (peso * 0.15);
+    var pesoEngordar = peso + (peso * 0.20);
     
     //SAÍDA
-    
+    document.write(`Seu peso, caso emagreça 15%: ${pesoEmagrecer.toFixed(1)} kg.<br>
+     Seu peso, caso engorde 20%: ${pesoEngordar} kg.`);    
 </script>

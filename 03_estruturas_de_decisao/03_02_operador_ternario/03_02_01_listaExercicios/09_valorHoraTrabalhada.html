@@ -8,13 +8,16 @@
     Se o total de horas trabalhadas ultrapassar 60 horas, haverá adicional de 30%.
     Apresente o salário final recebido pelo funcionário semanalmente e o preço de cada hora trabalhada.
     */
-
-|    //ENTRADA
-
-
-    //PROCESSAMENTO
-
-    
+   
+   //ENTRADA
+   const horaSemanal = Number(prompt(`Informe a sua carga horária semanal`));
+   const ganhoHora = Number(prompt(`Informe quanto você ganha por hora`));
+   const salario = horaSemanal * ganhoHora
+   const adicional20 = 0.2 * salario;
+   const adicional30 = 0.3 * salario;
+   //PROCESSAMENTO
+    let salarioFinal = salario;
+    (horaSemanal > 60) ? salarioFinal+= adicional30 : (horaSemanal > 45) ? salarioFinal+= adicional20 : salarioFinal = salario;
     //SAÍDA
-
+    alert(`Seu salário é de R$${salarioFinal.toFixed(2)} e você gahou R$${(salarioFinal/horaSemanal).toFixed(2)} por hora trabalhada`);
 </script>

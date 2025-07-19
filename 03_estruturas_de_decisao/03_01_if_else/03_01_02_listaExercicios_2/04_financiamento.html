@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta charset=`UTF-8` />
 <script>
     /*
     PROBLEMA: FINANCIAMENTO
@@ -11,10 +11,23 @@
 
     //ENTRADA
 
+    const valorImovel = Number(prompt(`Informe o valor do imóvel:`));
+    const anos = Number(prompt(`Em quantos anos será realizado o financiamento?`));
+    const salario = Number(prompt(`Informe o salário do comprador:`));
 
     //PROCESSAMENTO
 
+    const meses = anos * 12;
+    const parcela = valorImovel / meses;
+    const limite = salario * 0.3;
+    let mensagem = ``;
+    if (parcela <= limite) {
+        mensagem = `Financiamento aprovado! Valor da parcela: R$ ${parcela.toFixed(2)}`;
+    } else {
+        mensagem = `Financiamento negado! Parcela excede 30% do salário.`;
+    }
     
     //SAÍDA
 
+    alert(mensagem);
 </script>

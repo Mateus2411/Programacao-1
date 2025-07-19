@@ -1,4 +1,4 @@
-<meta charset="UTF-8">
+<meta charset=`UTF-8`>
 <script>
     /*
     PROBLEMA: AUMENTO DE PREÇO
@@ -10,11 +10,18 @@
     */
 
     //ENTRADA
-
+    const preco = Number(prompt(`Informe o preço do produto:`));
 
     //PROCESSAMENTO
+    let percentual = 0;
+    (preco <= 280) ? percentual = 20 :
+    (preco <= 700) ? percentual = 15 :
+    (preco <= 1500) ? percentual = 10 :
+    percentual = 5;
 
-    
+    const aumento = preco * percentual / 100;
+    const novoPreco = preco + aumento;
+
     //SAÍDA
-
+    alert(`Percentual de aumento: ${percentual}%\nValor do aumento: R$ ${aumento.toFixed(2)}\nNovo preço: R$ ${novoPreco.toFixed(2)}`);
 </script>

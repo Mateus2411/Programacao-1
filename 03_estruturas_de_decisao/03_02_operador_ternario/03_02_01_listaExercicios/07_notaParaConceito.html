@@ -12,11 +12,16 @@
     */
 
     //ENTRADA
-
+    const nota = Number(prompt("Informe a nota (0 a 10):"));
 
     //PROCESSAMENTO
+    (nota >= 9 && nota <= 10) ? conceito = "A" :
+    (nota >= 8 && nota < 9)  ? conceito = "B" :
+    (nota >= 7 && nota < 8)  ? conceito = "C" :
+    (nota >= 6 && nota < 7)  ? conceito = "D" :
+    (nota >= 0 && nota < 6)  ? conceito = "E" :
+    conceito = "Nota inválida";
 
-    
     //SAÍDA
-
+    alert(`Conceito: ${conceito}`);
 </script>

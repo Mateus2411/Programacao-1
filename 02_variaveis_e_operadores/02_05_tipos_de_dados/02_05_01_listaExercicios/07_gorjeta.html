@@ -2,15 +2,20 @@
 <script>
     /*
     Problema: Gorjeta
-    Peça para o usuário informar qual foi o preço do jantar. Calcule 10% da gorjeta e apresente o preço total que deverá pagar para o restaurante e apresente o resultado.
+    Peça para o usuário informar qual foi o preço do jantar.
+    Calcule 10% da gorjeta e apresente o preço total que deverá pagar para o restaurante e apresente o resultado.
     */
 
     //ENTRADA
 
+    const valorJantar = Number(prompt(`Qual o valor a ser pago`));
     
     //PROCESSAMENTO
 
+    gorjeta = valorJantar * 10 / 100;
     
     //SAÍDA
+
+    document.write(`O valor a ser pago com a gorjeta será de R$: ${gorjeta + valorJantar}`);
 
 </script>

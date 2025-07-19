@@ -2,15 +2,20 @@
 <script>
     /*
     PROBLEMA: Problema 10: Dias para segundos
-    Peça para o usuário informar a quantidade dias que deseja converter em segundos. Faça a conversão calculando a quantidade de segundos equivalente ao número de dias informados e apresente o resultado.
+    Peça para o usuário informar a quantidade dias que deseja converter em segundos.
+    Faça a conversão calculando a quantidade de segundos equivalente ao número de dias informados e apresente o resultado.
     */
 
     //ENTRADA
 
+    const dias = Number(prompt(`Informe a quantidade de dias que deseja treanformar em segundos`))
     
     //PROCESSAMENTO
-
+    
+    segundos = (((dias * 24) * 60) * 60);
     
     //SAÍDA
+
+    document.write(`Seria de aproximadamente ${segundos} segundos`);
 
 </script>

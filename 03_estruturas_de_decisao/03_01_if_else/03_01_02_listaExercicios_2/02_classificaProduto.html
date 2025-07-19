@@ -1,4 +1,4 @@
-<meta charset="UTF-8" />
+<meta charset=`UTF-8` />
 <script>
     /*
     PROBLEMA: CLASSIFICAÇÃO DE PRODUTO
@@ -14,10 +14,26 @@
 
     //ENTRADA
 
-
+    const codigo = Number(prompt(`Informe o código do produto:`));
     //PROCESSAMENTO
 
-    
+    let classificacao = ``;
+    if (codigo === 1) {
+        classificacao = `Alimento não-perecível`;
+    } else if (codigo >= 2 && codigo <= 4) {
+        classificacao = `Alimento perecível`;
+    } else if (codigo === 5 || codigo === 6) {
+        classificacao = `Vestuário`;
+    } else if (codigo === 7) {
+        classificacao = `Higiene Pessoal`;
+    } else if (codigo >= 8 && codigo <= 15) {
+        classificacao = `Limpeza e Utensílios Domésticos`;
+    } else if (codigo >= 16 && codigo <= 20) {
+        classificacao = `Outros`;
+    } else {
+        classificacao = `Código inválido`;
+    }
     //SAÍDA
-
+    
+    alert(classificacao);
 </script>

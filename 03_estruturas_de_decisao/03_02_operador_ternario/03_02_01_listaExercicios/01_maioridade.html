@@ -7,10 +7,14 @@
 
     //ENTRADA
 
-
+    const idade = Number(prompt(`informe sua idd:`));
     //PROCESSAMENTO
+    let mensagem = ``;
+    let resto = (idade - 18) * -1;
 
-    
+    (idade > 18) ? mensagem = `chegou a maioridade` : mensagem = `não chegou a maioridade, falta ${resto} anos para a maioridade`;
+
     //SAÍDA
 
+    document.write(mensagem);
 </script>

@@ -2,15 +2,23 @@
 <script>
     /*
     Problema: Fahrenheit para Celsius
-    Peça para o usuário informar uma temperatura em Fahrenheit. Converta e apresente a temperatura em graus Celsius.
+    Peça para o usuário informar uma temperatura em Fahrenheit.
+     Converta e apresente a temperatura em graus Celsius.
     */
+   // FÓMULA ºC = (F - 32) / 1,8
 
     //ENTRADA
 
+    const tempF = Number(prompt(`Diga uma temperatura em Fahrenheit`));
     
     //PROCESSAMENTO
 
+    tempC = (tempF - 32) / 1,8
     
     //SAÍDA
+    document.write(`A temperatura será de: ${tempC} Celsius`);
 
-</script>
+    //Refencia tempF: Fahrenheit
+    //Refencia tempC: Celsius
+
+</script>       

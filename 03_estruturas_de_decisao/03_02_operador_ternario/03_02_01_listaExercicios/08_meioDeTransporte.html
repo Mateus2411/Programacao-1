@@ -9,10 +9,15 @@
 
     //ENTRADA
 
+    const precoC = Number(prompt(`Qual o preço do combustível?`));
+    const litrosTrabalho = Number(prompt(`Qunatos litros de combustível voce utiliza ate o trabalho diariamente?`));
+    const precoT = Number(prompt(`Qual o preço do transporte publico?`));
 
     //PROCESSAMENTO
-
-    
+    precoTotalC = precoC * litrosTrabalho;
+    precoTotalT = precoT * 2;
+    mensagem = ``;
+    (precoTotalC > precoTotalT )? mensagem = `O meio de transporte mais barato é o transporte público, custando R$ ${precoTotalT.toFixed(2)} por dia (ida e volta).` : (precoTotalT < precoTotalC)? mensagem = `O meio de transporte mais barato é o carro, custando R$ ${precoTotalC.toFixed(2)} por dia (ida e volta).` : mensagem = `Ambos os meios de transporte custam o mesmo valor: R$ ${precoTotalC.toFixed(2)} por dia (ida e volta).`
     //SAÍDA
-    
+    alert(mensagem)
 </script>

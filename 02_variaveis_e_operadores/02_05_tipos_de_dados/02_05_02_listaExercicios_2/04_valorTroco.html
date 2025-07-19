@@ -2,15 +2,20 @@
 <script>
     /*
     Problema: Calcular troco
-    Peça para o usuário informar o valor pago pelo cliente e também informar quanto foi o consumo do cliente na loja. Considerando que o cliente dará um valor superior ao quanto consumiu, calcule e apresente, ao final do programa, quanto deverá dar de troco para o cliente.
+    Peça para o usuário informar o valor pago pelo cliente e também informar quanto foi o consumo do cliente na loja.
+    Considerando que o cliente dará um valor superior ao quanto consumiu, calcule e apresente, ao final do programa,
+    quanto deverá dar de troco para o cliente.
     */
 
     //ENTRADA
 
-    
+    const base = Number(prompt(`Informe o valor do consumo`))
+    const pago = Number(prompt(`Informe o valor pago`))
+
     //PROCESSAMENTO
     
+    troco = pago - base
     
     //SAÍDA
-    
+    document.write(`O troco será de ${troco.toFixed(2)}`)
 </script>

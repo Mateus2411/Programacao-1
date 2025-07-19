@@ -8,15 +8,19 @@
     - Conta de telefone
     - Supermercado
     Também peça para o usuário informar o valor que recebe de remuneração mensal (salário), proveniente da sua atuação profissional.
-    Verifique se o usuário ganha mais do que gasta e apresente em tela, indicando quanto que sobrou após o pagamento das contas ou quanto que faltou para poder pagar todas as contas previstas.
+    Verifique se o usuário ganha mais do que recebe e apresente em tela, indicando quanto que sobrou após o pagamento das contas ou quanto que faltou para poder pagar todas as contas previstas.
     */
 
     //ENTRADA
-
-
+    const despesas = alert(`Informe suas despesas:`);
+    const despAgua = Number(prompt(`Informe sua conta de água:`));
+    const desEnergia = Number(prompt(`Informe sua conta de energia:`));
+    const desTelefone = Number(prompt(`Informe sua conta de telefone:`));
+    const desSuperM = Number(prompt(`Informe sua conta de supermercado:`));
+    const salario = Number(prompt(`Informe seu salário:`));
+    
     //PROCESSAMENTO
-
-    
+    const diferenca = salario - (despAgua + desEnergia + desTelefone + desSuperM);
     //SAÍDA
-    
+    alert((diferenca >= 0) ? `Você pagou a conta! Sobrou: R$${diferenca.toFixed(2)}` : `Você não pagou! Faltaram: R$${(diferenca * -1).toFixed(2)}`);
 </script>

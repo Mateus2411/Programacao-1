@@ -1,4 +1,3 @@
-<meta charset="UTF-8" />
 <script>
     /*
     PROBLEMA: ACRÉSCIMO DE NOTA NO PROGRAMA BB
@@ -6,10 +5,20 @@
     */
 
     //ENTRADA
-
-    
+    const notaAntes = Number(prompt(`Digite a nota do "little brother" antes da ajuda`));
+    const notaDepois = Number(prompt(`Digite a nota do "little brother" depois da ajuda`));
     //PROCESSAMENTO
     
+    resultado = (notaDepois - notaAntes) / 4;
+    if (notaDepois == notaAntes){
+        alert(`Big brother não receberá acrecimos, pois nao ajudou o little brother`);
+    }
+    else if (notaDepois > notaAntes){
+        alert(`Big brother fez um bom trabalho e receberá: ${resultado} ponto(s) de acrecimos na nota`);
+    }
+    else {
+        alert(`Big brother piorou a situação`);
+    }
     
     //SAÍDA
 
