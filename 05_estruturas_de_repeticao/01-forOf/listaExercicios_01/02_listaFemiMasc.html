@@ -36,12 +36,18 @@
         break;
     }
   }
-  if (unde.length > 0) {
+  if (unde.length !== 0 && masc.length !== 0 && femi.length !== 0) {
     document.write(
       `Lista Masculino<br>${masc}<br><br>Lista Feminino<br>${femi}<br><br>Não Definidos<br>${unde}`
     );
-  } else {
+  } else if (masc.length !== 0 && femi.length !== 0 && unde.length === 0) {
     document.write(`Lista Masculino<br>${masc}<br><br>Lista Feminino<br>${femi}`);
+  } else if (masc.length !== 0 && femi.length === 0 && unde.length === 0) {
+    document.write(`Lista Masculino<br>${masc}`);
+  } else if (masc.length === 0 && femi.length !== 0 && unde.length !== 0) {
+    document.write(`Lista Feminino<br>${femi}<br><br>Não Definidos<br>${unde}`);
+  } else {
+    document.write(`Você não definiu nada<br>${unde}`)
   }
   //SAÍDA
 </script>

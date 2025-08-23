@@ -15,9 +15,9 @@
   //PROCESSAMENTO
 
   const listaNumeros = [n1, n2, n3];
-  const listaFinal = listaNumeros.sort().join(` - `);
+  const listaFinal = listaNumeros.sort((a,b)=> a-b).join(` - `);
 
   //SAÍDA
 
-  alert(`${listaFinal[2]}${listaFinal[1]}${listaFinal[0]}`);
+  alert(`${listaFinal}`);
 </script>
