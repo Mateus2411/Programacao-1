@@ -6,11 +6,18 @@
     //Apresente apenas os números pares. Apresente também a quantidade de números pares que existem e apresente a quantidade de elementos da lista original.
 
     //ENTRADA
-
-
+    let listaDeItens = [1, "João", "Eduardo", "Joice", 3, 5, 6, 8, "Maria", 5.6, 10];
+    let listaPares = [];
     //PROCESSAMENTO
-
+    for (let item of listaDeItens) {
+        if (!isNaN(item)) {
+            if (item % 2 === 0) {
+            listaPares.push(item);
+            }
+        }
+    }
 
     //SAÍDA
-
-</script>
+    alert(`Os números pares são: ${listaPares}`);
+    alert(`Existem ${listaPares.length} números pares em uma lista de ${listaDeItens.length} itens`);
+    </script>
