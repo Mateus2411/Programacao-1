@@ -10,10 +10,14 @@
 
     //ENTRADA
     let listaDeLetras = ["a", "b", "d", "e", "E", "F", "C", "U", "u", "e", "W", "D"];
-    
     //PROCESSAMENTO
-
-    
+    listanv = [];
+    for(let i = 0; i< listaDeLetras.length; i++){
+        let minuscula = listaDeLetras[i].toLowerCase();
+        if(!listanv.includes(minuscula)){
+            listanv.push(minuscula)
+        }
+    }
     //SAÍDA
-
+    alert(listanv.sort().join(" - "));
 </script>

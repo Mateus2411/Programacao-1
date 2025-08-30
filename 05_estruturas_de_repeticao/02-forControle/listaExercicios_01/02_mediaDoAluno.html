@@ -7,11 +7,18 @@
     */
 
     //ENTRADA
-    
-
+    let nnts = Number(prompt("Quantas notas o aluno obteve?"));
+    let soma = 0;
     //PROCESSAMENTO
-    
-
+    for(let i = 1; i<= nnts; i++){
+       let nt = Number(prompt(`Diga a nota ${i}`));
+       soma += nt;
+    }
+    let calcR = soma / nnts;
     //SAÍDA
-
+    if(calcR < 6){
+    alert(`A média do aluno é ${calcR}, portanto está abaixo da média`);
+    } else {
+    alert(`A média do aluno é ${calcR}, portanto está acima da média`);
+    }
 </script>
