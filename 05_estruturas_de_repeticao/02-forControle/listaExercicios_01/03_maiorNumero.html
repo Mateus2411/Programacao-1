@@ -8,10 +8,14 @@
 
     //ENTRADA
 
-    
+    let numeros =[];
     //PROCESSAMENTO
-
-    
+    for(let i= 0; i<5 ; i++){
+    let a = Number(prompt("Digite o um numero numero"));
+    numeros.push(a);
+    }
+    numeros.sort((a,b)=> a-b);
+    alert(numeros.join(" - "));
     //SAÍDA
 
 </script>
