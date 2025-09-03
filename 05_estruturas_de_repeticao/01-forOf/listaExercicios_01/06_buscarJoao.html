@@ -1,14 +1,28 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    //PROBLEMA
-    //Considere a lista de nomes abaixo:
-    //Identifique todos os nomes que contém "João" em qualquer parte do nome e separe-os em uma lista. Apresente a lista ao final do programa. Considere que poderão haver "Joãos" sem ~ (til).
+  //PROBLEMA
+  //Considere a lista de nomes abaixo:
+  //Identifique todos os nomes que contém "João" em qualquer parte do nome e separe-os em uma lista. Apresente a lista ao final do programa. Considere que poderão haver "Joãos" sem ~ (til).
 
-    //ENTRADA       
-    let listaDeNomes = ["João Pedro", "Gabriel José", "Ulisses Joao", "Pedro Henrique", "João da Silva", "João Henrique", "Alisson João"];
-    let nomes
-    //PROCESSAMENTO
-        nomes = listaDeNomes.filter(nome => nome.includes("João") || nome.includes("Joao"))
-    //SAÍDA
-    alert(nomes.join(" - "))
+  //ENTRADA
+  let listaDeNomes = [
+    "João Pedro",
+    "Gabriel José",
+    "Ulisses Joao",
+    "Pedro Henrique",
+    "João da Silva",
+    "João Henrique",
+    "Alisson João",
+  ];
+  //PROCESSAMENTO
+  let joaos = [];
+  for (let nome of listaDeNomes) {
+    if (nome.toUpperCase().replace("Ã", "A").indexOf("JOAO") >= 0) {
+      joaos.push(nome);
+    }
+  }
+  //SAÍDA
+  for (let item of joaos) {
+    document.write(item+", ");
+  }
 </script>
