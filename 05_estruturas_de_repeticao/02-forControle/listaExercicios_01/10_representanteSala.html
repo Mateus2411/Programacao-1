@@ -1,18 +1,99 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
-    PROBLEMA: REPRESENTANTE DE SALA
-    Peça para o programa perguntar ao professor regente o nome dos três candidatos a representante da sala.
-    Peça também para o programa perguntar ao professor regente a quantidade de alunos votantes.
-    Desenvolva um programa que armazene o voto de cada aluno da sala e apresente o resultado da votação, com o quantitativo de votos e também a porcentagem de votos de cada candidato a representante de sala.
-    */
+  /*
+      PROBLEMA: REPRESENTANTE DE SALA
+      Peça para o programa perguntar ao professor regente o nome dos três candidatos a representante da sala.
+      Peça também para o programa perguntar ao professor regente a quantidade de alunos votantes.
+      Desenvolva um programa que armazene o voto de cada aluno da sala e apresente o resultado da votação, com o quantitativo de votos e também a porcentagem de votos de cada candidato a representante de sala.
+      */
 
-    //ENTRADA
+  //ENTRADA
 
+  let quantidadeDeCandidatos = Number(
+    prompt(`Qual a quantidade de candidatos`)
+  );
 
-    //PROCESSAMENTO
+  //Nome dos candidatos
+  let candidatos = [
+    {
+      nome: "null",
+      votos: 0,
+      numero: 0,
+    },
+  ];
 
+  // Quantidade de candidatos
+  let numeroCandidato = 0;
+  for (let a = 0; a < quantidadeDeCandidatos; a++) {
+    let nomeCandidato = prompt(
+      `Qual o nome do ${numeroCandidato + 1}° candidato?`
+    );
+    numeroCandidato++;
+    candidatos.push({
+      nome: `${nomeCandidato}`,
+      votos: 0,
+      numero: numeroCandidato,
+    });
+  }
 
-    //SAÍDA
+  //Quantos alunos votantes
+  let quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
 
+  //Votos
+  let listaCandidatos = ``;
+  let posicaoCandidato = 0;
+  let votarCandidato = 0;
+  for (let i = 0; i < candidatos.length; i++) {
+    if (candidatos[i].nome !== "null") {
+      listaCandidatos += `${i} - ${candidatos[i].nome}\n`;
+    }
+  }
+  for (
+    posicaoCandidato = 0;
+    posicaoCandidato < candidatos.length;
+    posicaoCandidato++
+  ) {
+    if (
+      candidatos[votarCandidato] &&
+      candidatos[votarCandidato].nome !== "null"
+    ) {
+      candidatos[votarCandidato].votos++;
+    }
+  }
+
+  for (let repetcoes = 0; repetcoes < quantidadeDeAlunosVotantes; repetcoes++) {
+    votarCandidato = Number(
+      prompt(`Em quem gostaria de votar?\n Candidatos\n${listaCandidatos}`)
+    );
+    if (
+      candidatos[votarCandidato] &&
+      candidatos[votarCandidato].nome !== "null"
+    ) {
+      candidatos[votarCandidato].votos++;
+    } else {
+      alert("Voto inválido");
+    }
+  }
+
+  //SAÍDA
+  candidatos.sort((a, b) => b.votos - a.votos);
+  for (let i = 0; i < candidatos.length; i++) {
+    if (candidatos[i].nome !== "null") {
+      let porcentagem = (
+        (candidatos[i].votos / quantidadeDeAlunosVotantes) *
+        100
+      ).toFixed(2);
+      alert(
+        `${candidatos[i].nome}: ${candidatos[i].votos} votos (${porcentagem}%)`
+      );
+    }
+  }
 </script>
+<style>
+  html {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
