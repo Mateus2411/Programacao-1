@@ -1,29 +1,14 @@
 <meta charset="UTF-8" />
 <script>
-  /*
-      PROBLEMA: REPRESENTANTE DE SALA
-      Peça para o programa perguntar ao professor regente o nome dos três candidatos a representante da sala.
-      Peça também para o programa perguntar ao professor regente a quantidade de alunos votantes.
-      Desenvolva um programa que armazene o voto de cada aluno da sala e apresente o resultado da votação, com o quantitativo de votos e também a porcentagem de votos de cada candidato a representante de sala.
-      */
-
   //ENTRADA
-
   let quantidadeDeCandidatos;
   do {
     quantidadeDeCandidatos = Number(prompt(`Qual a quantidade de candidatos`));
   } while (isNaN(quantidadeDeCandidatos) || quantidadeDeCandidatos <= 0);
 
-  //Nome dos candidatos
-  let candidatos = [
-    {
-      nome: "null",
-      votos: 0,
-      numero: 0,
-    },
-  ];
+  // Nome dos candidatos
+  let candidatos = [{ nome: "null", votos: 0, numero: 0 }];
 
-  // Quantidade de candidatos
   let numeroCandidato = 0;
   for (let a = 0; a < quantidadeDeCandidatos; a++) {
     let nomeCandidato;
@@ -32,15 +17,21 @@
         `Qual o nome do ${numeroCandidato + 1}° candidato?`
       );
     } while (!nomeCandidato || nomeCandidato.trim() === "");
+
+    // Capitaliza a primeira letra e deixa o resto minúsculo
+    nomeCandidato =
+      nomeCandidato.charAt(0).toUpperCase() +
+      nomeCandidato.slice(1).toLowerCase();
+
     numeroCandidato++;
     candidatos.push({
-      nome: `${nomeCandidato}`,
+      nome: nomeCandidato,
       votos: 0,
       numero: numeroCandidato,
     });
   }
 
-  //Quantos alunos votantes
+  // Quantidade de alunos votantes
   let quantidadeDeAlunosVotantes;
   do {
     quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
@@ -49,8 +40,8 @@
     quantidadeDeAlunosVotantes <= 0
   );
 
-  //Votos
-  let listaCandidatos = ``;
+  // Votação
+  let listaCandidatos = "";
   for (let i = 0; i < candidatos.length; i++) {
     if (candidatos[i].nome !== "null") {
       listaCandidatos += `${i} - ${candidatos[i].nome}\n`;
@@ -63,7 +54,7 @@
     repeticoes++
   ) {
     let votarCandidato = Number(
-      prompt(`Em quem gostaria de votar?\n Candidatos\n${listaCandidatos}`)
+      prompt(`Em quem gostaria de votar?\nCandidatos\n${listaCandidatos}`)
     );
     if (
       candidatos[votarCandidato] &&
@@ -76,32 +67,41 @@
     }
   }
 
-  //SAÍDA
-  candidatos.sort((a, b) => b.votos - a.votos);
-  let resultado = "Resultado da votação:\n";
-  for (let i = 0; i < candidatos.length; i++) {
-    if (candidatos[i].nome !== "null") {
-      let porcentagem = (
-        (candidatos[i].votos / quantidadeDeAlunosVotantes) *
+  // FUNÇÃO DE SAÍDA
+  function mostrarResultado(candidatos, totalVotos) {
+    candidatos.sort((a, b) => b.votos - a.votos);
+    let resultado = "Resultado da votação:\n";
+
+    // Calcula porcentagens e monta resultado
+    candidatos.forEach((c) => {
+      if (c.nome !== "null") {
+        let porcentagem = ((c.votos / totalVotos) * 100).toFixed(2);
+        resultado += `${c.nome}: ${c.votos} votos (${porcentagem}%)\n`;
+      }
+    });
+
+    // Checa empate
+    let topVotos = candidatos[1] ? candidatos[1].votos : 0;
+    if (candidatos[0].votos !== topVotos) {
+      let porcentagemVencedor = (
+        (candidatos[0].votos / totalVotos) *
         100
       ).toFixed(2);
-      resultado += `${candidatos[i].nome}: ${candidatos[i].votos} votos (${porcentagem}%)\n`;
+      resultado += `\nO vencedor é o candidato ${candidatos[0].nome} com ${porcentagemVencedor}% dos votos.`;
+    } else {
+      let empatados = candidatos.filter(
+        (c) => c.votos === candidatos[0].votos && c.nome !== "null"
+      );
+      resultado += `\nO resultado deu empate entre:\n`;
+      empatados.forEach((c) => {
+        let porcentagem = ((c.votos / totalVotos) * 100).toFixed(2);
+        resultado += `${c.nome} ${porcentagem}%\n`;
+      });
     }
+
+    alert(resultado);
   }
-  if (candidatos[0] && candidatos[0].nome !== "null") {
-    let porcentagemVencedor = (
-      (candidatos[0].votos / quantidadeDeAlunosVotantes) *
-      100
-    ).toFixed(2);
-    resultado += `\nO vencedor é o candidato ${candidatos[0].nome} com ${porcentagemVencedor}% dos votos.`;
-  }
-  alert(resultado);
+
+  // Chama a função de saída
+  mostrarResultado(candidatos, quantidadeDeAlunosVotantes);
 </script>
-<style>
-  html {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
