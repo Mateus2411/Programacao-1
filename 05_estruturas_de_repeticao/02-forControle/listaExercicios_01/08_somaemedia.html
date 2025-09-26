@@ -1,16 +1,21 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: SOMA E MÉDIA
     Faça um programa que leia 5 números e informe a soma e média dos números.
     */
 
-    //ENTRADA
-
-
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-
+  //ENTRADA
+  let nota = 0;
+  let res = 0;
+  let i = 0;
+  for (i = 0; i < 5; i++) {
+    if (i < 1) nota = Number(prompt(`Digite uma nota`));
+    else if (i >= 2) nota = Number(prompt(`Digite outra nota`));
+    res += nota
+  }
+  //PROCESSAMENTO
+  res= res/i
+  //SAÍDA
+  alert(res)
 </script>
