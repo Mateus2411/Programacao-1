@@ -9,9 +9,10 @@
 
   //ENTRADA
 
-  let quantidadeDeCandidatos = Number(
-    prompt(`Qual a quantidade de candidatos`)
-  );
+  let quantidadeDeCandidatos;
+  do {
+    quantidadeDeCandidatos = Number(prompt(`Qual a quantidade de candidatos`));
+  } while (isNaN(quantidadeDeCandidatos) || quantidadeDeCandidatos <= 0);
 
   //Nome dos candidatos
   let candidatos = [
@@ -25,9 +26,12 @@
   // Quantidade de candidatos
   let numeroCandidato = 0;
   for (let a = 0; a < quantidadeDeCandidatos; a++) {
-    let nomeCandidato = prompt(
-      `Qual o nome do ${numeroCandidato + 1}° candidato?`
-    );
+    let nomeCandidato;
+    do {
+      nomeCandidato = prompt(
+        `Qual o nome do ${numeroCandidato + 1}° candidato?`
+      );
+    } while (!nomeCandidato || nomeCandidato.trim() === "");
     numeroCandidato++;
     candidatos.push({
       nome: `${nomeCandidato}`,
@@ -37,32 +41,28 @@
   }
 
   //Quantos alunos votantes
-  let quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
+  let quantidadeDeAlunosVotantes;
+  do {
+    quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
+  } while (
+    isNaN(quantidadeDeAlunosVotantes) ||
+    quantidadeDeAlunosVotantes <= 0
+  );
 
   //Votos
   let listaCandidatos = ``;
-  let posicaoCandidato = 0;
-  let votarCandidato = 0;
   for (let i = 0; i < candidatos.length; i++) {
     if (candidatos[i].nome !== "null") {
       listaCandidatos += `${i} - ${candidatos[i].nome}\n`;
     }
   }
-  for (
-    posicaoCandidato = 0;
-    posicaoCandidato < candidatos.length;
-    posicaoCandidato++
-  ) {
-    if (
-      candidatos[votarCandidato] &&
-      candidatos[votarCandidato].nome !== "null"
-    ) {
-      candidatos[votarCandidato].votos++;
-    }
-  }
 
-  for (let repetcoes = 0; repetcoes < quantidadeDeAlunosVotantes; repetcoes++) {
-    votarCandidato = Number(
+  for (
+    let repeticoes = 0;
+    repeticoes < quantidadeDeAlunosVotantes;
+    repeticoes++
+  ) {
+    let votarCandidato = Number(
       prompt(`Em quem gostaria de votar?\n Candidatos\n${listaCandidatos}`)
     );
     if (
@@ -72,22 +72,30 @@
       candidatos[votarCandidato].votos++;
     } else {
       alert("Voto inválido");
+      repeticoes--; // Repetir se inválido
     }
   }
 
   //SAÍDA
   candidatos.sort((a, b) => b.votos - a.votos);
+  let resultado = "Resultado da votação:\n";
   for (let i = 0; i < candidatos.length; i++) {
     if (candidatos[i].nome !== "null") {
       let porcentagem = (
         (candidatos[i].votos / quantidadeDeAlunosVotantes) *
         100
       ).toFixed(2);
-      alert(
-        `${candidatos[i].nome}: ${candidatos[i].votos} votos (${porcentagem}%)`
-      );
+      resultado += `${candidatos[i].nome}: ${candidatos[i].votos} votos (${porcentagem}%)\n`;
     }
   }
+  if (candidatos[0] && candidatos[0].nome !== "null") {
+    let porcentagemVencedor = (
+      (candidatos[0].votos / quantidadeDeAlunosVotantes) *
+      100
+    ).toFixed(2);
+    resultado += `\nO vencedor é o candidato ${candidatos[0].nome} com ${porcentagemVencedor}% dos votos.`;
+  }
+  alert(resultado);
 </script>
 <style>
   html {
