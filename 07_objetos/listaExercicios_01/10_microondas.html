@@ -1,16 +1,35 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: MICROONDAS
     Crie um objeto chamado microondas com as propriedades marca, modelo, ligado, e crie um método que retorne todas as propriedades do objeto.
     */
-    
-    //ENTRADA
 
+  //ENTRADA
+  let nm = prompt(`Qual o nome do microondas?`).trim();
+  let mc = prompt(`Qual a marca do microondas?`).trim();
+  let md = prompt(`Qual o modelo do microondas?`).trim();
+  let objeto = {
+      nome: nm,
+      marca: mc,
+      modelo: md,
+      estatus: undefined,
+    };
+    let dd = false;
+    do {
+      let estt = prompt(`Microondas está na tomada? (S) ou (N)`).toLowerCase().charAt();
+      if (estt === "s") objeto.estatus = `ligado`;
+      else if (estt === "n") objeto.estatus = `desligado`;
+      else dd = true;
+    } while (dd === false);
 
-    //PROCESSAMENTO
+  alert(
+    `As informações do microondas são:\nNome: ${(objeto.nome)}\nMarca: ${
+      objeto.marca
+    }\nModelo: ${objeto.modelo}\nEstatus: ${objeto.estatus} `
+  );
 
+  //PROCESSAMENTO
 
-    //SAÍDA
-
+  //SAÍDA
 </script>

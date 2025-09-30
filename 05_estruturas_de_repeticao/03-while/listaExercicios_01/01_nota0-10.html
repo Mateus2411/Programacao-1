@@ -6,8 +6,17 @@
     */
 
     //ENTRADA
-
-
+    let contador = 0;
+    let nun = prompt(`Digite um numero entre 0 e 10`);
+    while(nun < 0 || nun > 10 || nun.trim() === `` || isNaN(nun)){
+        alert(`erro, digite um numero entre 0 e 10`);
+        nun = prompt(`Digite um numero entre 0 e 10`);
+        contador++
+    }
+    nun = Number(nun)
+    if(contador <= 5 && contador > 1) alert(`Foi difícil?`);
+    else if(contador > 5 && contador < 10) alert(`Finalmente`);
+    else alert(`Finalmete animal`)
     //PROCESSAMENTO
 
 
