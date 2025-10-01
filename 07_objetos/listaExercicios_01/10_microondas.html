@@ -13,15 +13,15 @@
       nome: nm,
       marca: mc,
       modelo: md,
-      estatus: undefined,
+      estatus: ``,
     };
     let dd = false;
     do {
-      let estt = prompt(`Microondas está na tomada? (S) ou (N)`).toLowerCase().charAt();
+      let estt = prompt(`Microondas está na tomada? (S) ou (N)`).toLowerCase().charAt().trim();
       if (estt === "s") objeto.estatus = `ligado`;
       else if (estt === "n") objeto.estatus = `desligado`;
       else dd = true;
-    } while (dd === false);
+    } while (dd !== false);
 
   alert(
     `As informações do microondas são:\nNome: ${(objeto.nome)}\nMarca: ${
