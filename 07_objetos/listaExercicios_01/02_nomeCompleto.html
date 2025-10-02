@@ -6,11 +6,17 @@
     */
     
     //ENTRADA
-
-
+    let nome1 = prompt(`Digite seu nome`).trim();
+    let nome2 = prompt(`Digite seu sobrenome`).trim();
+    nome1 = nome1.replace(/\b\w/g, c => c.toUpperCase());
+    nome2 = nome2.replace(/\b\w/g, c => c.toUpperCase());
+    let pessoa = {
+        nome: nome1,
+        sobrenome: nome2,
+    }
     //PROCESSAMENTO
 
-
+    alert(`Seu nome é ${pessoa.nome} ${pessoa.sobrenome}`)
     //SAÍDA
     
 </script>
