@@ -9,45 +9,31 @@
     Sexo: 'f' ou 'm';
     Estado Civil: 's', 'c', 'v', 'd';
     */
-
+  let nm = prompt(`Digite seu nome`);
+  let idd = Number(prompt(`Digite sua idade`));
+  let slr = Number(prompt(`Digite seu salario`));
+  let sx = prompt(`Digite seu sexo (f ou m)`).toLowerCase();
+  let eC = prompt(`Digite seu estado civil (s, c, v, d)`);
   //ENTRADA
-
-  let carrinho = [];    
-  let estoque = [
-    {
-      id: 1,
-      nome: "sabonete",
-    },
-    {
-      id: 2,
-      nome: "shampoo",
-    },
-    {
-      id: 3,
-      nome: "condicionador",
-    },
-    {
-      id: 4,
-      nome: "escova de dente",
-    },
-    {
-      id: 5,
-      nome: "creme dental",
-    },
-  ];
-  //PROCESSAMENTO
-  let qqtuquer;
-  let quantidade = prompt("quantidade qqtuquer");
-  do {
-    quantidade = Number(quantidade);
-  } while (isNaN(quantidade) || quantidade <= 0 || quantidade > estoque.length);
-  for (let i = 0; i < quantidade; i++) {
-    do {
-      qqtuquer = Number(prompt("qqtuquer"));
-    } while (isNaN(qqtuquer) || qqtuquer > estoque.length);
-    carrinho.push(estoque[qqtuquer - 1].nome);
+  while (nm.length <= 3) {
+    nm = prompt(`Digite seu nome`);
   }
-  alert("vc tem no carrinh:" + carrinho.join(", "));
+  while (idd < 0 || idd > 150 || isNaN(idd)) {
+    idd = Number(prompt(`Digite sua idade`));
+  }
+  while (slr <= 0 || isNaN(slr)) {
+    slr = Number(prompt(`Digite seu salario`));
+  }
+  while (sx != `f` && sx != `m`) {
+    sx = prompt(`Digite seu sexo (f ou m)`).toLowerCase();
+  }
+  while (eC != `s` && eC != `c` && eC != `v` && eC != `d`) {
+    eC = prompt(`Digite seu estado civil (s, c, v, d)`);
+  }
 
+  //PROCESSAMENTO
+  alert(
+    `Nome: ${nm}\nIdade: ${idd}\nSalario: ${slr}\nSexo: ${sx}\nEstado Civil: ${eC}`
+  );
   //SAÍDA
 </script>
