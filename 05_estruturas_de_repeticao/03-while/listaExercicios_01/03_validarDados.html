@@ -1,6 +1,6 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: VALIDAR DADOS DO USUÁRIO
     Faça um programa que leia e valide as seguintes informações:
     Nome: maior que 3 caracteres;
@@ -10,12 +10,44 @@
     Estado Civil: 's', 'c', 'v', 'd';
     */
 
-    //ENTRADA
+  //ENTRADA
 
+  let carrinho = [];    
+  let estoque = [
+    {
+      id: 1,
+      nome: "sabonete",
+    },
+    {
+      id: 2,
+      nome: "shampoo",
+    },
+    {
+      id: 3,
+      nome: "condicionador",
+    },
+    {
+      id: 4,
+      nome: "escova de dente",
+    },
+    {
+      id: 5,
+      nome: "creme dental",
+    },
+  ];
+  //PROCESSAMENTO
+  let qqtuquer;
+  let quantidade = prompt("quantidade qqtuquer");
+  do {
+    quantidade = Number(quantidade);
+  } while (isNaN(quantidade) || quantidade <= 0 || quantidade > estoque.length);
+  for (let i = 0; i < quantidade; i++) {
+    do {
+      qqtuquer = Number(prompt("qqtuquer"));
+    } while (isNaN(qqtuquer) || qqtuquer > estoque.length);
+    carrinho.push(estoque[qqtuquer - 1].nome);
+  }
+  alert("vc tem no carrinh:" + carrinho.join(", "));
 
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-
+  //SAÍDA
 </script>
