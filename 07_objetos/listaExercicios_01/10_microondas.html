@@ -6,27 +6,25 @@
     */
 
   //ENTRADA
-  let nm = prompt(`Qual o nome do microondas?`).trim();
-  let mc = prompt(`Qual a marca do microondas?`).trim();
-  let md = prompt(`Qual o modelo do microondas?`).trim();
   let objeto = {
-      nome: nm,
-      marca: mc,
-      modelo: md,
-      estatus: ``,
-    };
-    let dd = false;
-    do {
-      let estt = prompt(`Microondas está na tomada? (S) ou (N)`).toLowerCase().charAt().trim();
-      if (estt === "s") objeto.estatus = `ligado`;
-      else if (estt === "n") objeto.estatus = `desligado`;
-      else dd = true;
-    } while (dd !== false);
+    nome: prompt(`Qual o nome do microondas?`).trim(),
+    marca: prompt(`Qual a marca do microondas?`).trim(),
+    modelo: prompt(`Qual o modelo do microondas?`).trim(),
+    estatus: ``,
+  };
+  let dd = false;
+  do {
+    let estt = prompt(`Microondas está na tomada? (S) ou (N)`)
+      .toLowerCase()
+      .charAt()
+      .trim();
+    if (estt === "s") objeto.estatus = `ligado`;
+    else if (estt === "n") objeto.estatus = `desligado`;
+    else dd = true;
+  } while (dd !== false);
 
   alert(
-    `As informações do microondas são:\nNome: ${(objeto.nome)}\nMarca: ${
-      objeto.marca
-    }\nModelo: ${objeto.modelo}\nEstatus: ${objeto.estatus} `
+    `As informações do microondas são:\nNome: ${objeto.nome}\nMarca: ${objeto.marca}\nModelo: ${objeto.modelo}\nEstatus: ${objeto.estatus}`
   );
 
   //PROCESSAMENTO
