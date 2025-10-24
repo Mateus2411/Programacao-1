@@ -1,78 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="html01">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="inicio.css" />
+    <link rel="stylesheet" href="./css/geral.css" />
     <title>Acertar o número</title>
   </head>
-  <body>
-    <h1>Acertar o número</h1>
-    <div>
-      <p>
-        O jogo vai gerar um número aleatório onde o usuário deverá adivinhar
-        qual é o número gerado. Cada dificuldade vai almentar o intervalo de
-        números possíveis para o usuário adivinhar.
-      </p>
-    </div>
-    <div class="menu">
-      <a href="#">Fácil</a>
-      <a href="#">Médio</a>
-      <a href="#">Difícil</a>
-      <a href="#">Impossível</a>
-    </div>
+  <body class="on">
+    <header>
+      <nav>
+        <button class="on">ON</button>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1>Acertar o número</h1>
+        <div>
+          <p>
+            O jogo vai gerar um número aleatório onde o usuário deverá adivinhar
+            qual é o número gerado. Cada dificuldade vai almentar o intervalo de
+            números possíveis para o usuário adivinhar.
+          </p>
+        </div>
+        <div class="menu">
+          <a href="./facil.html">Fácil</a>
+          <a href="./medio.html">Médio</a>
+          <a href="./dificil.html">Difícil</a>
+          <a href="./impossivel.html">Impossível</a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: black;
-
-    h1 {
-      font-size: 100px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-    }
-    div {
-      font-size: 40px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      margin: 0 6rem;
-    }
-    .menu {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin: 10px;
-      gap: 10px;
-
-      a {
-        padding: 20px;
-        border: 1px solid white;
-        border-radius: 10px;
-        text-decoration: none;
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-        margin: 10px;
-        transition: 0.3s;
-        &:hover {
-          background: white;
-          color: black;
-        }
-      }
-    }
-  }
-</style>
+<script src="./js/modo.js"></script>
