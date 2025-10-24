@@ -1,15 +1,27 @@
 <script>
-    //Problema: Fibonacci
-    /*
+  //Problema: Fibonacci
+  /*
     Pergunte ao usuário quantos números da sequência de Fibonacci deseja obter, usando a estrutura de repetição while.
     */
 
-    //ENTRADA
+  //ENTRADA
+  let max = Number(
+    prompt("Quantos números da sequência de Fibonacci deseja obter?")
+  );
 
+  let fibonacci = [0, 1];
+  let i = 2;
+  
+  while (i < max) {
+    fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+    i++;
+  }
 
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-    
+  alert(
+    `Os primeiros ${max} números da sequência de Fibonacci são: ${fibonacci.join(
+      ", "
+    )}`
+  );
+  //PROCESSAMENTO
+  //SAÍDA
 </script>

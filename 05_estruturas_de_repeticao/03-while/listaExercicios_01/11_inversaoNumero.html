@@ -1,18 +1,37 @@
 <script>
-    //Problema: Inversão de Número
-    /*
+  //Problema: Inversão de Número
+  /*
     Escreva um programa que peça ao usuário um número e inverta sua ordem usando uma estrutura de repetição while.
     Exemplo:
     Entrada: 12345
     Saída: 54321
     */
+  //ENTRADA
+  let nmrN;
 
-    //ENTRADA
+  function validar(num) {
+    return String(Math.floor(num)).length === 5;
+  }
 
+  do {
+    nmrN = Number(prompt("Diga um número de 5 dígitos"));
+    if (isNaN(nmrN) || !validar(nmrN)) {
+      alert(
+        "Número incorreto ou com menos/muito mais dígitos. Tente novamente."
+      );
+    }
+  } while (isNaN(nmrN) || !validar(nmrN));
 
-    //PROCESSAMENTO
+  let invertido = 0;
+  let temp = nmrN;
 
+  while (temp > 0) {
+    let resto = temp % 10;
+    invertido = invertido * 10 + resto;
+    temp = Math.floor(temp / 10);
+  }
 
-    //SAÍDA
-
+  alert(`Número invertido: ${invertido}`);
+  // PROCESSAMENTO
+  // SAÍDA
 </script>

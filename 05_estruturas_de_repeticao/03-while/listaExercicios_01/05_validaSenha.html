@@ -6,11 +6,24 @@
     */
 
     //ENTRADA
-
-
+    let senha = 0;
     //PROCESSAMENTO
-
-
+    do{
+        senha = Number(prompt("Digite a senha de 4 dígitos:"));
+        alertTip();
+    }while(isNaN(senha) || validar(senha) == false);
     //SAÍDA
-
+    function validar(senha){
+        senha = Math.floor(senha)
+        senha = Math.abs(senha)
+        if(String(senha).length !== 4) return false;
+        else return true;
+    }
+    function alertTip (){
+        if(validar(senha) == false){
+            if(String(senha).length > 4) alert("Senha Incorreta\nHá mais de 4 dígitos.");
+            else if(String(senha).length < 4) alert("Senha Incorreta\nHá menos de 4 dígitos.");
+            else alert("Senha Incorreta\nDigite apenas números inteiros.");
+        }
+    }
 </script>
