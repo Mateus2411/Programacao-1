@@ -1,162 +1,197 @@
-.html01 {
-  body.on{
-    background: black;
-    header{
-      nav {
-        display: flex;
-        justify-content: flex-end;
-        margin: 1.2rem 1.5rem;
-        button {
-          width: 120px;
-          height: 60px;
-          border: none;
-          border-radius: 30px;
-          background-color: #000000;
-          color: white;
-          font-size: 1.2em;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: none;
-        }
-        .on {
-          background: #000000;
-          box-shadow: 0 0 10px white;
-        }
-        .off {
-          background: white;
-          box-shadow: 0 0 10px #000000;
-          color: #000000;
-        }
-      }
-    }
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      section {
-        h1 {
-          font-size: 100px;
-          font-weight: bold;
-          margin: 10px;
-          text-align: center;
-          text-decoration: none;
-          color: white;
-        }
-        div {
-          font-size: 40px;
-          font-weight: bold;
-          margin: 10px;
-          text-align: center;
-          text-decoration: none;
-          color: white;
-          margin: 0 6rem;
-        }
-        .menu {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          margin: 10px;
-          gap: 10px;
+/* =================  BASE GERAL - aplica a todos  ======================*/
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap");
 
-          a {
-            padding: 20px;
-            border: 1px solid white;
-            border-radius: 10px;
-            text-decoration: none;
-            color: white;
-            font-size: 30px;
-            font-weight: bold;
-            margin: 10px;
-            transition: 0.3s;
-            &:hover {
-              background: white;
-              color: black;
-            }
-          }
-        }
-      }
-    }
-  }
-  body.off{
-  }
+/* Layout base */
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.html02 {
-  background: black;
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+header { width: 100%; }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 2rem;
+}
+
+.menuBurger {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn {
+  width: 120px;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.burger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* =================  MOBILE  ====================== */
+@media (max-width: 850px) {
+  .burger { display: flex; }
+
+  .menuBurger {
+    position: fixed;
+    top: 0;
+    left: -3500px;
+    width: 250px;
     height: 100vh;
-    background: black;
-
-    h1 {
-      font-size: 100px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-    }
-  }
-}
-.html03 {
-  body {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: black;
-
-    h1 {
-      font-size: 100px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-    }
+    padding: 2rem;
+    background-color: inherit;
+    border-right: 1px solid currentColor;
+    transition: left 0.4s ease;
+    z-index: 1000;
   }
-}
-.html04 {
-  body {
+
+  .menuBurger a { text-decoration: none; }
+
+  .menuBurger.active { left: 0; }
+
+  /* Botões: mobile mostra dentro do drawer */
+  .header-btn { display: none; }
+  .menuBurger .menu-btn {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 20px;
+    width: 100%;
     justify-content: center;
-    height: 100vh;
-    background: black;
-
-    h1 {
-      font-size: 100px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-    }
   }
-}
-.html05 {
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: black;
 
-    h1 {
-      font-size: 100px;
-      font-weight: bold;
-      margin: 10px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-    }
-  }
+  /* Modo claro/escuro para o drawer */
+  body.off .menuBurger { background-color: white; color: black; }
+  body.on  .menuBurger { background-color: black; color: white; }
 }
+
+/* =================  DESKTOP  ====================== */
+@media (min-width: 851px) {
+  .burger { display: none; }
+
+  .menuBurger {
+    position: static;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    padding: 0;
+    border: none;
+  }
+
+  /* Botões: desktop mostra no header, esconde no drawer */
+  .header-btn { display: flex; }
+  .menuBurger .menu-btn { display: none; }
+
+  .menuBurger a {
+    padding: 15px 25px;
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  /* Modo claro/escuro para a barra */
+  body.off .menuBurger { background-color: white; color: black; }
+  body.on  .menuBurger { background-color: black; color: white; }
+}
+
+/* =================  TÍTULO E MENU  ====================== */
+h1 {
+  font-size: 100px;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Orbitron", sans-serif;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  gap: 10px;
+}
+
+.menu a {
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+/* =================  MODO CLARO (OFF)  =================*/
+body.off { background: white; color: black; }
+body.off .btn { background: white; color: black; box-shadow: 0 0 20px black; }
+body.off h1, body.off div, body.off a { color: black; border-color: black; }
+body.off a:hover { background: black; color: white; }
+
+/* =================  MODO ESCURO (ON)  ===================*/
+body.on { background: black; color: white; }
+body.on .btn { background: black; color: white; box-shadow: 0 0 10px white; }
+body.on h1, body.on div, body.on a { color: white; border-color: white; }
+body.on a:hover { background: white; color: black; }
+
+/* ===================  DIFERENÇAS ENTRE AS PÁGINAS  ===================*/
+/* Página inicial */
+.html01 body main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.html01 body main div {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0 6rem;
+  text-align: center;
+}
+
+/* Páginas 02 a 05 (Fácil, Médio, Difícil, Impossível) */
+.html02 body,
+.html03 body,
+.html04 body,
+.html05 body {}
+
+/* =================  CORREÇÃO DOS LINKS  ====================== */
+.menu a,
+.menu a:link,
+.menu a:visited {
+  color: inherit !important;
+  text-decoration: none !important;
+  border: 3px solid currentColor;
+  background: transparent !important;
+}
+
+.menu a:focus,
+.menu a:active {
+  color: inherit !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+body.off .menu a:hover { background: black !important; color: white !important; }
+body.on  .menu a:hover { background: white !important; color: black !important; }

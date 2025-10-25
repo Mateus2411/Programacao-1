@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="html01">
   <head>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/geral.css" />
+    <link rel="stylesheet" href="./reset.css" />
     <title>Acertar o número</title>
   </head>
-  <body class="on">
+  <body class="off">
     <header>
       <nav>
-        <button class="on">ON</button>
+        <button class="burger" aria-label="Abrir menu">&#9776;</button>
+        <div class="menuBurger">
+          <a href="./facil.html">Fácil</a>
+          <a href="./medio.html">Médio</a>
+          <a href="./dificil.html">Difícil</a>
+          <a href="./impossivel.html">Impossível</a>
+          <button class="btn menu-btn">OFF</button>
+        </div>
+        <button class="btn header-btn">OFF</button>
       </nav>
     </header>
+
     <main>
       <section>
         <h1>Acertar o número</h1>
         <div>
           <p>
             O jogo vai gerar um número aleatório onde o usuário deverá adivinhar
-            qual é o número gerado. Cada dificuldade vai almentar o intervalo de
+            qual é o número gerado. Cada dificuldade vai aumentar o intervalo de
             números possíveis para o usuário adivinhar.
           </p>
         </div>
@@ -30,6 +41,7 @@
         </div>
       </section>
     </main>
+    <!-- Scripts -->
+    <script src="./js/modo.js"></script>
   </body>
 </html>
-<script src="./js/modo.js"></script>
