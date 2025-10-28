@@ -27,4 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
             mensagem.textContent = "O número secreto é menor!";
         }
     });
+
+    palpiteInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            tentarBtn.click();
+        }
+    });
 });

@@ -1,33 +1,53 @@
-/* =================  BASE GERAL - aplica a todos  ======================*/
+/* =================  IMPORTS ====================== */
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap");
 
-/* Layout base */
+/* =================  BASE GERAL ====================== */
 body {
   transition: background 0.3s ease, color 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: "Orbitron", sans-serif;
 }
 
-header { width: 100%; }
+header {
+  width: 100%;
+}
 
 nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between; /* Links à esquerda, botão à direita */
   margin: 1rem 2rem;
+  width: 100%;
 }
 
 .menuBurger {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-  transition: all 0.3s ease;
+  align-items: center;
+  gap: 20px;
+}
+.centralizado {
+  margin: 0 auto;
+  display: block;
+}
+
+.menuBurger a {
+  padding: 15px 25px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-container {
+  margin-left: auto; /* Empurra o botão para a direita */
 }
 
 .btn {
-  width: 120px;
+  width: 80px;
   height: 60px;
   border: none;
   border-radius: 30px;
@@ -45,9 +65,99 @@ nav {
   color: inherit;
 }
 
-/* =================  MOBILE  ====================== */
+/* =================  TÍTULO E MENU ====================== */
+h1 {
+  font-size: 100px;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  .centralizado {
+    margin: 0 auto;
+    display: block;
+  }
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  gap: 10px;
+}
+.centralizado {
+  margin: 0 auto;
+  display: block;
+}
+
+.menu a {
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.centralizado {
+  margin: 0 auto;
+  display: block;
+}
+
+/* =================  MODO CLARO (OFF) ====================== */
+body.off {
+  background: white;
+  color: black;
+}
+
+body.off .btn {
+  background: white;
+  color: black;
+  box-shadow: 0 0 20px black;
+}
+
+body.off h1,
+body.off div,
+body.off a {
+  color: black;
+  border-color: black;
+}
+
+body.off a:hover {
+  background: black;
+  color: white;
+}
+
+/* =================  MODO ESCURO (ON) ====================== */
+body.on {
+  background: black;
+  color: white;
+}
+
+body.on .btn {
+  background: black;
+  color: white;
+  box-shadow: 0 0 10px white;
+}
+
+body.on h1,
+body.on div,
+body.on a {
+  color: white;
+  border-color: white;
+}
+
+body.on a:hover {
+  background: white;
+  color: black;
+}
+
+/* =================  RESPONSIVO - MOBILE ====================== */
 @media (max-width: 850px) {
-  .burger { display: flex; }
+  .burger {
+    display: flex;
+  }
 
   .menuBurger {
     position: fixed;
@@ -63,12 +173,18 @@ nav {
     z-index: 1000;
   }
 
-  .menuBurger a { text-decoration: none; }
+  .menuBurger.active {
+    left: 0;
+  }
 
-  .menuBurger.active { left: 0; }
+  .menuBurger a {
+    justify-content: space-between;
+  }
 
-  /* Botões: mobile mostra dentro do drawer */
-  .header-btn { display: none; }
+  .header-btn {
+    display: none;
+  }
+
   .menuBurger .menu-btn {
     display: flex;
     margin-top: 20px;
@@ -76,14 +192,22 @@ nav {
     justify-content: center;
   }
 
-  /* Modo claro/escuro para o drawer */
-  body.off .menuBurger { background-color: white; color: black; }
-  body.on  .menuBurger { background-color: black; color: white; }
+  body.off .menuBurger {
+    background-color: white;
+    color: black;
+  }
+
+  body.on .menuBurger {
+    background-color: black;
+    color: white;
+  }
 }
 
-/* =================  DESKTOP  ====================== */
+/* =================  DESKTOP ====================== */
 @media (min-width: 851px) {
-  .burger { display: none; }
+  .burger {
+    display: none;
+  }
 
   .menuBurger {
     position: static;
@@ -94,68 +218,28 @@ nav {
     border: none;
   }
 
-  /* Botões: desktop mostra no header, esconde no drawer */
-  .header-btn { display: flex; }
-  .menuBurger .menu-btn { display: none; }
-
-  .menuBurger a {
-    padding: 15px 25px;
-    border: 1px solid currentColor;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+  .header-btn {
+    display: flex;
   }
 
-  /* Modo claro/escuro para a barra */
-  body.off .menuBurger { background-color: white; color: black; }
-  body.on  .menuBurger { background-color: black; color: white; }
+  .menuBurger .menu-btn {
+    display: none;
+  }
+
+  body.off .menuBurger {
+    margin: 2rem 4rem;
+    background-color: white;
+    color: black;
+  }
+
+  body.on .menuBurger {
+    margin: 2rem 4rem;
+    background-color: black;
+    color: white;
+  }
 }
 
-/* =================  TÍTULO E MENU  ====================== */
-h1 {
-  font-size: 100px;
-  font-weight: bold;
-  margin: 10px;
-  text-align: center;
-  text-decoration: none;
-  font-family: "Orbitron", sans-serif;
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  gap: 10px;
-}
-
-.menu a {
-  padding: 20px;
-  border: 1px solid;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 30px;
-  font-weight: bold;
-  margin: 10px;
-  transition: 0.3s;
-}
-
-/* =================  MODO CLARO (OFF)  =================*/
-body.off { background: white; color: black; }
-body.off .btn { background: white; color: black; box-shadow: 0 0 20px black; }
-body.off h1, body.off div, body.off a { color: black; border-color: black; }
-body.off a:hover { background: black; color: white; }
-
-/* =================  MODO ESCURO (ON)  ===================*/
-body.on { background: black; color: white; }
-body.on .btn { background: black; color: white; box-shadow: 0 0 10px white; }
-body.on h1, body.on div, body.on a { color: white; border-color: white; }
-body.on a:hover { background: white; color: black; }
-
-/* ===================  DIFERENÇAS ENTRE AS PÁGINAS  ===================*/
-/* Página inicial */
+/* =================  PÁGINAS ESPECÍFICAS ====================== */
 .html01 body main {
   display: flex;
   flex-direction: column;
@@ -170,13 +254,7 @@ body.on a:hover { background: white; color: black; }
   text-align: center;
 }
 
-/* Páginas 02 a 05 (Fácil, Médio, Difícil, Impossível) */
-.html02 body,
-.html03 body,
-.html04 body,
-.html05 body {}
-
-/* =================  CORREÇÃO DOS LINKS  ====================== */
+/* =================  LINKS ====================== */
 .menu a,
 .menu a:link,
 .menu a:visited {
@@ -192,6 +270,3 @@ body.on a:hover { background: white; color: black; }
   background: transparent !important;
   outline: none !important;
 }
-
-body.off .menu a:hover { background: black !important; color: white !important; }
-body.on  .menu a:hover { background: white !important; color: black !important; }
