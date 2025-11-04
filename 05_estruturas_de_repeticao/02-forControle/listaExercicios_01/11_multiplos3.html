@@ -5,17 +5,15 @@
     */
 
     //ENTRADA
-
-
     //PROCESSAMENTO
     let mult = 3;
-    let max = 99;
+    let max = 100;
     let nun = 0;
-    let agr= 1;
     let list = []
-    for(; agr < max; nun++){
+    for(let agr = 1; agr < max; agr++){
         agr = nun*mult
         list.push(agr)
+        nun++
     }
     alert(list.join(`, `))
     //SAÍDA

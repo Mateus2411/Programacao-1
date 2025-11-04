@@ -1,15 +1,23 @@
 <script>
-    //Problema: Acertar o número
-    /*
+  //Problema: Acertar o número
+  /*
     O computador escolhe um número aleatório de 1 a 30, e o usuário precisa adivinhar. O programa dá dicas ("maior" ou "menor") até acertar.
     */
 
-    //ENTRADA
+  //ENTRADA
+  let nunV = Math.random() * 30;
+  let tentativas = 0;
+  let resposta = 0;
+  do {
+    resposta = Number(prompt("digita ai"));
+    tentativas++;
+    if (nunV < resposta)
+      alert(`errrou tenta dnv, o numero secreto é menor`);
+    else if (nunV > resposta)
+      alert(`errrou tenta dnv, o numero secreto é maior`);
+    else alert(`Você acertou o numero em ${tentativas}`);
+  } while (resposta !== nunV);
+  //PROCESSAMENTO
 
-
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-    
+  //SAÍDA
 </script>

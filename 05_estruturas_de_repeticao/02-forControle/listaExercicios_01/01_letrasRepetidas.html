@@ -11,13 +11,18 @@
     //ENTRADA
     let listaDeLetras = ["a", "b", "d", "e", "E", "F", "C", "U", "u", "e", "W", "D"];
     //PROCESSAMENTO
-    listanv = [];
+    let listanv = [];
+    let listaun = [];
     for(let i = 0; i< listaDeLetras.length; i++){
-        let minuscula = listaDeLetras[i].toLowerCase();
-        if(!listanv.includes(minuscula)){
-            listanv.push(minuscula)
+        if(!listanv.includes(listaDeLetras[i].toLowerCase())){
+            listanv.push(listaDeLetras[i].toLowerCase());
+        }
+        else{
+            if(!listaun.includes(listaDeLetras[i].toLowerCase())){
+            listaun.push(listaDeLetras[i].toLowerCase());
+            }
         }
     }
     //SAÍDA
-    alert(listanv.sort().join(" - "));
+    alert("Letras não repetidas: " + listanv.sort().join(" - ") + "\nLetras repetidas: " + listaun.sort().join(" - "));
 </script>

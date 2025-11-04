@@ -1,6 +1,6 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: URNA ELETRÔNICA
     Faça um programa que simule a urna eletrônica.
     A tela a ser apresentada deverá ser da seguinte forma:
@@ -19,12 +19,119 @@
     d) O candidato vencedor.
     */
 
-    //ENTRADA
+  //ENTRADA
+  let quantidadeDeCandidatos;
+  do {
+    quantidadeDeCandidatos = Number(prompt(`Qual a quantidade de candidatos`));
+  } while (isNaN(quantidadeDeCandidatos) || quantidadeDeCandidatos <= 0);
 
+  let candidatos = [];
 
-    //PROCESSAMENTO
+  let numeroCandidato = 0;
+  let a = 0;
+  while (a < quantidadeDeCandidatos) {
+    let nomeCandidato;
+    do {
+      nomeCandidato = prompt(
+        `Qual o nome do ${numeroCandidato + 1}° candidato?`
+      );
+    } while (!nomeCandidato || nomeCandidato.trim() === "");
 
+    // Capitaliza a primeira letra e deixa o resto minúsculo
+    nomeCandidato =
+      nomeCandidato.charAt(0).toUpperCase() +
+      nomeCandidato.slice(1).toLowerCase();
 
-    //SAÍDA
+    numeroCandidato++;
+    candidatos.push({
+      nome: nomeCandidato,
+      votos: 0,
+      numero: numeroCandidato,
+    });
+    a++;
+  }
 
+  candidatos.push({ nome: "Nulo", votos: 0, numero: numeroCandidato + 1 });
+  candidatos.push({ nome: "Branco", votos: 0, numero: numeroCandidato + 2 });
+
+  // Quantidade de alunos votantes
+  let quantidadeDeAlunosVotantes;
+  do {
+    quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
+  } while (
+    isNaN(quantidadeDeAlunosVotantes) ||
+    quantidadeDeAlunosVotantes <= 0
+  );
+
+  // Votação
+  let listaCandidatos = "";
+  let i = 0;
+  while (i < candidatos.length) {
+    listaCandidatos += `${candidatos[i].numero} - ${candidatos[i].nome}\n`;
+    i++;
+  }
+  let repeticoes = 0;
+  while (repeticoes < quantidadeDeAlunosVotantes) {
+    let votarCandidato = Number(
+      prompt(`Em quem gostaria de votar?\nCandidatos\n${listaCandidatos}`)
+    );
+    let candidatoIndex = candidatos.findIndex(
+      (c) => c.numero === votarCandidato
+    );
+    if (candidatoIndex !== -1) {
+      candidatos[candidatoIndex].votos++;
+    } else {
+      candidatos.find((c) => c.nome === "Nulo").votos++;
+    }
+    repeticoes++;
+  }
+
+  // FUNÇÃO DE SAÍDA
+  function mostrarResultado(candidatos, totalVotos) {
+    let candidatosReais = candidatos.filter(
+      (c) => c.nome !== "Nulo" && c.nome !== "Branco"
+    );
+    candidatosReais.sort((a, b) => b.votos - a.votos);
+    let resultado = "Resultado da votação:\n";
+
+    // Calcula porcentagens para candidatos reais
+    candidatosReais.forEach((c) => {
+      let porcentagem = ((c.votos / totalVotos) * 100).toFixed(2);
+      resultado += `${c.nome}: ${c.votos} votos (${porcentagem}%)\n`;
+    });
+
+    // Adiciona porcentagens de nulos e brancos
+    let nulos = candidatos.find((c) => c.nome === "Nulo");
+    let brancos = candidatos.find((c) => c.nome === "Branco");
+    let porcentagemNulos = ((nulos.votos / totalVotos) * 100).toFixed(2);
+    let porcentagemBrancos = ((brancos.votos / totalVotos) * 100).toFixed(2);
+    resultado += `Nulos: ${nulos.votos} votos (${porcentagemNulos}%)\n`;
+    resultado += `Brancos: ${brancos.votos} votos (${porcentagemBrancos}%)\n`;
+
+    // Checa empate entre candidatos reais
+    if (candidatosReais.length > 0) {
+      let topVotos = candidatosReais[1] ? candidatosReais[1].votos : 0;
+      if (candidatosReais[0].votos > topVotos) {
+        let porcentagemVencedor = (
+          (candidatosReais[0].votos / totalVotos) *
+          100
+        ).toFixed(2);
+        resultado += `\nO vencedor é o candidato ${candidatosReais[0].nome} com ${porcentagemVencedor}% dos votos.`;
+      } else {
+        let empatados = candidatosReais.filter(
+          (c) => c.votos === candidatosReais[0].votos
+        );
+        resultado += `\nO resultado deu empate entre:\n`;
+        empatados.forEach((c) => {
+          let porcentagem = ((c.votos / totalVotos) * 100).toFixed(2);
+          resultado += `${c.nome} ${porcentagem}%\n`;
+        });
+      }
+    }
+
+    alert(resultado);
+  }
+
+  // Chama a função de saída
+  mostrarResultado(candidatos, quantidadeDeAlunosVotantes);
 </script>
