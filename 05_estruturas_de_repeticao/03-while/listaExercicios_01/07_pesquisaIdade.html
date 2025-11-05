@@ -1,6 +1,6 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: PESQUISA DE IDADE
     Foi feita uma pesquisa entre os habitantes de uma região. Foram coletados os dados de idade, sexo (M/F) e salário. Faça um programa que calcule e mostre:
 
@@ -11,13 +11,44 @@
 
     Finalize a entrada de dados ao ser digitada uma idade negativa.
     */
+  let hab = Number(prompt("numero de habitantes"));
+  let i = 0;
+  let pessoas = [];
+  while (i < hab) {
+    let nome = prompt(`Qual o nome da pessoa ${i + 1}`);
+    let idd = Number(prompt(`Qual a idade da pessoa ${i + 1}`));
+    if (idd < 0) break;
+    let sexo = prompt(`Qual o sexo da pessoa ${i + 1}`).toUpperCase().trim().charAt(0);
+    let salario = Number(prompt(`Qual o salário da pessoa ${i + 1}`));
+    pessoas.push({
+      nome: nome,
+      idd: idd,
+      sexo: sexo,
+      salario: salario,
+      saida: function () {
+        return `Dados:\nNome: ${this.nome}\nIdade: ${this.idd}\nSexo: ${this.sexo}\nSalário: R$${this.salario}`;
+      },
+    });
+    i++;
+  }
+  
+  let nmlhe = 0;
+  let salarioM = 0;
 
-    //ENTRADA
+  for (let i = 0; i < pessoas.length; i++) {
+    salarioM += pessoas[i].salario;
+  }
 
-
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-
+  for(let item of pessoas){
+    let i = 0;
+    if(pessoas[i].sexo === "F") nmlhe++
+    i++
+  }
+  salarioM /= hab;
+  pessoas.sort((a, b) => a.idd - b.idd);
+  let iddM = pessoas[0].idd;
+  let iddMn = pessoas[pessoas.length - 1].idd;
+  pessoas.sort((a, b) => a.salario - b.salario);
+  let saida = for(let item of )
+  alert(`${pessoas[0].saida()}\n\nMaior e menor idade\nMaior: ${iddM}\nMenor: ${iddMn}\n\nQuantidade de mulheres: ${nmlhe}\n\nPessoa com menor salario: ${pessoas[0].saida()}`);
 </script>
