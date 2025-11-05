@@ -10,45 +10,65 @@
     d) A idade e o sexo da pessoa que possui o menor salário;
 
     Finalize a entrada de dados ao ser digitada uma idade negativa.
-    */
-  let hab = Number(prompt("numero de habitantes"));
-  let i = 0;
+  */
+
+  let hab = Number(prompt("Número de habitantes:"));
   let pessoas = [];
-  while (i < hab) {
-    let nome = prompt(`Qual o nome da pessoa ${i + 1}`);
-    let idd = Number(prompt(`Qual a idade da pessoa ${i + 1}`));
+
+  for (let i = 0; i < hab; i++) {
+    let nome = prompt(`Nome da pessoa ${i + 1}:`);
+    let idd = Number(prompt(`Idade da pessoa ${i + 1}:`));
     if (idd < 0) break;
-    let sexo = prompt(`Qual o sexo da pessoa ${i + 1}`).toUpperCase().trim().charAt(0);
-    let salario = Number(prompt(`Qual o salário da pessoa ${i + 1}`));
+    let sexo = prompt(`Sexo da pessoa ${i + 1} (M/F):`).toUpperCase().trim().charAt(0);
+    let salario = Number(prompt(`Salário da pessoa ${i + 1}:`));
+
     pessoas.push({
-      nome: nome,
-      idd: idd,
-      sexo: sexo,
-      salario: salario,
+      nome,
+      idd,
+      sexo,
+      salario,
       saida: function () {
-        return `Dados:\nNome: ${this.nome}\nIdade: ${this.idd}\nSexo: ${this.sexo}\nSalário: R$${this.salario}`;
+        return `\nNome: ${this.nome}\nIdade: ${this.idd}\nSexo: ${this.sexo}\nSalário: R$${this.salario.toFixed(2)}\n`;
       },
     });
-    i++;
-  }
-  
-  let nmlhe = 0;
-  let salarioM = 0;
-
-  for (let i = 0; i < pessoas.length; i++) {
-    salarioM += pessoas[i].salario;
   }
 
-  for(let item of pessoas){
-    let i = 0;
-    if(pessoas[i].sexo === "F") nmlhe++
-    i++
+  if (pessoas.length === 0) {
+    alert("Nenhum dado válido foi inserido.");
+  } else {
+    // Média salarial
+    let totalSalarios = 0;
+    let mulheres = 0;
+
+    for (let pessoa of pessoas) {
+      totalSalarios += pessoa.salario;
+      if (pessoa.sexo === "F") mulheres++;
+    }
+
+    let mediaSalarial = totalSalarios / pessoas.length;
+
+    // Maior e menor idade
+    pessoas.sort((a, b) => a.idd - b.idd);
+    let menorIdade = pessoas[0].idd;
+    let maiorIdade = pessoas[pessoas.length - 1].idd;
+
+    // Menor salário
+    pessoas.sort((a, b) => a.salario - b.salario);
+    let menorSalario = pessoas[0];
+
+    // Dados gerais
+    let dadosGerais = "";
+    for (let pessoa of pessoas) {
+      dadosGerais += pessoa.saida();
+    }
+
+    alert(
+      `Média salarial: R$${mediaSalarial.toFixed(2)}\n` +
+      `Maior idade: ${maiorIdade}\nMenor idade: ${menorIdade}\n` +
+      `Quantidade de mulheres: ${mulheres}\n` +
+      `Pessoa com menor salário:\n${menorSalario.saida()}\n` +
+      `----- Dados gerais de todos -----\n${dadosGerais}`
+    );
   }
-  salarioM /= hab;
-  pessoas.sort((a, b) => a.idd - b.idd);
-  let iddM = pessoas[0].idd;
-  let iddMn = pessoas[pessoas.length - 1].idd;
-  pessoas.sort((a, b) => a.salario - b.salario);
-  let saida = for(let item of )
-  alert(`${pessoas[0].saida()}\n\nMaior e menor idade\nMaior: ${iddM}\nMenor: ${iddMn}\n\nQuantidade de mulheres: ${nmlhe}\n\nPessoa com menor salario: ${pessoas[0].saida()}`);
+  // by careca e jazz
 </script>
