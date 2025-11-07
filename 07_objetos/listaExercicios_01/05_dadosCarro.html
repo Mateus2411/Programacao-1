@@ -6,11 +6,19 @@
     */
     
     //ENTRADA
-
-
+    let marca = prompt("Digite a marca do carro:");
+    let modelo = prompt("Digite o modelo do carro:");
+    let ano = prompt("Digite o ano do carro:");
+    let carro = {
+        marca,
+        modelo,
+        ano,
+        dados: function() {
+            return `Marca: ${this.marca}, Modelo: ${this.modelo}, Ano: ${this.ano}`;
+        }
+    };
     //PROCESSAMENTO
-
-
+    alert(carro.dados());
     //SAÍDA
     
 </script>

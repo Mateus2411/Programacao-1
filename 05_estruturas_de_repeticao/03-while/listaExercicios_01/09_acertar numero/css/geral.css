@@ -16,11 +16,11 @@ header {
 }
 
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Links à esquerda, botão à direita */
-  margin: 1rem 2rem;
-  width: 100%;
+  display: flex; /* ativa flexbox */
+  justify-content: space-between; /* empurra itens para as extremidades */
+  align-items: center; /* alinha verticalmente (se houver altura) */
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
 .menuBurger {
@@ -41,11 +41,6 @@ nav {
   font-weight: bold;
   transition: 0.3s;
 }
-
-.btn-container {
-  margin-left: auto; /* Empurra o botão para a direita */
-}
-
 .btn {
   width: 80px;
   height: 60px;
@@ -154,7 +149,16 @@ body.on a:hover {
 }
 
 /* =================  RESPONSIVO - MOBILE ====================== */
+@media (min-width: 850) {
+  .btn-container {
+    margin-left: auto;
+  }
+}
 @media (max-width: 850px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
   .burger {
     display: flex;
   }

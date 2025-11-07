@@ -6,10 +6,19 @@
     */
     
     //ENTRADA
-
-
+    let corCasa = prompt(`Digite a cor da casa`).trim();
+    let numeroDePortas = parseInt(prompt(`Digite o número de portas da casa`));
+    let numeroDeJanelas = parseInt(prompt(`Digite o número de janelas da casa`));
+    let casa = {
+        cor: corCasa,
+        numeroDePortas: numeroDePortas,
+        numeroDeJanelas: numeroDeJanelas,
+        dados: function() {
+            return `Cor: ${this.cor}, Portas: ${this.numeroDePortas}, Janelas: ${this.numeroDeJanelas}`;
+        }
+    }
     //PROCESSAMENTO
-
+    alert(casa.dados());
 
     //SAÍDA
     

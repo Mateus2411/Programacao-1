@@ -10,8 +10,11 @@
         titulo: "bah",
         autor: "bah2",
         numeroDePaginas: 123,
+        dados: function() {
+            return `Título: ${this.titulo}, Autor: ${this.autor}, Número de Páginas: ${this.numeroDePaginas}`;
+        }
     }
-    alert(`Nome: ${livro.titulo}\nAutor: ${livro.autor}\nPaginas: ${livro.numeroDePaginas}`)
+    alert(livro.dados());
     //PROCESSAMENTO
 
 

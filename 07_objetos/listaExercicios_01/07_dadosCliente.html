@@ -1,16 +1,45 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <script>
-    /*
+  /*
     PROBLEMA: DADOS DO CLIENTE
-    Crie um objeto chamado cliente com as propriedades nome, idade, email, e crie um método que retorne o nome, idade e email do cliente em formato string.
-    */
-    
-    //ENTRADA
+    Crie um objeto chamado cliente com as propriedades nome, idade, email,
+    e crie um método que retorne o nome, idade e email do cliente em formato string.
+  */
 
+  let nome = prompt("Digite o nome do cliente:");
+  let idade = prompt("Digite a idade do cliente:");
+  let email = prompt("Digite o email do cliente (apenas Gmail) ou (Hotmail):");
 
-    //PROCESSAMENTO
+  function validarEmail(email) {
+    email = email.trim().toLowerCase();
 
+    if (!email.includes("@")) {
+      email += "@gmail.com";
+    } else if (!email.endsWith("@gmail.com") && !email.endsWith("@hotmail.com")) {
+      alert("Somente emails Gmail ou Hotmail são permitidos!");
+      email = prompt("Digite um email válido (ex: usuario@gmail.com) ou (ex: usuario@hotmail.com):");
+      return validarEmail(email);
+    }
 
-    //SAÍDA
-    
+    const padrao = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
+    if (!padrao.test(email)) {
+      alert("Email inválido! Tente novamente (ex: usuario@gmail.com).");
+      email = prompt("Digite o email do cliente:");
+      return validarEmail(email);
+    }
+    return email;
+  }
+
+  email = validarEmail(email);
+
+  let cliente = {
+    nome: nome.trim(),
+    idade: Number(idade),
+    email: email,
+    dados: function () {
+      return `Nome: ${this.nome}, Idade: ${this.idade}, Email: ${this.email}`;
+    },
+  };
+
+  alert(cliente.dados());
 </script>
