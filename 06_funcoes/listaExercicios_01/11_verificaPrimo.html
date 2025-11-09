@@ -5,11 +5,26 @@
     */
 
     //ENTRADA
-
+    let numero = parseInt(prompt("Digite um número inteiro:"));
 
     //PROCESSAMENTO
-
+    function verificarPrimo(n) {
+        if (n <= 1) {
+            return false;
+        }
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     //SAÍDA
+    if (verificarPrimo(numero)) {
+        alert(`O número ${numero} é primo.`);
+    } else {
+        alert(`O número ${numero} não é primo.`);
+    }
 
 </script>

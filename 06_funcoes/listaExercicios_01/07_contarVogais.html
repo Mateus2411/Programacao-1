@@ -7,11 +7,21 @@
     */
 
     //ENTRADA
-
+    let string = prompt("Digite uma string:");
 
     //PROCESSAMENTO
-
+    function contarVogais(str) {
+        let vogais = 'aeiouAEIOU';
+        let contador = 0;
+        for (let char of str) {
+            if (vogais.includes(char)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 
     //SAÍDA
+    alert(`Número de vogais: ${contarVogais(string)}`);
 
 </script>
