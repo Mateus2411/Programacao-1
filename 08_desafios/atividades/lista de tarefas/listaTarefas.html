@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista Tarefa</title>
+    </head>
+    <style>
+        html {
+            background: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            a {
+                text-decoration: none;
+            }
+        }
+    </style>
+    <body>
+        <main>
+            <section>
+                <h1>Tarefas pendentes</h1>
+                <div id="ativas"></div>
+                <div>
+                    <input type="text" id="tarefa" placeholder="Tarefa..." />
+                    <button type="button" id="butao">Adicinar tarefa</button>
+                </div>
+                <h2>Finalizadas</h2>
+                <div id="finalizadas"></div>
+                <button id="limpar" style="display: none">
+                    Limpar finalizadas
+                </button>
+            </section>
+        </main>
+    </body>
+</html>
+<script>
+    let ativas = document.getElementById("ativas");
+    let tarefa = document.getElementById("tarefa");
+    let finalizadas = document.getElementById("finalizadas");
+    let butao = document.getElementById("butao");
+    let tarefasAtivas = [];
+    let tarefasFinalizadas = [];
+    let i = 0;
+    tarefa.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            butao.click();
+        }
+    });
+    butao.onclick = function () {
+        let novaTarefa = tarefa.value;
+        if (novaTarefa === "") {
+            alert("Insira um nome para a tarefa.");
+            return;
+        } else if (tarefasAtivas.some((t) => t.descricao === novaTarefa)) {
+            alert("Essa tarefa já está na lista.");
+            return tarefa.value = "";
+        }
+        tarefa.value = "";
+        tarefasAtivas.push({
+            id: tarefasAtivas.length + 1,
+            descricao: novaTarefa,
+            saida: function () {
+                return `${this.id} - ${this.descricao}`;
+            },
+        });
+
+        atualizarLista();
+    };
+
+    function atualizarLista() {
+        ativas.innerHTML = "";
+        atualizarIds();
+        tarefasAtivas.forEach((tarefa) => {
+            let item = document.createElement("ul");
+            item.innerHTML = `
+            <li>${tarefa.saida()}</li>
+            <a href="#" id="finalizar-${tarefa.id}">Finalizar</a>
+        `;
+            ativas.appendChild(item);
+
+            document.getElementById(`finalizar-${tarefa.id}`).onclick =
+                function () {
+                    tarefasAtivas = tarefasAtivas.filter(
+                        (t) => t.id !== tarefa.id
+                    );
+                    atualizarLista();
+                };
+        });
+    }
+
+    function atualizarIds() {
+        tarefasAtivas.forEach((tarefa, index) => {
+            tarefa.id = index + 1;
+        });
+    }
+</script>

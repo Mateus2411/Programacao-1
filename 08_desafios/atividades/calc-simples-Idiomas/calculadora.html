@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calculadora Simples</title>
+    </head>
+    <style>
+        * {
+            /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td,
+            article,
+            aside,
+            canvas,
+            details,
+            embed,
+            figure,
+            figcaption,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            output,
+            ruby,
+            section,
+            summary,
+            time,
+            mark,
+            audio,
+            video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article,
+            aside,
+            details,
+            figcaption,
+            figure,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            section {
+                display: block;
+            }
+            body {
+                line-height: 1;
+            }
+            ol,
+            ul {
+                list-style: none;
+            }
+            blockquote,
+            q {
+                quotes: none;
+            }
+            blockquote:before,
+            blockquote:after,
+            q:before,
+            q:after {
+                content: "";
+                content: none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+        }
+
+        main {
+            #idiomas {
+                max-width: 200px;
+            }
+            #idiomas optgroup {
+                font-weight: bold;
+                font-size: small;
+            }
+
+            #idiomas option {
+                white-space: normal;
+                font-size: small;
+            }
+            p {
+                border-bottom: 1px solid black;
+                padding: 0 0 20px 0;
+                max-width: fit-content;
+            }
+            #operacoes {
+                display: flex;
+                gap: 10px;
+                margin: 20px 0;
+                align-items: center;
+                li {
+                    cursor: pointer;
+                    padding: 5px;
+                    background: rgb(233, 232, 232);
+                    border-radius: 5px;
+                    border: 1px solid gray;
+                    font-size: small;
+                }
+            }
+        }
+    </style>
+    <body>
+        <main>
+            <section>
+                <select name="idiomas" id="idiomas" required>
+                    <option value="" disabled selected hidden>
+                        Selecione um idioma
+                    </option>
+
+                    <optgroup label="🌎 América">
+                        <option value="portugues">Português (Brasil)</option>
+                        <option value="espanhol">
+                            Espanhol (Argentina, Chile, Peru, México, Colômbia,
+                            Venezuela, Cuba)
+                        </option>
+                        <option value="ingles">Inglês (EUA, Canadá)</option>
+                        <option value="frances">Francês (Canadá)</option>
+                        <option value="quechua">Quéchua (Peru)</option>
+                    </optgroup>
+
+                    <optgroup label="🌍 Europa">
+                        <option value="portugues">Português (Portugal)</option>
+                        <option value="espanhol">Espanhol (Espanha)</option>
+                        <option value="frances">Francês (França)</option>
+                        <option value="italiano">Italiano (Itália)</option>
+                        <option value="alema">Alemão (Alemanha)</option>
+                        <option value="ingles">Inglês (Reino Unido)</option>
+                        <option value="russo">Russo (Rússia)</option>
+                        <option value="sueco">Sueco (Suécia)</option>
+                        <option value="noruegues">Norueguês (Noruega)</option>
+                        <option value="polones">Polonês (Polônia)</option>
+                    </optgroup>
+
+                    <optgroup label="🌍 África">
+                        <option value="arabe">Árabe (Egito, Marrocos)</option>
+                        <option value="ingles">
+                            Inglês (África do Sul, Nigéria, Quênia, Gana)
+                        </option>
+                        <option value="suaile">Suaíli (Quênia)</option>
+                        <option value="amarico">Amárico (Etiópia)</option>
+                        <option value="portugues">
+                            Português (Angola, Moçambique)
+                        </option>
+                        <option value="frances">Francês (Senegal)</option>
+                    </optgroup>
+
+                    <optgroup label="🌏 Ásia">
+                        <option value="mandarim">Mandarim (China)</option>
+                        <option value="japones">Japonês (Japão)</option>
+                        <option value="coreano">Coreano (Coreia do Sul)</option>
+                        <option value="hindi">Hindi (Índia)</option>
+                        <option value="ingles">Inglês (Índia)</option>
+                        <option value="indonesio">Indonésio (Indonésia)</option>
+                        <option value="arabe">Árabe (Arábia Saudita)</option>
+                        <option value="persa">Persa (Irã)</option>
+                        <option value="turco">Turco (Turquia)</option>
+                        <option value="hebraico">Hebraico (Israel)</option>
+                        <option value="tailandes">Tailandês (Tailândia)</option>
+                    </optgroup>
+
+                    <optgroup label="🌏 Oceania">
+                        <option value="ingles">
+                            Inglês (Austrália, Nova Zelândia, Fiji, Papua-Nova
+                            Guiné)
+                        </option>
+                        <option value="maori">Maori (Nova Zelândia)</option>
+                        <option value="tok-pisin">
+                            Tok Pisin (Papua-Nova Guiné)
+                        </option>
+                        <option value="fijiano">Fijiano (Fiji)</option>
+                        <option value="samoano">Samoano (Samoa)</option>
+                    </optgroup>
+                </select>
+                <h1>Calculadora</h1>
+                <p>Esta é uma calculadora Simples com diferente idiomas.</p>
+                <div>
+                    <input
+                        type="number"
+                        name="numero1"
+                        id="numero1"
+                        placeholder="Diga o 1 numero"
+                    />
+                    <input
+                        type="number"
+                        name="numero2"
+                        id="numero2"
+                        placeholder="Diga o 2 numero"
+                    />
+                </div>
+                <div>
+                    <ul id="operacoes">
+                        <li id="somar">Soma</li>
+                        <li id="subtrair">Subtraçãor</li>
+                        <li id="multiplicar">Multiplicação</li>
+                        <li id="dividir">Divisão</li>
+                    </ul>
+                </div>
+                <div>
+                    <label for="resposta">Resposta</label>
+                    <input
+                        type="number"
+                        id="resposta"
+                        name="resposta"
+                        readonly
+                    />
+                </div>
+                <div style="margin-top: 10px">
+                    <a
+                        id="limpar"
+                        style="
+                            cursor: pointer;
+                            padding: 5px;
+                            background: rgb(233, 232, 232);
+                            border-radius: 5px;
+                            border: 1px solid gray;
+                            font-size: small;
+                        "
+                    >
+                        limpar
+                    </a>
+                </div>
+            </section>
+        </main>
+        <script>
+            function calculadora() {
+                const numero1 = document.getElementById("numero1");
+                const numero2 = document.getElementById("numero2");
+                const resposta = document.getElementById("resposta");
+                document.querySelectorAll("#operacoes li").forEach((li) => {
+                    li.addEventListener("click", () => {
+                        const operacao = li.getAttribute("id");
+
+                        // Obter valores atuais dos inputs
+                        const num1 = parseFloat(numero1.value);
+                        const num2 = parseFloat(numero2.value);
+
+                        // Verificar se os valores são números válidos
+                        if (isNaN(num1) || isNaN(num2)) {
+                            alert("Por favor, insira números válidos.");
+                            return;
+                        }
+
+                        let resultado;
+
+                        switch (operacao) {
+                            case "somar":
+                                resultado = num1 + num2;
+                                break;
+                            case "subtrair":
+                                resultado = num1 - num2;
+                                break;
+                            case "multiplicar":
+                                resultado = num1 * num2;
+                                break;
+                            case "dividir":
+                                if (num2 === 0 || num1 === 0) {
+                                    alert("Não é possível dividir por zero.");
+                                    return;
+                                }
+                                resultado = num1 / num2;
+                                break;
+                        }
+                        resposta.value = resultado;
+                    });
+                });
+                let limpar = document.getElementById("limpar");
+                limpar.onclick = function () {
+                    numero1.value = "";
+                    numero2.value = "";
+                    resposta.value = "";
+                };
+            }
+            calculadora();
+            function mudarIdioma(event) {
+                event.preventDefault();
+                const idioma = document.getElementById("idiomas").value;
+                const idiomasSuportados = ["portugues", "ingles", "espanhol"];
+                if (!idiomasSuportados.includes(idioma)) {
+                    alert("Este idioma ainda não está disponível! Mó preguiça kk.");
+                    location.reload();
+                    return;
+                }
+
+                const textos = {
+                    portugues: {
+                        titulo: "Calculadora",
+                        descricao:
+                            "Esta é uma calculadora simples com diferentes idiomas.",
+                        num1: "Diga o 1º número",
+                        num2: "Diga o 2º número",
+                        soma: "Soma",
+                        subtracao: "Subtração",
+                        multiplicacao: "Multiplicação",
+                        divisao: "Divisão",
+                        resposta: "Resposta",
+                        limpar: "Limpar",
+                    },
+                    ingles: {
+                        titulo: "Calculator",
+                        descricao:
+                            "This is a simple calculator with different languages.",
+                        num1: "Enter the 1st number",
+                        num2: "Enter the 2nd number",
+                        soma: "Add",
+                        subtracao: "Subtract",
+                        multiplicacao: "Multiply",
+                        divisao: "Divide",
+                        resposta: "Answer",
+                        limpar: "Clear",
+                    },
+                    espanhol: {
+                        titulo: "Calculadora",
+                        descricao:
+                            "Esta es una calculadora simple con diferentes idiomas.",
+                        num1: "Ingrese el primer número",
+                        num2: "Ingrese el segundo número",
+                        soma: "Suma",
+                        subtracao: "Resta",
+                        multiplicacao: "Multiplicación",
+                        divisao: "División",
+                        resposta: "Respuesta",
+                        limpar: "Limpiar",
+                    },
+                };
+
+                const t = textos[idioma];
+
+                document.querySelector("h1").textContent = t.titulo;
+                document.querySelector("p").textContent = t.descricao;
+                document.getElementById("numero1").placeholder = t.num1;
+                document.getElementById("numero2").placeholder = t.num2;
+                document.getElementById("somar").textContent = t.soma;
+                document.getElementById("subtrair").textContent = t.subtracao;
+                document.getElementById("multiplicar").textContent =
+                    t.multiplicacao;
+                document.getElementById("dividir").textContent = t.divisao;
+                document.querySelector("label[for='resposta']").textContent =
+                    t.resposta;
+                document.getElementById("limpar").textContent = t.limpar;
+            }
+
+            document
+                .getElementById("idiomas")
+                .addEventListener("change", mudarIdioma);
+        </script>
+    </body>
+</html>
