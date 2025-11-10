@@ -1,32 +1,562 @@
-<!DOCTYPE html>
-<html lang="en">
+preciso que no minino(mescle e deixe organizado e funcionando ate ali) tenha isso de js: class Calculadora {
+    constructor() {
+        this.display = "";
+        this.configurarTeclado();
+    }
+
+    atualizarDisplay() {
+        const inputDisplay = document.getElementById("display");
+        const cursorPos = inputDisplay.selectionStart || 0;
+        
+        if (this.display === "") {
+            inputDisplay.value = "0";
+        } else {
+            inputDisplay.value = this.display;
+        }
+        
+        // Mantém a posição do cursor após atualizar
+        setTimeout(() => {
+            const newPos = Math.min(cursorPos, this.display.length || 1);
+            inputDisplay.setSelectionRange(newPos, newPos);
+        }, 0);
+    }
+
+    adicionarNumero(numero) {
+        const inputDisplay = document.getElementById("display");
+        let cursorPos = inputDisplay.selectionStart || this.display.length;
+        
+        if (this.display === "0" && numero !== ",") {
+            this.display = numero;
+            cursorPos = 1;
+        } else {
+            // Converte vírgula para ponto para cálculos
+            const numeroFormatado = numero === "," ? "." : numero;
+            this.display = this.display.slice(0, cursorPos) + numeroFormatado + this.display.slice(cursorPos);
+        }
+        inputDisplay.classList.remove("erro", "calculando");
+        this.atualizarDisplay();
+        // Reposiciona o cursor após o caractere inserido
+        setTimeout(() => {
+            inputDisplay.setSelectionRange(cursorPos + 1, cursorPos + 1);
+        }, 0);
+    }
+
+    adicionarOperacao(operacao) {
+        const inputDisplay = document.getElementById("display");
+        const cursorPos = inputDisplay.selectionStart || this.display.length;
+        
+        if (this.display === "" || this.display === "0") {
+            if (operacao === "-") {
+                this.display = "-";
+                this.atualizarDisplay();
+                setTimeout(() => {
+                    inputDisplay.setSelectionRange(1, 1);
+                }, 0);
+            }
+            return;
+        }
+        
+        // Converte símbolos Unicode para operadores JavaScript
+        let operador = operacao;
+        if (operacao === "×") operador = "*";
+        if (operacao === "÷") operador = "/";
+        
+        this.display = this.display.slice(0, cursorPos) + operador + this.display.slice(cursorPos);
+        inputDisplay.classList.remove("erro", "calculando");
+        this.atualizarDisplay();
+        // Reposiciona o cursor após o operador inserido
+        setTimeout(() => {
+            inputDisplay.setSelectionRange(cursorPos + 1, cursorPos + 1);
+        }, 0);
+    }
+
+    apagarUltimo() {
+        this.display = this.display.slice(0, -1);
+        const inputDisplay = document.getElementById("display");
+        inputDisplay.classList.remove("erro", "calculando");
+    }
+
+    limparDisplay() {
+        this.display = "";
+        const inputDisplay = document.getElementById("display");
+        inputDisplay.classList.remove("erro", "calculando");
+        this.atualizarDisplay();
+    }
+
+    limparEntrada() {
+        // CE - limpa apenas a última entrada (volta para 0)
+        const inputDisplay = document.getElementById("display");
+        inputDisplay.classList.remove("erro", "calculando");
+        this.display = "";
+        this.atualizarDisplay();
+    }
+
+    calcular() {
+        const inputDisplay = document.getElementById("display");
+        let expressao = this.display;
+
+        if (expressao === "" || expressao === "0") return;
+
+        // Mostra "Calculando..."
+        inputDisplay.value = "Calculando...";
+        inputDisplay.classList.remove("erro");
+        inputDisplay.classList.add("calculando");
+
+        setTimeout(() => {
+            try {
+                // Converte vírgulas para pontos
+                expressao = expressao.replace(/,/g, ".");
+                const resultado = eval(expressao);
+                this.display = resultado.toString().replace(/\./g, ",");
+                inputDisplay.classList.remove("calculando");
+            } catch (erro) {
+                this.display = "Erro";
+                inputDisplay.classList.remove("calculando");
+                inputDisplay.classList.add("erro");
+
+                setTimeout(() => {
+                    this.display = "";
+                    inputDisplay.classList.remove("erro");
+                    this.atualizarDisplay();
+                }, 1000);
+            }
+            this.atualizarDisplay();
+        }, 500);
+    }
+
+    obterValorAtual() {
+        // Se houver uma expressão, calcula primeiro
+        let expressaoParaVerificar = this.display.replace(/×/g, "*").replace(/÷/g, "/");
+        if (expressaoParaVerificar.includes("+") || expressaoParaVerificar.includes("-") || 
+            expressaoParaVerificar.includes("*") || expressaoParaVerificar.includes("/")) {
+            try {
+                let expressao = this.display.replace(/,/g, ".").replace(/×/g, "*").replace(/÷/g, "/");
+                return eval(expressao);
+            } catch (erro) {
+                return 0;
+            }
+        }
+        // Caso contrário, retorna o valor direto
+        let valorTexto = this.display || "0";
+        return parseFloat(valorTexto.replace(/,/g, ".")) || 0;
+    }
+
+    porcentagem() {
+        try {
+            const valor = this.obterValorAtual();
+            const resultado = valor / 100;
+            this.display = resultado.toString().replace(/\./g, ",");
+            const inputDisplay = document.getElementById("display");
+            inputDisplay.classList.remove("erro", "calculando");
+            this.atualizarDisplay();
+        } catch (erro) {
+            this.display = "Erro";
+            this.atualizarDisplay();
+        }
+    }
+
+    recíproco() {
+        try {
+            const valor = this.obterValorAtual();
+            if (valor === 0) {
+                this.display = "Erro";
+                this.atualizarDisplay();
+                return;
+            }
+            const resultado = 1 / valor;
+            this.display = resultado.toString().replace(/\./g, ",");
+            const inputDisplay = document.getElementById("display");
+            inputDisplay.classList.remove("erro", "calculando");
+            this.atualizarDisplay();
+        } catch (erro) {
+            this.display = "Erro";
+            this.atualizarDisplay();
+        }
+    }
+
+    quadrado() {
+        try {
+            const valor = this.obterValorAtual();
+            const resultado = valor * valor;
+            this.display = resultado.toString().replace(/\./g, ",");
+            const inputDisplay = document.getElementById("display");
+            inputDisplay.classList.remove("erro", "calculando");
+            this.atualizarDisplay();
+        } catch (erro) {
+            this.display = "Erro";
+            this.atualizarDisplay();
+        }
+    }
+
+    raizQuadrada() {
+        try {
+            const valor = this.obterValorAtual();
+            if (valor < 0) {
+                this.display = "Erro";
+                this.atualizarDisplay();
+                return;
+            }
+            const resultado = Math.sqrt(valor);
+            this.display = resultado.toString().replace(/\./g, ",");
+            const inputDisplay = document.getElementById("display");
+            inputDisplay.classList.remove("erro", "calculando");
+            this.atualizarDisplay();
+        } catch (erro) {
+            this.display = "Erro";
+            this.atualizarDisplay();
+        }
+    }
+
+    inverterSinal() {
+        let valorTexto = this.display || "0";
+        if (valorTexto === "0") return;
+        
+        if (valorTexto.startsWith("-")) {
+            this.display = valorTexto.substring(1);
+        } else {
+            this.display = "-" + valorTexto;
+        }
+        const inputDisplay = document.getElementById("display");
+        inputDisplay.classList.remove("erro", "calculando");
+        this.atualizarDisplay();
+    }
+
+    apagarCursor() {
+        const inputDisplay = document.getElementById("display");
+        const start = inputDisplay.selectionStart || 0;
+        const end = inputDisplay.selectionEnd || 0;
+
+        // Se há seleção, apaga a seleção
+        if (start !== end) {
+            this.display = this.display.slice(0, start) + this.display.slice(end);
+            this.atualizarDisplay();
+            setTimeout(() => {
+                inputDisplay.setSelectionRange(start, start);
+            }, 0);
+            inputDisplay.classList.remove("erro", "calculando");
+            return;
+        }
+
+        // Se não há seleção, apaga o caractere à esquerda do cursor (comportamento padrão do Backspace)
+        if (start > 0) {
+            this.display = this.display.slice(0, start - 1) + this.display.slice(start);
+            this.atualizarDisplay();
+            setTimeout(() => {
+                inputDisplay.setSelectionRange(start - 1, start - 1);
+            }, 0);
+        }
+        
+        inputDisplay.classList.remove("erro", "calculando");
+    }
+
+    configurarTeclado() {
+        const inputDisplay = document.getElementById("display");
+        
+        // Sincroniza quando o usuário digita diretamente no input
+        inputDisplay.addEventListener("input", () => {
+            let valor = inputDisplay.value;
+            // Remove o "0" inicial se o usuário começar a digitar
+            if (valor === "0" && inputDisplay.selectionStart > 0) {
+                valor = valor.slice(1);
+            }
+            this.display = valor.replace(/\./g, ",");
+        });
+        
+        document.addEventListener("keydown", (event) => {
+            // Se o menu estiver aberto e pressionar ESC, fecha o menu (não limpa o display)
+            const menuLateral = document.getElementById("menuLateral");
+            if (event.key === "Escape" && menuLateral && menuLateral.classList.contains("aberto")) {
+                return; // Deixa o handler do menu lidar com isso
+            }
+            
+            const tecla = event.key;
+            let tipo = "";
+
+            if (!isNaN(tecla) || tecla === "." || tecla === ",") tipo = "numero";
+            else if (["+", "-", "*", "/"].includes(tecla)) tipo = "operacao";
+            else if (tecla === "Enter") tipo = "resultado";
+            else if (tecla === "Backspace") tipo = "apagar";
+            else if (tecla === "Escape") tipo = "limpar";
+            else tipo = "outro";
+
+            switch (tipo) {
+                case "numero":
+                    event.preventDefault();
+                    this.adicionarNumero(tecla);
+                    break;
+                case "operacao":
+                    event.preventDefault();
+                    this.adicionarOperacao(tecla);
+                    break;
+                case "resultado":
+                    event.preventDefault();
+                    this.calcular();
+                    break;
+                case "apagar":
+                    event.preventDefault();
+                    this.apagarCursor();
+                    break;
+                case "limpar":
+                    event.preventDefault();
+                    this.limparDisplay();
+                    break;
+            }
+        });
+    }
+}
+
+let calculadora = new Calculadora();
+
+// Números
+document.querySelectorAll(".numero").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        calculadora.adicionarNumero(botao.value);
+        calculadora.atualizarDisplay();
+    });
+});
+
+// Operadores
+document.querySelectorAll(".operacao:not(.igual)").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        calculadora.adicionarOperacao(botao.innerText);
+        calculadora.atualizarDisplay();
+    });
+});
+
+// Botão de igual
+document.getElementById("resultado").addEventListener("click", () => {
+    calculadora.calcular();
+});
+
+// Botões de função
+document.getElementById("limpar").addEventListener("click", () => {
+    calculadora.limparDisplay();
+});
+
+document.getElementById("apagar").addEventListener("click", () => {
+    calculadora.apagarCursor();
+});
+
+document.getElementById("ce").addEventListener("click", () => {
+    calculadora.limparEntrada();
+});
+
+document.getElementById("percent").addEventListener("click", () => {
+    calculadora.porcentagem();
+});
+
+document.getElementById("reciprocal").addEventListener("click", () => {
+    calculadora.recíproco();
+});
+
+document.getElementById("square").addEventListener("click", () => {
+    calculadora.quadrado();
+});
+
+document.getElementById("sqrt").addEventListener("click", () => {
+    calculadora.raizQuadrada();
+});
+
+document.getElementById("plusminus").addEventListener("click", () => {
+    calculadora.inverterSinal();
+});
+
+// ============================================
+// CONTROLE DO MENU LATERAL
+// ============================================
+const menuIcon = document.getElementById("menuIcon");
+const menuLateral = document.getElementById("menuLateral");
+const menuOverlay = document.getElementById("menuOverlay");
+const calculadoraElement = document.getElementById("calculadora");
+const menuOpcoes = document.querySelectorAll(".menu-opcao");
+
+// Abrir menu
+menuIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menuLateral.classList.add("aberto");
+    menuOverlay.classList.add("ativo");
+    calculadoraElement.classList.add("escurecida");
+});
+
+// Fechar menu ao clicar no overlay
+menuOverlay.addEventListener("click", () => {
+    fecharMenu();
+});
+
+// Fechar menu ao clicar em uma opção
+menuOpcoes.forEach((opcao) => {
+    opcao.addEventListener("click", () => {
+        // Remove ativo de todas as opções
+        menuOpcoes.forEach((o) => o.classList.remove("ativo"));
+        // Adiciona ativo na opção clicada
+        opcao.classList.add("ativo");
+        
+        // Atualiza o título no cabeçalho (apenas visual)
+        const titulo = opcao.querySelector(".menu-opcao-texto").textContent;
+        document.querySelector(".titulo").textContent = titulo;
+        
+        // Fecha o menu
+        fecharMenu();
+    });
+});
+
+// Função para fechar o menu
+function fecharMenu() {
+    menuLateral.classList.remove("aberto");
+    menuOverlay.classList.remove("ativo");
+    calculadoraElement.classList.remove("escurecida");
+}
+
+// Fechar menu ao pressionar ESC (se o menu estiver aberto)
+// Usa capture: true para executar antes do handler da calculadora
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
+        e.preventDefault();
+        e.stopPropagation();
+        fecharMenu();
+    }
+}, true);;;de preferencia mantenha a estrutura organizada e limpa, e isso de html: <!DOCTYPE html>
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Calculadora</title>
+        <link rel="stylesheet" href="calculadora.css" />
+        <link rel="stylesheet" href="reset.css" />
     </head>
-    <body>
-        <button class="numero" value="1">1</button>
-        <button class="numero" value="2">2</button>
-        <button class="numero" value="3">3</button>
-        <button class="numero" value="3">4</button>
-        <button class="numero" value="3">5</button>
-        <button class="numero" value="6">6</button>
-        <button class="numero" value="7">7</button>
-        <button class="numero" value="8">8</button>
-        <button class="numero" value="9">9</button>
-        <button class="numero" value="10">10</button>
-    </body>
-    <script>
-        const numeros = document.querySelectorAll(".numero");
-        let total = 0;
 
-        numeros.forEach((botao) => {
-            botao.addEventListener("click", () => {
-                const valor = parseInt(botao.value); // pega o valor do botão
-                total += valor; // soma ao total
-                console.log(total); // mostra o total atualizado
-            });
-        });
-    </script>
-</html>
+    <body>
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <div class="menu-lateral" id="menuLateral">
+            <div class="menu-secao">
+                <div class="menu-titulo">Calculadora</div>
+                <div class="menu-opcao ativo" data-opcao="padrao">
+                    <span class="menu-opcao-texto">Padrão</span>
+                </div>
+                <div class="menu-opcao" data-opcao="cientifica">
+                    <span class="menu-opcao-icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M5 9H19M15 18V15M9 18H9.01M12 18H12.01M12 15H12.01M9 15H9.01M15 12H15.01M12 12H12.01M9 12H9.01M8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V6.2C19 5.0799 19 4.51984 18.782 4.09202C18.5903 3.71569 18.2843 3.40973 17.908 3.21799C17.4802 3 16.9201 3 15.8 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.07989 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21Z"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></path>
+                        </svg>
+                    </span>
+                    <span class="menu-opcao-texto">Científica</span>
+                </div>
+            </div>
+
+            <div class="menu-secao">
+                <div class="menu-titulo">Conversor</div>
+                <div class="menu-opcao" data-opcao="moeda">
+                    <span class="menu-opcao-icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g opacity="0.4">
+                                    <path
+                                        d="M9.5 13.7502C9.5 14.7202 10.25 15.5002 11.17 15.5002H13.05C13.85 15.5002 14.5 14.8202 14.5 13.9702C14.5 13.0602 14.1 12.7302 13.51 12.5202L10.5 11.4702C9.91 11.2602 9.51001 10.9402 9.51001 10.0202C9.51001 9.18023 10.16 8.49023 10.96 8.49023H12.84C13.76 8.49023 14.51 9.27023 14.51 10.2402"
+                                        stroke="#ffffff"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                    <path
+                                        d="M12 7.5V16.5"
+                                        stroke="#ffffff"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </g>
+                                <path
+                                    d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2"
+                                    stroke="#ffffff"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                                <path
+                                    d="M22 6V2H18"
+                                    stroke="#ffffff"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                                <path
+                                    d="M17 7L22 2"
+                                    stroke="#ffffff"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                            </g></svg
+                    ></span>
+                    <span class="menu-opcao-texto">Moeda</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculadora" id="calculadora">
+            <div class="cabecalho">
+                <button class="icon-btn menu-icon" id="menuIcon">☰</button>
+                <span class="titulo">Padrão</span>
+                <span></span>
+            </div>
+
+            <div class="display-container">
+                <input type="text" id="display" class="display" value="0" />
+            </div>
+
+            <div class="botoes">
+                <button class="funcao" id="percent">%</button>
+                <button class="funcao" id="ce">CE</button>
+                <button class="funcao" id="limpar">C</button>
+                <button class="funcao" id="apagar">⌫</button>
+
+                <button class="funcao" id="reciprocal">1/x</button>
+                <button class="funcao" id="square">x²</button>
+                <button class="funcao" id="sqrt">²√x</button>
+                <button class="operacao" id="divide">÷</button>
+
+                <button class="numero" value="7">7</button>
+                <button class="numero" value="8">8</button>
+                <button class="numero" value="9">9</button>
+                <button class="operacao" id="multiply">×</button>
+
+                <button class="numero" value="4">4</button>
+                <button class="numero" value="5">5</button>
+                <button class="numero" value="6">6</button>
+                <button class="operacao" id="subtract">-</button>
+
+                <button class="numero" value="1">1</button>
+                <button class="numero" value="2">2</button>
+                <button class="numero" value="3">3</button>
+                <button class="operacao" id="add">+</button>
+
+                <button class="funcao" id="plusminus">+/-</button>
+                <button class="numero" value="0">0</button>
+                <button class="numero" value=",">,</button>
+                <button class="operacao igual" id="resultado">=</button>
+            </div>
+        </div>
+        <script src="calculadora.js"></script>
+    </body>
+</html>;;;;;; implemente apenas o que falta e o que ja tem mantem e deixe tudo organizado e bonito

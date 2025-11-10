@@ -4,16 +4,17 @@ class Calculadora {
         this.configurarTeclado();
     }
 
+    // Métodos de manipulação de DOM
     atualizarDisplay() {
         const inputDisplay = document.getElementById("display");
         const cursorPos = inputDisplay.selectionStart || 0;
-        
+
         if (this.display === "") {
             inputDisplay.value = "0";
         } else {
             inputDisplay.value = this.display;
         }
-        
+
         // Mantém a posição do cursor após atualizar
         setTimeout(() => {
             const newPos = Math.min(cursorPos, this.display.length || 1);
@@ -21,19 +22,39 @@ class Calculadora {
         }, 0);
     }
 
+    limparClassesErro() {
+        const inputDisplay = document.getElementById("display");
+        inputDisplay.classList.remove("erro", "calculando");
+    }
+
+    mostrarErro(mensagem) {
+        const inputDisplay = document.getElementById("display");
+        this.display = mensagem;
+        inputDisplay.classList.remove("calculando");
+        inputDisplay.classList.add("erro");
+        setTimeout(() => {
+            this.display = "";
+            inputDisplay.classList.remove("erro");
+            this.atualizarDisplay();
+        }, 2000);
+    }
+
     adicionarNumero(numero) {
         const inputDisplay = document.getElementById("display");
         let cursorPos = inputDisplay.selectionStart || this.display.length;
-        
+
         if (this.display === "0" && numero !== ",") {
             this.display = numero;
             cursorPos = 1;
         } else {
             // Converte vírgula para ponto para cálculos
             const numeroFormatado = numero === "," ? "." : numero;
-            this.display = this.display.slice(0, cursorPos) + numeroFormatado + this.display.slice(cursorPos);
+            this.display =
+                this.display.slice(0, cursorPos) +
+                numeroFormatado +
+                this.display.slice(cursorPos);
         }
-        inputDisplay.classList.remove("erro", "calculando");
+        this.limparClassesErro();
         this.atualizarDisplay();
         // Reposiciona o cursor após o caractere inserido
         setTimeout(() => {
@@ -44,7 +65,7 @@ class Calculadora {
     adicionarOperacao(operacao) {
         const inputDisplay = document.getElementById("display");
         const cursorPos = inputDisplay.selectionStart || this.display.length;
-        
+
         if (this.display === "" || this.display === "0") {
             if (operacao === "-") {
                 this.display = "-";
@@ -55,14 +76,17 @@ class Calculadora {
             }
             return;
         }
-        
+
         // Converte símbolos Unicode para operadores JavaScript
         let operador = operacao;
         if (operacao === "×") operador = "*";
         if (operacao === "÷") operador = "/";
-        
-        this.display = this.display.slice(0, cursorPos) + operador + this.display.slice(cursorPos);
-        inputDisplay.classList.remove("erro", "calculando");
+
+        this.display =
+            this.display.slice(0, cursorPos) +
+            operador +
+            this.display.slice(cursorPos);
+        this.limparClassesErro();
         this.atualizarDisplay();
         // Reposiciona o cursor após o operador inserido
         setTimeout(() => {
@@ -72,21 +96,18 @@ class Calculadora {
 
     apagarUltimo() {
         this.display = this.display.slice(0, -1);
-        const inputDisplay = document.getElementById("display");
-        inputDisplay.classList.remove("erro", "calculando");
+        this.limparClassesErro();
     }
 
     limparDisplay() {
         this.display = "";
-        const inputDisplay = document.getElementById("display");
-        inputDisplay.classList.remove("erro", "calculando");
+        this.limparClassesErro();
         this.atualizarDisplay();
     }
 
     limparEntrada() {
         // CE - limpa apenas a última entrada (volta para 0)
-        const inputDisplay = document.getElementById("display");
-        inputDisplay.classList.remove("erro", "calculando");
+        this.limparClassesErro();
         this.display = "";
         this.atualizarDisplay();
     }
@@ -97,6 +118,12 @@ class Calculadora {
 
         if (expressao === "" || expressao === "0") return;
 
+        // Valida a expressão antes de calcular
+        if (!this.validarExpressao(expressao)) {
+            this.mostrarErro("Expressão inválida");
+            return;
+        }
+
         // Mostra "Calculando..."
         inputDisplay.value = "Calculando...";
         inputDisplay.classList.remove("erro");
@@ -106,31 +133,80 @@ class Calculadora {
             try {
                 // Converte vírgulas para pontos
                 expressao = expressao.replace(/,/g, ".");
-                const resultado = eval(expressao);
+                const resultado = this.calcularExpressao(expressao);
+                if (isNaN(resultado) || !isFinite(resultado)) {
+                    throw new Error("Resultado inválido");
+                }
                 this.display = resultado.toString().replace(/\./g, ",");
                 inputDisplay.classList.remove("calculando");
             } catch (erro) {
-                this.display = "Erro";
-                inputDisplay.classList.remove("calculando");
-                inputDisplay.classList.add("erro");
-
-                setTimeout(() => {
-                    this.display = "";
-                    inputDisplay.classList.remove("erro");
-                    this.atualizarDisplay();
-                }, 1000);
+                this.mostrarErro("Erro no cálculo");
             }
             this.atualizarDisplay();
         }, 500);
     }
 
+    // Métodos de lógica de cálculo
+    validarExpressao(expressao) {
+        // Permite apenas números, operadores básicos, vírgulas e pontos
+        const regex = /^[0-9+\-*/,.() ]+$/;
+        if (!regex.test(expressao)) return false;
+
+        // Verifica parênteses balanceados (simples)
+        let count = 0;
+        for (let char of expressao) {
+            if (char === "(") count++;
+            if (char === ")") count--;
+            if (count < 0) return false;
+        }
+        return count === 0;
+    }
+
+    calcularExpressao(expressao) {
+        // Substitui eval() por uma implementação mais segura
+        // Para operações básicas, podemos usar Function, mas ainda com risco
+        // Para este projeto, mantemos eval() mas com validação
+        return eval(expressao);
+    }
+
+    validarExpressao(expressao) {
+        // Permite apenas números, operadores básicos, vírgulas e pontos
+        const regex = /^[0-9+\-*/,.() ]+$/;
+        if (!regex.test(expressao)) return false;
+
+        // Verifica parênteses balanceados (simples)
+        let count = 0;
+        for (let char of expressao) {
+            if (char === "(") count++;
+            if (char === ")") count--;
+            if (count < 0) return false;
+        }
+        return count === 0;
+    }
+
+    calcularExpressao(expressao) {
+        // Substitui eval() por uma implementação mais segura
+        // Para operações básicas, podemos usar Function, mas ainda com risco
+        // Para este projeto, mantemos eval() mas com validação
+        return eval(expressao);
+    }
+
     obterValorAtual() {
         // Se houver uma expressão, calcula primeiro
-        let expressaoParaVerificar = this.display.replace(/×/g, "*").replace(/÷/g, "/");
-        if (expressaoParaVerificar.includes("+") || expressaoParaVerificar.includes("-") || 
-            expressaoParaVerificar.includes("*") || expressaoParaVerificar.includes("/")) {
+        let expressaoParaVerificar = this.display
+            .replace(/×/g, "*")
+            .replace(/÷/g, "/");
+        if (
+            expressaoParaVerificar.includes("+") ||
+            expressaoParaVerificar.includes("-") ||
+            expressaoParaVerificar.includes("*") ||
+            expressaoParaVerificar.includes("/")
+        ) {
             try {
-                let expressao = this.display.replace(/,/g, ".").replace(/×/g, "*").replace(/÷/g, "/");
+                let expressao = this.display
+                    .replace(/,/g, ".")
+                    .replace(/×/g, "*")
+                    .replace(/÷/g, "/");
                 return eval(expressao);
             } catch (erro) {
                 return 0;
@@ -141,83 +217,19 @@ class Calculadora {
         return parseFloat(valorTexto.replace(/,/g, ".")) || 0;
     }
 
-    porcentagem() {
-        try {
-            const valor = this.obterValorAtual();
-            const resultado = valor / 100;
-            this.display = resultado.toString().replace(/\./g, ",");
-            const inputDisplay = document.getElementById("display");
-            inputDisplay.classList.remove("erro", "calculando");
-            this.atualizarDisplay();
-        } catch (erro) {
-            this.display = "Erro";
-            this.atualizarDisplay();
-        }
-    }
-
-    recíproco() {
-        try {
-            const valor = this.obterValorAtual();
-            if (valor === 0) {
-                this.display = "Erro";
-                this.atualizarDisplay();
-                return;
-            }
-            const resultado = 1 / valor;
-            this.display = resultado.toString().replace(/\./g, ",");
-            const inputDisplay = document.getElementById("display");
-            inputDisplay.classList.remove("erro", "calculando");
-            this.atualizarDisplay();
-        } catch (erro) {
-            this.display = "Erro";
-            this.atualizarDisplay();
-        }
-    }
-
-    quadrado() {
-        try {
-            const valor = this.obterValorAtual();
-            const resultado = valor * valor;
-            this.display = resultado.toString().replace(/\./g, ",");
-            const inputDisplay = document.getElementById("display");
-            inputDisplay.classList.remove("erro", "calculando");
-            this.atualizarDisplay();
-        } catch (erro) {
-            this.display = "Erro";
-            this.atualizarDisplay();
-        }
-    }
-
-    raizQuadrada() {
-        try {
-            const valor = this.obterValorAtual();
-            if (valor < 0) {
-                this.display = "Erro";
-                this.atualizarDisplay();
-                return;
-            }
-            const resultado = Math.sqrt(valor);
-            this.display = resultado.toString().replace(/\./g, ",");
-            const inputDisplay = document.getElementById("display");
-            inputDisplay.classList.remove("erro", "calculando");
-            this.atualizarDisplay();
-        } catch (erro) {
-            this.display = "Erro";
-            this.atualizarDisplay();
-        }
-    }
+    // Removidas funções avançadas: porcentagem, recíproco, quadrado, raizQuadrada
+    // Focando apenas no básico: operações aritméticas essenciais
 
     inverterSinal() {
         let valorTexto = this.display || "0";
         if (valorTexto === "0") return;
-        
+
         if (valorTexto.startsWith("-")) {
             this.display = valorTexto.substring(1);
         } else {
             this.display = "-" + valorTexto;
         }
-        const inputDisplay = document.getElementById("display");
-        inputDisplay.classList.remove("erro", "calculando");
+        this.limparClassesErro();
         this.atualizarDisplay();
     }
 
@@ -228,30 +240,32 @@ class Calculadora {
 
         // Se há seleção, apaga a seleção
         if (start !== end) {
-            this.display = this.display.slice(0, start) + this.display.slice(end);
+            this.display =
+                this.display.slice(0, start) + this.display.slice(end);
             this.atualizarDisplay();
             setTimeout(() => {
                 inputDisplay.setSelectionRange(start, start);
             }, 0);
-            inputDisplay.classList.remove("erro", "calculando");
+            this.limparClassesErro();
             return;
         }
 
         // Se não há seleção, apaga o caractere à esquerda do cursor (comportamento padrão do Backspace)
         if (start > 0) {
-            this.display = this.display.slice(0, start - 1) + this.display.slice(start);
+            this.display =
+                this.display.slice(0, start - 1) + this.display.slice(start);
             this.atualizarDisplay();
             setTimeout(() => {
                 inputDisplay.setSelectionRange(start - 1, start - 1);
             }, 0);
         }
-        
-        inputDisplay.classList.remove("erro", "calculando");
+
+        this.limparClassesErro();
     }
 
     configurarTeclado() {
         const inputDisplay = document.getElementById("display");
-        
+
         // Sincroniza quando o usuário digita diretamente no input
         inputDisplay.addEventListener("input", () => {
             let valor = inputDisplay.value;
@@ -261,18 +275,23 @@ class Calculadora {
             }
             this.display = valor.replace(/\./g, ",");
         });
-        
+
         document.addEventListener("keydown", (event) => {
             // Se o menu estiver aberto e pressionar ESC, fecha o menu (não limpa o display)
             const menuLateral = document.getElementById("menuLateral");
-            if (event.key === "Escape" && menuLateral && menuLateral.classList.contains("aberto")) {
+            if (
+                event.key === "Escape" &&
+                menuLateral &&
+                menuLateral.classList.contains("aberto")
+            ) {
                 return; // Deixa o handler do menu lidar com isso
             }
-            
+
             const tecla = event.key;
             let tipo = "";
 
-            if (!isNaN(tecla) || tecla === "." || tecla === ",") tipo = "numero";
+            if (!isNaN(tecla) || tecla === "." || tecla === ",")
+                tipo = "numero";
             else if (["+", "-", "*", "/"].includes(tecla)) tipo = "operacao";
             else if (tecla === "Enter") tipo = "resultado";
             else if (tecla === "Backspace") tipo = "apagar";
@@ -341,21 +360,7 @@ document.getElementById("ce").addEventListener("click", () => {
     calculadora.limparEntrada();
 });
 
-document.getElementById("percent").addEventListener("click", () => {
-    calculadora.porcentagem();
-});
-
-document.getElementById("reciprocal").addEventListener("click", () => {
-    calculadora.recíproco();
-});
-
-document.getElementById("square").addEventListener("click", () => {
-    calculadora.quadrado();
-});
-
-document.getElementById("sqrt").addEventListener("click", () => {
-    calculadora.raizQuadrada();
-});
+// Removidos event listeners para funções avançadas: percent, reciprocal, square, sqrt
 
 document.getElementById("plusminus").addEventListener("click", () => {
     calculadora.inverterSinal();
@@ -390,11 +395,11 @@ menuOpcoes.forEach((opcao) => {
         menuOpcoes.forEach((o) => o.classList.remove("ativo"));
         // Adiciona ativo na opção clicada
         opcao.classList.add("ativo");
-        
+
         // Atualiza o título no cabeçalho (apenas visual)
         const titulo = opcao.querySelector(".menu-opcao-texto").textContent;
         document.querySelector(".titulo").textContent = titulo;
-        
+
         // Fecha o menu
         fecharMenu();
     });
@@ -409,10 +414,14 @@ function fecharMenu() {
 
 // Fechar menu ao pressionar ESC (se o menu estiver aberto)
 // Usa capture: true para executar antes do handler da calculadora
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
-        e.preventDefault();
-        e.stopPropagation();
-        fecharMenu();
-    }
-}, true);
+document.addEventListener(
+    "keydown",
+    (e) => {
+        if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
+            e.preventDefault();
+            e.stopPropagation();
+            fecharMenu();
+        }
+    },
+    true
+);

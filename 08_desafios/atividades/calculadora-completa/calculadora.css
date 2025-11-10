@@ -1,42 +1,89 @@
 /* ============================================
-   VARIÁVEIS GLOBAIS - Padrão para todos os modos
+   VARIÁVEIS CSS - Tema Escuro Windows 11
    ============================================ */
 :root {
-    --cor-fundo-escuro: #0a0a0a;
-    --cor-calculadora: #1a1a1a;
-    --cor-botao: #2d2d2d;
-    --cor-botao-hover: #3a3a3a;
-    --cor-botao-active: #444444;
-    --cor-texto-claro: #e0e0e0;
-    --cor-texto-branco: #ffffff;
-    --cor-borda: #2d2d2d;
-    --cor-igual: #c55a3a;
-    --cor-igual-hover: #d46949;
-    --cor-igual-active: #b54a2a;
-    --cor-overlay: rgba(0, 0, 0, 0.7);
-    --cor-menu: #252525;
-    --cor-menu-opcao-hover: #2d2d2d;
-    --cor-menu-opcao-ativo: #3a3a3a;
-    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Cores de fundo - Tema Escuro */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-calculadora: #202020;
+    --bg-botao: #2d2d2d;
+    --bg-botao-hover: #3a3a3a;
+    --bg-botao-active: #444444;
+    --bg-menu: #252525;
+    --bg-menu-hover: #2d2d2d;
+    --bg-menu-ativo: #3a3a3a;
+    
+    /* Cores de texto - Tema Escuro */
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-tertiary: #b0b0b0;
+    --text-memory: #b0b0b0;
+    
+    /* Cores especiais */
+    --cor-igual: #e97451;
+    --cor-igual-hover: #f58560;
+    --cor-igual-active: #d66340;
+    --cor-borda-ativa: #e97451;
+    --cor-borda-ativa-alt: #ff6b47;
+    
+    /* Cores de borda */
+    --border-light: #2d2d2d;
+    --border-medium: #404040;
+    
+    /* Overlay */
+    --overlay: rgba(0, 0, 0, 0.7);
+    
+    /* Transições */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    
+    /* Tipografia */
+    --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 48px;
+    --font-size-4xl: 64px;
+    
+    /* Espaçamentos */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    
+    /* Bordas arredondadas */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
 }
 
 /* ============================================
-   ESTILOS GLOBAIS - Base para todos os modos
+   ESTILOS GLOBAIS
    ============================================ */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--cor-fundo-escuro);
-    font-family: var(--fonte-principal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     position: relative;
 }
 
 /* ============================================
-   MODO: MENU LATERAL
+   MENU OVERLAY
    ============================================ */
 .menu-overlay {
     position: fixed;
@@ -44,10 +91,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--cor-overlay);
+    background-color: var(--overlay);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
     z-index: 998;
 }
 
@@ -56,16 +103,19 @@ body {
     visibility: visible;
 }
 
+/* ============================================
+   MENU LATERAL
+   ============================================ */
 .menu-lateral {
     position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
-    max-width: 180px;
+    width: 280px;
+    max-width: 80%;
     height: 100%;
-    background-color: var(--cor-menu);
+    background-color: var(--bg-menu);
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-normal);
     z-index: 999;
     overflow-y: auto;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
@@ -77,7 +127,7 @@ body {
 
 .menu-secao {
     padding: 20px 0;
-    border-bottom: 1px solid var(--cor-borda);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .menu-secao:first-child {
@@ -85,7 +135,7 @@ body {
 }
 
 .menu-titulo {
-    color: var(--cor-texto-claro);
+    color: var(--text-tertiary);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -96,20 +146,33 @@ body {
 
 .menu-opcao {
     padding: 12px 20px;
-    color: var(--cor-texto-claro);
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--transition-fast);
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .menu-opcao:hover {
-    background-color: var(--cor-menu-opcao-hover);
+    background-color: var(--bg-menu-hover);
 }
 
 .menu-opcao.ativo {
-    background-color: var(--cor-menu-opcao-ativo);
-    color: var(--cor-texto-branco);
+    background-color: var(--bg-menu-ativo);
+    color: var(--text-primary);
+}
+
+.menu-opcao.ativo::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: var(--cor-borda-ativa);
+    border-radius: 0 2px 2px 0;
 }
 
 .menu-opcao-texto {
@@ -121,9 +184,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    width: 16px;
-    height: 16px;
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
 }
 
@@ -134,18 +197,20 @@ body {
 }
 
 /* ============================================
-   MODO: CALCULADORA (Padrão)
+   CALCULADORA
    ============================================ */
 .calculadora {
-    background-color: var(--cor-calculadora);
-    border-radius: 0;
+    background-color: var(--bg-calculadora);
+    border-radius: var(--radius-md);
     padding: 0;
     width: 360px;
+    max-width: 100%;
     box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    transition: opacity 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transition: opacity var(--transition-normal), filter var(--transition-normal);
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
 .calculadora.escurecida {
@@ -155,142 +220,185 @@ body {
 }
 
 /* ============================================
-   MODO: CABEÇALHO
+   CABEÇALHO
    ============================================ */
 .cabecalho {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    background-color: var(--cor-calculadora);
-    border-bottom: 1px solid var(--cor-borda);
+    background-color: var(--bg-calculadora);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .icon-btn {
     background: none;
     border: none;
-    color: var(--cor-texto-claro);
+    color: var(--text-secondary);
     font-size: 18px;
     cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    min-height: auto;
-    width: auto;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+    min-height: 32px;
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-btn:hover {
-    background-color: var(--cor-botao);
-    opacity: 1;
+    background-color: var(--bg-botao);
+    color: var(--text-primary);
+}
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .titulo {
-    color: var(--cor-texto-claro);
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: 400;
     flex: 1;
-    margin-left: 8px;
+    margin-left: 12px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
 }
 
 /* ============================================
-   MODO: DISPLAY
+   DISPLAY
    ============================================ */
 .display-container {
-    padding: 20px 16px;
-    background-color: var(--cor-calculadora);
+    padding: 40px 20px 32px 20px;
+    background-color: var(--bg-calculadora);
+    min-height: 140px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .display {
-    background-color: var(--cor-calculadora);
-    color: var(--cor-texto-branco);
-    font-size: 56px;
+    font-size: var(--font-size-4xl);
+    font-weight: 300;
+    color: var(--text-primary);
     text-align: right;
-    padding: 0;
-    margin: 0;
+    word-wrap: break-word;
+    word-break: break-all;
     width: 100%;
+    line-height: 1.1;
+    overflow-wrap: break-word;
+    letter-spacing: -1px;
+    background: transparent;
     border: none;
     outline: none;
-    font-weight: 300;
-    box-sizing: border-box;
-    line-height: 1.2;
-    min-height: 70px;
-    display: block;
-    caret-color: var(--cor-texto-branco);
-    cursor: text;
-}
-
-.display.calculando {
-    color: #6b9bd1;
-    font-weight: 500;
-    font-size: 18px;
-}
-
-.display.erro {
-    color: #d66;
-    font-weight: 500;
-    font-size: 18px;
+    padding: 0;
+    caret-color: var(--text-primary);
+    /* TODO: Adicionar lógica de formatação de números aqui */
 }
 
 /* ============================================
-   MODO: BOTÕES
+   BOTÕES DE MEMÓRIA
+   ============================================ */
+.memory-buttons {
+    display: flex;
+    gap: 0;
+    padding: 0 4px;
+    background-color: var(--bg-calculadora);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.memory-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-memory);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    padding: 8px 4px;
+    cursor: pointer;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    font-family: var(--font-family);
+    border-radius: 0;
+}
+
+.memory-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-botao);
+}
+
+.memory-btn:active {
+    background-color: var(--bg-botao-hover);
+}
+
+/* ============================================
+   GRID DE BOTÕES
    ============================================ */
 .botoes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    padding: 4px;
-    background-color: var(--cor-calculadora);
+    gap: 1px;
+    padding: 2px;
+    background-color: var(--bg-calculadora);
 }
 
 button {
     border: none;
-    padding: 20px 12px;
-    font-size: 20px;
+    padding: 24px 12px;
+    font-size: var(--font-size-lg);
     border-radius: 0;
     cursor: pointer;
-    transition: background-color 0.15s;
+    transition: background-color var(--transition-fast);
     font-weight: 400;
-    background-color: var(--cor-botao);
-    color: var(--cor-texto-branco);
-    font-family: var(--fonte-principal);
+    background-color: var(--bg-botao);
+    color: var(--text-primary);
+    font-family: var(--font-family);
     min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
     -webkit-user-select: none;
+    position: relative;
 }
 
 button:hover {
-    background-color: var(--cor-botao-hover);
-    opacity: 1;
+    background-color: var(--bg-botao-hover);
 }
 
 button:active {
-    background-color: var(--cor-botao-active);
-    opacity: 1;
+    background-color: var(--bg-botao-active);
 }
 
+/* Botões de função */
 .funcao {
-    background-color: var(--cor-botao);
-    color: var(--cor-texto-branco);
+    background-color: var(--bg-botao);
+    color: var(--text-primary);
     font-weight: 400;
 }
 
+/* Botões de número */
 .numero {
-    background-color: var(--cor-botao);
-    color: var(--cor-texto-branco);
+    background-color: var(--bg-botao);
+    color: var(--text-primary);
 }
 
+/* Botões de operação */
 .operacao {
-    background-color: var(--cor-botao);
-    color: var(--cor-texto-branco);
+    background-color: var(--bg-botao);
+    color: var(--text-primary);
     font-weight: 400;
 }
 
+/* Botão de igual - cor especial laranja */
 .operacao.igual {
     background-color: var(--cor-igual);
-    color: var(--cor-texto-branco);
+    color: var(--text-primary);
     font-weight: 500;
 }
 
@@ -302,11 +410,67 @@ button:active {
     background-color: var(--cor-igual-active);
 }
 
-#apagar {
-    font-size: 18px;
+/* Estilo para ícones SVG dentro dos botões */
+button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+}
+
+.funcao[data-action="backspace"] svg {
+    width: 22px;
+    height: 22px;
 }
 
 /* ============================================
-   MODO: CONVERSOR (Futuro - Moeda)
+   RESPONSIVIDADE
    ============================================ */
-/* Estilos para o modo conversor serão adicionados aqui quando implementado */
+@media (max-width: 479px) {
+    .calculadora {
+        width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+    
+    .display {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .display-container {
+        padding: 24px 16px;
+        min-height: 100px;
+    }
+    
+    button {
+        padding: 20px 8px;
+        font-size: var(--font-size-md);
+        min-height: 56px;
+    }
+    
+    .memory-btn {
+        padding: 6px 2px;
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-menu);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
