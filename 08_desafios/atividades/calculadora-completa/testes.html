@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button class="numero" value="1">1</button>
+        <button class="numero" value="2">2</button>
+        <button class="numero" value="3">3</button>
+        <button class="numero" value="3">4</button>
+        <button class="numero" value="3">5</button>
+        <button class="numero" value="6">6</button>
+        <button class="numero" value="7">7</button>
+        <button class="numero" value="8">8</button>
+        <button class="numero" value="9">9</button>
+        <button class="numero" value="10">10</button>
+    </body>
+    <script>
+        const numeros = document.querySelectorAll(".numero");
+        let total = 0;
+
+        numeros.forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const valor = parseInt(botao.value); // pega o valor do botão
+                total += valor; // soma ao total
+                console.log(total); // mostra o total atualizado
+            });
+        });
+    </script>
+</html>
