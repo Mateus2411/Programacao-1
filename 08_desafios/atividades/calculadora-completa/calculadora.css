@@ -1,476 +1,97 @@
-/* ============================================
-   VARIÁVEIS CSS - Tema Escuro Windows 11
-   ============================================ */
-:root {
-    /* Cores de fundo - Tema Escuro */
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a1a1a;
-    --bg-calculadora: #202020;
-    --bg-botao: #2d2d2d;
-    --bg-botao-hover: #3a3a3a;
-    --bg-botao-active: #444444;
-    --bg-menu: #252525;
-    --bg-menu-hover: #2d2d2d;
-    --bg-menu-ativo: #3a3a3a;
-    
-    /* Cores de texto - Tema Escuro */
-    --text-primary: #ffffff;
-    --text-secondary: #e0e0e0;
-    --text-tertiary: #b0b0b0;
-    --text-memory: #b0b0b0;
-    
-    /* Cores especiais */
-    --cor-igual: #e97451;
-    --cor-igual-hover: #f58560;
-    --cor-igual-active: #d66340;
-    --cor-borda-ativa: #e97451;
-    --cor-borda-ativa-alt: #ff6b47;
-    
-    /* Cores de borda */
-    --border-light: #2d2d2d;
-    --border-medium: #404040;
-    
-    /* Overlay */
-    --overlay: rgba(0, 0, 0, 0.7);
-    
-    /* Transições */
-    --transition-fast: 0.15s ease;
-    --transition-normal: 0.3s ease;
-    
-    /* Tipografia */
-    --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    --font-size-xs: 12px;
-    --font-size-sm: 14px;
-    --font-size-md: 16px;
-    --font-size-lg: 20px;
-    --font-size-xl: 24px;
-    --font-size-2xl: 32px;
-    --font-size-3xl: 48px;
-    --font-size-4xl: 64px;
-    
-    /* Espaçamentos */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    
-    /* Bordas arredondadas */
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --radius-lg: 8px;
-}
-
-/* ============================================
-   ESTILOS GLOBAIS
-   ============================================ */
-* {
-    box-sizing: border-box;
-}
-
+/* Base */
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: var(--font-family);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    position: relative;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* ============================================
-   MENU OVERLAY
-   ============================================ */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--overlay);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-normal), visibility var(--transition-normal);
-    z-index: 998;
-}
-
-.menu-overlay.ativo {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* ============================================
-   MENU LATERAL
-   ============================================ */
-.menu-lateral {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    max-width: 80%;
-    height: 100%;
-    background-color: var(--bg-menu);
-    transform: translateX(-100%);
-    transition: transform var(--transition-normal);
-    z-index: 999;
-    overflow-y: auto;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.menu-lateral.aberto {
-    transform: translateX(0);
-}
-
-.menu-secao {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.menu-secao:first-child {
-    padding-top: 60px;
-}
-
-.menu-titulo {
-    color: var(--text-tertiary);
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 8px 20px;
-    letter-spacing: 1px;
-    opacity: 0.7;
-}
-
-.menu-opcao {
-    padding: 12px 20px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.menu-opcao:hover {
-    background-color: var(--bg-menu-hover);
-}
-
-.menu-opcao.ativo {
-    background-color: var(--bg-menu-ativo);
-    color: var(--text-primary);
-}
-
-.menu-opcao.ativo::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 60%;
-    background-color: var(--cor-borda-ativa);
-    border-radius: 0 2px 2px 0;
-}
-
-.menu-opcao-texto {
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.menu-opcao-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-.menu-opcao-icon svg {
-    width: 100%;
-    height: 100%;
-    color: inherit;
-}
-
-/* ============================================
-   CALCULADORA
-   ============================================ */
+/* Container principal */
 .calculadora {
-    background-color: var(--bg-calculadora);
-    border-radius: var(--radius-md);
-    padding: 0;
-    width: 360px;
-    max-width: 100%;
-    box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    transition: opacity var(--transition-normal), filter var(--transition-normal);
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
+  width: 360px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  overflow: hidden;
+  padding: 10px 16px 20px;
 }
 
-.calculadora.escurecida {
-    opacity: 0.5;
-    filter: brightness(0.6);
-    pointer-events: none;
-}
-
-/* ============================================
-   CABEÇALHO
-   ============================================ */
+/* Cabeçalho */
 .cabecalho {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    background-color: var(--bg-calculadora);
-    border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  color: #f1f1f1;
 }
+.titulo { font-size: 18px; font-weight: 600; }
+.icon-btn { background: transparent; color: #fff; border: none; font-size: 20px; cursor: pointer; }
 
-.icon-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
-    min-height: 32px;
-    min-width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* Menu lateral e overlay */
+.menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; }
+.menu-overlay.ativo { display: block; }
+.menu-lateral { position: fixed; top: 0; left: 0; height: 100vh; width: 240px; background: #181818; padding: 14px; box-shadow: 3px 0 12px rgba(0,0,0,0.4); transform: translateX(-100%); transition: transform 0.2s ease; }
+.menu-lateral.aberto { transform: translateX(0); }
+.menu-titulo { font-weight: 600; margin-bottom: 8px; color: #b0b0b0; }
+.menu-opcao { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; color: #ddd; cursor: pointer; }
+.menu-opcao:hover { background: #222; }
+.menu-opcao.ativo { background: #2a2a2a; }
+.menu-opcao-texto { font-size: 14px; }
+.icon-funcao { display: inline-flex; align-items: center; justify-content: center; width: 1rem; height: 1rem; }
+.icon-funcao svg { width: 100%; height: 100%; }
 
-.icon-btn:hover {
-    background-color: var(--bg-botao);
-    color: var(--text-primary);
-}
-
-.icon-btn svg {
-    width: 20px;
-    height: 20px;
-}
-
-.titulo {
-    color: var(--text-primary);
-    font-size: 14px;
-    font-weight: 400;
-    flex: 1;
-    margin-left: 12px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-}
-
-/* ============================================
-   DISPLAY
-   ============================================ */
-.display-container {
-    padding: 40px 20px 32px 20px;
-    background-color: var(--bg-calculadora);
-    min-height: 140px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
-
+/* Display */
+.display-container { margin: 8px 0 10px; }
 .display {
-    font-size: var(--font-size-4xl);
-    font-weight: 300;
-    color: var(--text-primary);
-    text-align: right;
-    word-wrap: break-word;
-    word-break: break-all;
-    width: 100%;
-    line-height: 1.1;
-    overflow-wrap: break-word;
-    letter-spacing: -1px;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 0;
-    caret-color: var(--text-primary);
-    /* TODO: Adicionar lógica de formatação de números aqui */
+  width: 100%;
+  font-size: 48px;
+  background: transparent;
+  color: #fff;
+  text-align: right;
+  border: none;
+  outline: none;
+  margin: 0 0 10px 0;
+  padding: 6px 0;
+  caret-color: #fff;
 }
 
-/* ============================================
-   BOTÕES DE MEMÓRIA
-   ============================================ */
-.memory-buttons {
-    display: flex;
-    gap: 0;
-    padding: 0 4px;
-    background-color: var(--bg-calculadora);
-    border-bottom: 1px solid var(--border-light);
-}
+/* Memória */
+.memory-buttons { display: flex; gap: 12px; color: #b0b0b0; font-size: 14px; margin: 4px 0 8px; }
+.memory-btn { background: transparent; border: none; color: #b0b0b0; cursor: pointer; padding: 4px 0; }
+.memory-btn:hover { color: #e0e0e0; }
 
-.memory-btn {
-    flex: 1;
-    background: none;
-    border: none;
-    color: var(--text-memory);
-    font-size: var(--font-size-sm);
-    font-weight: 400;
-    padding: 8px 4px;
-    cursor: pointer;
-    transition: color var(--transition-fast), background-color var(--transition-fast);
-    font-family: var(--font-family);
-    border-radius: 0;
-}
+/* Ajustes de seções científicas */
+.secao-cientifica { display: none; justify-content: space-between; align-items: center; color: #b0b0b0; padding: 6px 0; }
+.secao-cientifica .grupo { display: flex; gap: 6px; }
+.secao-btn { background: #2a2a2a; border: none; border-radius: 6px; color: #ccc; padding: 6px 10px; cursor: pointer; font-size: 13px; }
+.sub-opcoes { display: flex; gap: 10px; }
 
-.memory-btn:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-botao);
-}
+/* Grades de botões */
+.botoes { display: grid; gap: 6px; }
+.botoes-padrao { grid-template-columns: repeat(4, 1fr); }
+.botoes-cientifica { grid-template-columns: repeat(5, 1fr); display: none; }
 
-.memory-btn:active {
-    background-color: var(--bg-botao-hover);
-}
+/* Alternância de modo */
+.modo-padrao .botoes-padrao { display: grid; }
+.modo-padrao .botoes-cientifica { display: none; }
+.modo-padrao .secao-cientifica { display: none; }
+.modo-cientifica .botoes-padrao { display: none; }
+.modo-cientifica .botoes-cientifica { display: grid; }
+.modo-cientifica .secao-cientifica { display: flex; }
 
-/* ============================================
-   GRID DE BOTÕES
-   ============================================ */
-.botoes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    padding: 2px;
-    background-color: var(--bg-calculadora);
-}
+/* Botões */
+button { height: 55px; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; color: #fff; background-color: #2b2b2b; transition: background 0.15s; }
+button:hover { background-color: #3b3b3b; }
+.operacao { background-color: #3a3a3a; }
+.funcao { background-color: #2d2d2d; color: #9cc9ff; }
+.igual { background-color: #f57c00; color: #fff; font-weight: bold; }
 
-button {
-    border: none;
-    padding: 24px 12px;
-    font-size: var(--font-size-lg);
-    border-radius: 0;
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    font-weight: 400;
-    background-color: var(--bg-botao);
-    color: var(--text-primary);
-    font-family: var(--font-family);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    -webkit-user-select: none;
-    position: relative;
-}
-
-button:hover {
-    background-color: var(--bg-botao-hover);
-}
-
-button:active {
-    background-color: var(--bg-botao-active);
-}
-
-/* Botões de função */
-.funcao {
-    background-color: var(--bg-botao);
-    color: var(--text-primary);
-    font-weight: 400;
-}
-
-/* Botões de número */
-.numero {
-    background-color: var(--bg-botao);
-    color: var(--text-primary);
-}
-
-/* Botões de operação */
-.operacao {
-    background-color: var(--bg-botao);
-    color: var(--text-primary);
-    font-weight: 400;
-}
-
-/* Botão de igual - cor especial laranja */
-.operacao.igual {
-    background-color: var(--cor-igual);
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.operacao.igual:hover {
-    background-color: var(--cor-igual-hover);
-}
-
-.operacao.igual:active {
-    background-color: var(--cor-igual-active);
-}
-
-/* Estilo para ícones SVG dentro dos botões */
-button svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: currentColor;
-}
-
-.funcao[data-action="backspace"] svg {
-    width: 22px;
-    height: 22px;
-}
-
-/* ============================================
-   RESPONSIVIDADE
-   ============================================ */
-@media (max-width: 479px) {
-    .calculadora {
-        width: 100%;
-        border-radius: 0;
-        min-height: 100vh;
-    }
-    
-    .display {
-        font-size: var(--font-size-3xl);
-    }
-    
-    .display-container {
-        padding: 24px 16px;
-        min-height: 100px;
-    }
-    
-    button {
-        padding: 20px 8px;
-        font-size: var(--font-size-md);
-        min-height: 56px;
-    }
-    
-    .memory-btn {
-        padding: 6px 2px;
-        font-size: var(--font-size-xs);
-    }
-}
-
-/* ============================================
-   SCROLLBAR PERSONALIZADA
-   ============================================ */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-menu);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border-medium);
-    border-radius: var(--radius-sm);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--text-tertiary);
-}
+/* Estados visuais do display */
+.display.erro { color: #ff4444; animation: erroFlash 0.3s alternate 3; }
+.display.calculando { color: #9e9e9e; font-style: italic; }
+@keyframes erroFlash { from { background: #1e1e1e; } to { background: #551111; } }

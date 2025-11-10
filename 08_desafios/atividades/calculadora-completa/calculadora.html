@@ -1,101 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="calculadora.css">
-</head>
-<body>
-    <!-- Overlay para fechar o menu -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- Menu lateral -->
-    <div class="menu-lateral" id="menuLateral">
-        <div class="menu-secao">
-            <div class="menu-titulo">Calculadora</div>
-            <div class="menu-opcao ativo" data-opcao="padrao">
-                <span class="menu-opcao-texto">Padrão</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calculadora</title>
+        <link rel="stylesheet" href="calculadora.css" />
+    </head>
+    <body>
+        <!-- Overlay e Menu lateral -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+        <div class="menu-lateral" id="menuLateral">
+            <div class="menu-secao">
+                <div class="menu-titulo">Calculadora</div>
+                <div class="menu-opcao ativo" data-opcao="padrao">
+                    <span class="menu-opcao-texto"><span
+                            class="icon-funcao"><svg viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><g
+                                    id="SVGRepo_bgCarrier"
+                                    stroke-width="0"></g><g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></g><g
+                                    id="SVGRepo_iconCarrier"> <path
+                                        d="M5 9H19M15 18V15M9 18H9.01M12 18H12.01M12 15H12.01M9 15H9.01M15 12H15.01M12 12H12.01M9 12H9.01M8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V6.2C19 5.0799 19 4.51984 18.782 4.09202C18.5903 3.71569 18.2843 3.40973 17.908 3.21799C17.4802 3 16.9201 3 15.8 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.07989 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21Z"
+                                        stroke="#ffffff" stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </g></svg></span>Padrão</span>
+                </div>
+                <div class="menu-opcao" data-opcao="cientifica">
+                    <span class="menu-opcao-texto"><span
+                            class="icon-funcao"><svg viewBox="0 0 24 24"
+                                id="Layer_1" data-name="Layer 1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="#000000"><g id="SVGRepo_bgCarrier"
+                                    stroke-width="0"></g><g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></g><g
+                                    id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#ffffff;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><line
+                                        class="cls-1" x1="7.23" y1="1.5"
+                                        x2="16.77" y2="1.5"></line><path
+                                        class="cls-1"
+                                        d="M14.86,6.27V1.5H9.14V6.27L2.7,19.15a2.3,2.3,0,0,0-.25,1h0A2.32,2.32,0,0,0,4.77,22.5H19.23a2.32,2.32,0,0,0,2.32-2.32h0a2.3,2.3,0,0,0-.25-1Z"></path><path
+                                        class="cls-1"
+                                        d="M6.89,10.76c5-2.17,5.31,1.9,10.42.41"></path><line
+                                        class="cls-1" x1="7.23" y1="18.68"
+                                        x2="9.14" y2="18.68"></line><line
+                                        class="cls-1" x1="10.09" y1="14.86"
+                                        x2="12" y2="14.86"></line><line
+                                        class="cls-1" x1="14.86" y1="16.77"
+                                        x2="16.77"
+                                        y2="16.77"></line></g></svg></span>Científica</span>
+                </div>
             </div>
-            <div class="menu-opcao" data-opcao="cientifica">
-                <span class="menu-opcao-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 9H19M15 18V15M9 18H9.01M12 18H12.01M12 15H12.01M9 15H9.01M15 12H15.01M12 12H12.01M9 12H9.01M8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V6.2C19 5.0799 19 4.51984 18.782 4.09202C18.5903 3.71569 18.2843 3.40973 17.908 3.21799C17.4802 3 16.9201 3 15.8 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.07989 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <span class="menu-opcao-texto">Científica</span>
+        </div>
+
+        <!-- Container principal -->
+        <div class="calculadora modo-padrao" id="calculadora">
+            <!-- Cabeçalho -->
+            <div class="cabecalho">
+                <button class="icon-btn menu-icon" id="menuIcon">☰</button>
+                <span class="titulo" id="titulo">Padrão</span>
+                <span class="icone-rel">⏱️</span>
+            </div>
+
+            <!-- Display comum -->
+            <div class="display-container">
+                <input id="display" class="display" type="text" value="0" />
+            </div>
+
+            <!-- Memória -->
+            <div class="memory-buttons">
+                <button class="memory-btn">MC</button>
+                <button class="memory-btn">MR</button>
+                <button class="memory-btn">M+</button>
+                <button class="memory-btn">M-</button>
+                <button class="memory-btn">MS</button>
+                <button class="memory-btn">Mv</button>
+            </div>
+
+            <!-- Controles extras da científica (visíveis só no modo científico) -->
+            <div class="secao-cientifica" aria-hidden="true">
+                <div class="grupo">
+                    <button class="secao-btn">Trigonometria ▼</button>
+                    <button class="secao-btn">
+                        <span class="icon-funcao"></span>Função ▼
+                    </button>
+                </div>
+                <div class="sub-opcoes"><span>DEG</span><span>F-E</span></div>
+            </div>
+
+            <!-- GRID PADRÃO (4 colunas) -->
+            <div class="botoes botoes-padrao" id="secaoPadrao">
+                <button class="funcao" id="percent">%</button>
+                <button class="funcao" id="ce">CE</button>
+                <button class="funcao" id="limpar">C</button>
+                <button class="funcao" id="apagar">⌫</button>
+
+                <button class="funcao" id="reciprocal">1/x</button>
+                <button class="funcao" id="square">x²</button>
+                <button class="funcao" id="sqrt">²√x</button>
+                <button class="operacao" id="divide">÷</button>
+
+                <button class="numero" value="7">7</button>
+                <button class="numero" value="8">8</button>
+                <button class="numero" value="9">9</button>
+                <button class="operacao" id="multiply">×</button>
+
+                <button class="numero" value="4">4</button>
+                <button class="numero" value="5">5</button>
+                <button class="numero" value="6">6</button>
+                <button class="operacao" id="subtract">-</button>
+
+                <button class="numero" value="1">1</button>
+                <button class="numero" value="2">2</button>
+                <button class="numero" value="3">3</button>
+                <button class="operacao" id="add">+</button>
+
+                <button class="funcao" id="plusminus">+/-</button>
+                <button class="numero" value="0">0</button>
+                <button class="numero" value=",">,</button>
+                <button class="operacao igual" id="resultado">=</button>
+            </div>
+
+            <!-- GRID CIENTÍFICA (5 colunas) -->
+            <div
+                class="botoes botoes-cientifica"
+                id="secaoCientifica"
+                aria-hidden="true">
+                <button class="funcao">2ⁿᵈ</button>
+                <button class="funcao">π</button>
+                <button class="funcao">e</button>
+                <button class="funcao" id="limpar_c">C</button>
+                <button class="funcao" id="apagar_c">⌫</button>
+
+                <button class="funcao" id="square_c">x²</button>
+                <button class="funcao" id="reciprocal_c">1/x</button>
+                <button class="funcao">|x|</button>
+                <button class="funcao">exp</button>
+                <button class="funcao">mod</button>
+
+                <button class="funcao" id="sqrt_c">²√x</button>
+                <button class="operacao">(</button>
+                <button class="operacao">)</button>
+                <button class="funcao">n!</button>
+                <button class="operacao" id="divide_c">÷</button>
+
+                <button class="operacao" id="multiply_c">×</button>
+                <button class="numero" value="7">7</button>
+                <button class="numero" value="8">8</button>
+                <button class="numero" value="9">9</button>
+                <button class="operacao" id="subtract_c">-</button>
+
+                <button class="funcao">10ˣ</button>
+                <button class="numero" value="4">4</button>
+                <button class="numero" value="5">5</button>
+                <button class="numero" value="6">6</button>
+                <button class="operacao" id="add_c">+</button>
+
+                <button class="funcao">log</button>
+                <button class="numero" value="1">1</button>
+                <button class="numero" value="2">2</button>
+                <button class="numero" value="3">3</button>
+                <button class="operacao igual" id="resultado_c">=</button>
+
+                <button class="funcao">ln</button>
+                <button class="numero" value="0">0</button>
+                <button class="numero" value=",">,</button>
+                <button class="funcao" disabled></button>
+                <button class="funcao" disabled></button>
             </div>
         </div>
 
-        <div class="menu-secao">
-            <div class="menu-titulo">Conversor</div>
-            <div class="menu-opcao" data-opcao="moeda">
-                <span class="menu-opcao-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M12 6V18M15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9Z" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M9 15C9 16.6569 10.3431 18 12 18C13.6569 18 15 16.6569 15 15C15 13.3431 13.6569 12 12 12C10.3431 12 9 13.3431 9 15Z" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                </span>
-                <span class="menu-opcao-texto">Moeda</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Container principal -->
-    <div class="calculadora" id="calculadora">
-        <!-- Cabeçalho -->
-        <div class="cabecalho">
-            <button class="icon-btn menu-icon" id="menuIcon">☰</button>
-            <span class="titulo" id="titulo">Padrão</span>
-            <span></span>
-        </div>
-
-        <!-- Display -->
-        <div class="display-container">
-            <input type="text" id="display" class="display" value="0" />
-        </div>
-
-        <!-- Botões de memória (mantidos) -->
-        <div class="memory-buttons">
-            <button class="memory-btn" data-memory="mc">MC</button>
-            <button class="memory-btn" data-memory="mr">MR</button>
-            <button class="memory-btn" data-memory="mplus">M+</button>
-            <button class="memory-btn" data-memory="mminus">M-</button>
-            <button class="memory-btn" data-memory="ms">MS</button>
-            <button class="memory-btn" data-memory="mv">M⌄</button>
-        </div>
-
-        <!-- Grid de botões -->
-        <div class="botoes">
-            <button class="funcao" id="ce">CE</button>
-            <button class="funcao" id="limpar">C</button>
-            <button class="funcao" id="apagar">⌫</button>
-            <button class="operacao" id="divide">÷</button>
-
-            <button class="numero" value="7">7</button>
-            <button class="numero" value="8">8</button>
-            <button class="numero" value="9">9</button>
-            <button class="operacao" id="multiply">×</button>
-
-            <button class="numero" value="4">4</button>
-            <button class="numero" value="5">5</button>
-            <button class="numero" value="6">6</button>
-            <button class="operacao" id="subtract">-</button>
-
-            <button class="numero" value="1">1</button>
-            <button class="numero" value="2">2</button>
-            <button class="numero" value="3">3</button>
-            <button class="operacao" id="add">+</button>
-
-            <button class="funcao" id="plusminus">+/-</button>
-            <button class="numero" value="0">0</button>
-            <button class="numero" value=",">,</button>
-            <button class="operacao igual" id="resultado">=</button>
-        </div>
-    </div>
-
-    <script src="calculadora.js"></script>
-</body>
+        <script src="calculadora.js"></script>
+    </body>
 </html>
