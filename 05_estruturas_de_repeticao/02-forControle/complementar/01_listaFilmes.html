@@ -1,5 +1,6 @@
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
     const filmes = { comedia: [], drama: [], romance: [] };
 
     let quantiFilmes = parseInt(prompt("Quantos filmes deseja cadastrar?"), 10);
@@ -29,6 +30,8 @@
     }
 </script>
 =======
+=======
+>>>>>>> 2d445c3 (bah)
     //PROBLEMA
     /*
     Pergunte ao usuário quantos filmes deseja cadastrar.
@@ -48,4 +51,37 @@
     
     
 </script>
+<<<<<<< HEAD
 >>>>>>> origin/main
+=======
+=======
+    const filmes = { comedia: [], drama: [], romance: [] };
+
+    let quantiFilmes = parseInt(prompt("Quantos filmes deseja cadastrar?"), 10);
+    if (isNaN(quantiFilmes) || quantiFilmes <= 0) {
+        alert("Quantidade inválida. Nenhum filme cadastrado.");
+    } else {
+        for (let i = 0; i < quantiFilmes; i++) {
+            let nome = prompt(`Nome do filme (${i + 1}/${quantiFilmes}):`);
+            if (nome === null || nome.trim() === "") nome = "(Sem nome)";
+
+            while (true) {
+                const tipo = parseInt(prompt("Escolha um gênero:\n1 - Comédia\n2 - Drama\n3 - Romance"), 10);
+                if (tipo === 1) { filmes.comedia.push(nome.trim()); break; }
+                if (tipo === 2) { filmes.drama.push(nome.trim()); break; }
+                if (tipo === 3) { filmes.romance.push(nome.trim()); break; }
+                alert("Gênero inválido. Tente novamente.");
+            }
+        }
+
+        const partes = [];
+        if (filmes.comedia.length) partes.push(`Comédia: ${filmes.comedia.join(", ")}`);
+        if (filmes.drama.length) partes.push(`Drama: ${filmes.drama.join(", ")}`);
+        if (filmes.romance.length) partes.push(`Romance: ${filmes.romance.join(", ")}`);
+
+        const mensagem = partes.length ? `Filmes cadastrados:\n${partes.join("\n")}` : "Nenhum filme cadastrado.";
+        alert(mensagem);
+    }
+</script>
+>>>>>>> 6293871 (bah)
+>>>>>>> 2d445c3 (bah)
