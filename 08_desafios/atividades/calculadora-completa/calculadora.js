@@ -128,15 +128,7 @@ class Calculadora {
         if (start !== end) {
             // Apaga o trecho selecionado
             this.display =
-                this.display.slice(0, start) + this
-
-    limparEntrada() {
-        this.display = "";
-        this.limparClassesErro();
-        this.atualizarDisplay();
-    }
-
-    apagarCursor() {.display.slice(end);
+                this.display.slice(0, start) + this.display.slice(end);
             this.atualizarDisplay();
             setTimeout(() => inputDisplay.setSelectionRange(start, start), 0);
         } else if (start > 0) {
@@ -147,14 +139,6 @@ class Calculadora {
             setTimeout(
                 () => inputDisplay.setSelectionRange(start - 1, start - 1),
                 0
-
-    limparEntrada() {
-        this.display = "";
-        this.limparClassesErro();
-        this.atualizarDisplay();
-    }
-
-    apagarCursor() {
             );
         }
 
@@ -491,13 +475,8 @@ function fecharMenu() {
 
 // Fecha menu com ESC
 if (menuLateral) {
-    document.addEventListener(
-        "keydown",
-        (e) => {
-            if (
-                e.key === "Escape" &&
-                menuLateral.classList.contains("aberto")
-            ) {
+    document.addEventListener("keydown",(e) => {
+            if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
                 e.preventDefault();
                 e.stopPropagation();
                 fecharMenu();
