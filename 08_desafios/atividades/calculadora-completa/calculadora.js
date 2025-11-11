@@ -94,7 +94,10 @@ class Calculadora {
 
         this.limparClassesErro();
         this.atualizarDisplay();
-        setTimeout(() => inputDisplay.setSelectionRange(cursorPos + 1, cursorPos + 1), 0);
+        setTimeout(
+            () => inputDisplay.setSelectionRange(cursorPos + 1, cursorPos + 1),
+            0
+        );
     }
 
     // ======================================================
@@ -124,7 +127,8 @@ class Calculadora {
 
         if (start !== end) {
             // Apaga o trecho selecionado
-            this.display = this.display.slice(0, start) + this.display.slice(end);
+            this.display =
+                this.display.slice(0, start) + this.display.slice(end);
             this.atualizarDisplay();
             setTimeout(() => inputDisplay.setSelectionRange(start, start), 0);
         } else if (start > 0) {
@@ -132,7 +136,10 @@ class Calculadora {
             this.display =
                 this.display.slice(0, start - 1) + this.display.slice(start);
             this.atualizarDisplay();
-            setTimeout(() => inputDisplay.setSelectionRange(start - 1, start - 1), 0);
+            setTimeout(
+                () => inputDisplay.setSelectionRange(start - 1, start - 1),
+                0
+            );
         }
 
         this.limparClassesErro();
@@ -217,7 +224,10 @@ class Calculadora {
     porcentagem() {
         const valor = this.obterValorAtual();
         const resultado = valor / 100;
-        if (!isFinite(resultado)) { this.mostrarErro("Erro no cálculo"); return; }
+        if (!isFinite(resultado)) {
+            this.mostrarErro("Erro no cálculo");
+            return;
+        }
         this.display = resultado.toString().replace(/\./g, ",");
         this.limparClassesErro();
         this.atualizarDisplay();
@@ -225,14 +235,19 @@ class Calculadora {
 
     reciproco() {
         const valor = this.obterValorAtual();
-        if (valor === 0) { this.mostrarErro("Divisão por zero"); return; }
+        if (valor === 0) {
+            this.mostrarErro("Divisão por zero");
+            return;
+        }
         const resultado = 1 / valor;
         this.display = resultado.toString().replace(/\./g, ",");
         this.limparClassesErro();
         this.atualizarDisplay();
     }
     // Variante com acento para compatibilidade
-    recíproco() { return this.reciproco(); }
+    recíproco() {
+        return this.reciproco();
+    }
 
     quadrado() {
         const valor = this.obterValorAtual();
@@ -244,7 +259,10 @@ class Calculadora {
 
     raizQuadrada() {
         const valor = this.obterValorAtual();
-        if (valor < 0) { this.mostrarErro("Raiz inválida"); return; }
+        if (valor < 0) {
+            this.mostrarErro("Raiz inválida");
+            return;
+        }
         const resultado = Math.sqrt(valor);
         this.display = resultado.toString().replace(/\./g, ",");
         this.limparClassesErro();
@@ -259,7 +277,8 @@ class Calculadora {
 
         inputDisplay.addEventListener("input", () => {
             let valor = inputDisplay.value;
-            if (valor === "0" && inputDisplay.selectionStart > 0) valor = valor.slice(1);
+            if (valor === "0" && inputDisplay.selectionStart > 0)
+                valor = valor.slice(1);
             this.display = valor.replace(/\./g, ",");
         });
 
@@ -274,11 +293,26 @@ class Calculadora {
             else if (tecla === "Escape") tipo = "limpar";
 
             switch (tipo) {
-                case "numero": event.preventDefault(); this.adicionarNumero(tecla); break;
-                case "operacao": event.preventDefault(); this.adicionarOperacao(tecla); break;
-                case "resultado": event.preventDefault(); this.calcular(); break;
-                case "apagar": event.preventDefault(); this.apagarCursor(); break;
-                case "limpar": event.preventDefault(); this.limparDisplay(); break;
+                case "numero":
+                    event.preventDefault();
+                    this.adicionarNumero(tecla);
+                    break;
+                case "operacao":
+                    event.preventDefault();
+                    this.adicionarOperacao(tecla);
+                    break;
+                case "resultado":
+                    event.preventDefault();
+                    this.calcular();
+                    break;
+                case "apagar":
+                    event.preventDefault();
+                    this.apagarCursor();
+                    break;
+                case "limpar":
+                    event.preventDefault();
+                    this.limparDisplay();
+                    break;
             }
         });
     }
@@ -290,7 +324,7 @@ class Calculadora {
 let calculadora = new Calculadora();
 
 // Botões numéricos
-document.querySelectorAll(".numero").forEach(b =>
+document.querySelectorAll(".numero").forEach((b) =>
     b.addEventListener("click", () => {
         calculadora.adicionarNumero(b.value);
         calculadora.atualizarDisplay();
@@ -298,7 +332,7 @@ document.querySelectorAll(".numero").forEach(b =>
 );
 
 // Operadores
-document.querySelectorAll(".operacao:not(.igual)").forEach(b =>
+document.querySelectorAll(".operacao:not(.igual)").forEach((b) =>
     b.addEventListener("click", () => {
         calculadora.adicionarOperacao(b.innerText.trim());
         calculadora.atualizarDisplay();
@@ -307,41 +341,66 @@ document.querySelectorAll(".operacao:not(.igual)").forEach(b =>
 
 // Igual (=)
 const btnIgualPadrao = document.getElementById("resultado");
-if (btnIgualPadrao) btnIgualPadrao.addEventListener("click", () => calculadora.calcular());
+if (btnIgualPadrao)
+    btnIgualPadrao.addEventListener("click", () => calculadora.calcular());
 const btnIgualCientifica = document.getElementById("resultado_c");
-if (btnIgualCientifica) btnIgualCientifica.addEventListener("click", () => calculadora.calcular());
+if (btnIgualCientifica)
+    btnIgualCientifica.addEventListener("click", () => calculadora.calcular());
 
 // Limpeza e controle (com verificações de existência)
 const btnLimpar = document.getElementById("limpar");
-if (btnLimpar) btnLimpar.addEventListener("click", () => calculadora.limparDisplay());
+if (btnLimpar)
+    btnLimpar.addEventListener("click", () => calculadora.limparDisplay());
+
 const btnApagar = document.getElementById("apagar");
-if (btnApagar) btnApagar.addEventListener("click", () => calculadora.apagarCursor());
+if (btnApagar)
+    btnApagar.addEventListener("click", () => calculadora.apagarCursor());
+
 const btnCE = document.getElementById("ce");
 if (btnCE) btnCE.addEventListener("click", () => calculadora.limparEntrada());
+
 const btnPlusMinus = document.getElementById("plusminus");
-if (btnPlusMinus) btnPlusMinus.addEventListener("click", () => calculadora.inverterSinal());
+if (btnPlusMinus)
+    btnPlusMinus.addEventListener("click", () => calculadora.inverterSinal());
+
 // Funções básicas (padrão)
 const btnPercent = document.getElementById("percent");
-if (btnPercent) btnPercent.addEventListener("click", () => calculadora.porcentagem());
+if (btnPercent)
+    btnPercent.addEventListener("click", () => calculadora.porcentagem());
+
 const btnReciprocal = document.getElementById("reciprocal");
-if (btnReciprocal) btnReciprocal.addEventListener("click", () => calculadora.reciproco());
+if (btnReciprocal)
+    btnReciprocal.addEventListener("click", () => calculadora.reciproco());
+
 const btnSquare = document.getElementById("square");
-if (btnSquare) btnSquare.addEventListener("click", () => calculadora.quadrado());
+if (btnSquare)
+    btnSquare.addEventListener("click", () => calculadora.quadrado());
+
 const btnSqrt = document.getElementById("sqrt");
-if (btnSqrt) btnSqrt.addEventListener("click", () => calculadora.raizQuadrada());
+if (btnSqrt)
+    btnSqrt.addEventListener("click", () => calculadora.raizQuadrada());
+
 // Científica: mapear os botões C e ⌫ para mesmas ações
 const btnLimparC = document.getElementById("limpar_c");
-if (btnLimparC) btnLimparC.addEventListener("click", () => calculadora.limparDisplay());
-const btnApagarC = document.getElementById("apagar_c");
-if (btnApagarC) btnApagarC.addEventListener("click", () => calculadora.apagarCursor());
-// Científica: funções básicas espelhadas
-const btnReciprocalC = document.getElementById("reciprocal_c");
-if (btnReciprocalC) btnReciprocalC.addEventListener("click", () => calculadora.reciproco());
-const btnSquareC = document.getElementById("square_c");
-if (btnSquareC) btnSquareC.addEventListener("click", () => calculadora.quadrado());
-const btnSqrtC = document.getElementById("sqrt_c");
-if (btnSqrtC) btnSqrtC.addEventListener("click", () => calculadora.raizQuadrada());
+if (btnLimparC)
+    btnLimparC.addEventListener("click", () => calculadora.limparDisplay());
 
+const btnApagarC = document.getElementById("apagar_c");
+if (btnApagarC)
+    btnApagarC.addEventListener("click", () => calculadora.apagarCursor());
+// Científica: funções básicas espelhadas
+
+const btnReciprocalC = document.getElementById("reciprocal_c");
+if (btnReciprocalC)
+    btnReciprocalC.addEventListener("click", () => calculadora.reciproco());
+
+const btnSquareC = document.getElementById("square_c");
+if (btnSquareC)
+    btnSquareC.addEventListener("click", () => calculadora.quadrado());
+
+const btnSqrtC = document.getElementById("sqrt_c");
+if (btnSqrtC)
+    btnSqrtC.addEventListener("click", () => calculadora.raizQuadrada());
 // ======================================================
 // 📋  SEÇÃO 7 — CONTROLE DO MENU LATERAL E MODO ATIVO
 // ======================================================
@@ -354,11 +413,21 @@ const tituloEl = document.querySelector(".titulo");
 
 function aplicarModo(modo) {
     if (!calculadoraElement) return;
-    if (modo === "Padrão") {
+
+    // Normaliza string: remove acentos, trim e lowercase
+    const normalizar = (s) =>
+        String(s || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim()
+            .toLowerCase();
+
+    const m = normalizar(modo);
+
+    if (m.includes("padra")) {
         calculadoraElement.classList.add("modo-padrao");
         calculadoraElement.classList.remove("modo-cientifica");
         tituloEl && (tituloEl.textContent = "Padrão");
-        // Focus no display para caret
         const d = document.getElementById("display");
         d && d.focus();
     } else {
@@ -371,9 +440,9 @@ function aplicarModo(modo) {
 }
 // Modo inicial
 aplicarModo("Padrão");
-
+// Escurece a calculadora ao abrir o menu
 if (menuIcon && menuLateral && menuOverlay) {
-    menuIcon.addEventListener("click", e => {
+    menuIcon.addEventListener("click", (e) => {
         e.stopPropagation();
         menuLateral.classList.add("aberto");
         menuOverlay.classList.add("ativo");
@@ -382,17 +451,22 @@ if (menuIcon && menuLateral && menuOverlay) {
 
     menuOverlay.addEventListener("click", () => fecharMenu());
 
-    menuOpcoes.forEach(opcao => {
+    menuOpcoes.forEach((opcao) => {
         opcao.addEventListener("click", () => {
-            menuOpcoes.forEach(o => o.classList.remove("ativo"));
+            menuOpcoes.forEach((o) => o.classList.remove("ativo"));
             opcao.classList.add("ativo");
-            const titulo = opcao.querySelector(".menu-opcao-texto").textContent;
+
+            // Lê texto de forma segura e normaliza antes de aplicar
+            const textoEl = opcao.querySelector(".menu-opcao-texto");
+            const titulo = textoEl ? textoEl.textContent : opcao.textContent;
             aplicarModo(titulo);
+
             fecharMenu();
         });
     });
 }
 
+// Escurece a calculadora ao abrir o menu
 function fecharMenu() {
     menuLateral && menuLateral.classList.remove("aberto");
     menuOverlay && menuOverlay.classList.remove("ativo");
@@ -401,11 +475,18 @@ function fecharMenu() {
 
 // Fecha menu com ESC
 if (menuLateral) {
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
-            e.preventDefault();
-            e.stopPropagation();
-            fecharMenu();
-        }
-    }, true);
+    document.addEventListener(
+        "keydown",
+        (e) => {
+            if (
+                e.key === "Escape" &&
+                menuLateral.classList.contains("aberto")
+            ) {
+                e.preventDefault();
+                e.stopPropagation();
+                fecharMenu();
+            }
+        },
+        true
+    );
 }
