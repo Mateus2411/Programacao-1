@@ -268,6 +268,30 @@ class Calculadora {
         this.limparClassesErro();
         this.atualizarDisplay();
     }
+    fatorial(){
+        const valor = this.obterValorAtual();
+        if (valor < 0 || !Number.isInteger(valor)) {
+            this.mostrarErro("Fatorial inválido");
+            return;
+        }
+        if (valor === 0 || valor === 1) {
+            this.display = "1";
+            this.limparClassesErro();
+            this.atualizarDisplay();
+            return;
+        }
+        let resultado = 1;
+        for (let i = 2; i <= valor; i++) {
+            resultado *= i;
+            if (!isFinite(resultado)) {
+                this.mostrarErro("Valor muito grande");
+                return;
+            }
+        }
+        this.display = resultado.toString().replace(/\./g, ",");
+        this.limparClassesErro();
+        this.atualizarDisplay();
+    }
 
     // ======================================================
     // ⌨️  SEÇÃO 5 — SUPORTE AO TECLADO
@@ -388,8 +412,8 @@ if (btnLimparC)
 const btnApagarC = document.getElementById("apagar_c");
 if (btnApagarC)
     btnApagarC.addEventListener("click", () => calculadora.apagarCursor());
-// Científica: funções básicas espelhadas
 
+// Científica: funções básicas espelhadas
 const btnReciprocalC = document.getElementById("reciprocal_c");
 if (btnReciprocalC)
     btnReciprocalC.addEventListener("click", () => calculadora.reciproco());
@@ -401,6 +425,10 @@ if (btnSquareC)
 const btnSqrtC = document.getElementById("sqrt_c");
 if (btnSqrtC)
     btnSqrtC.addEventListener("click", () => calculadora.raizQuadrada());
+
+const fatorialBtn = document.getElementById("fatorialBtn");
+if (fatorialBtn)
+    fatorialBtn.addEventListener("click", () => calculadora.fatorial());
 // ======================================================
 // 📋  SEÇÃO 7 — CONTROLE DO MENU LATERAL E MODO ATIVO
 // ======================================================
