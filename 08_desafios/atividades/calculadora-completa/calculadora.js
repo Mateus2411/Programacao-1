@@ -475,13 +475,8 @@ function fecharMenu() {
 
 // Fecha menu com ESC
 if (menuLateral) {
-    document.addEventListener(
-        "keydown",
-        (e) => {
-            if (
-                e.key === "Escape" &&
-                menuLateral.classList.contains("aberto")
-            ) {
+    document.addEventListener("keydown",(e) => {
+            if (e.key === "Escape" && menuLateral.classList.contains("aberto")) {
                 e.preventDefault();
                 e.stopPropagation();
                 fecharMenu();
