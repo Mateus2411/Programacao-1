@@ -6,9 +6,16 @@
     */
     
     //ENTRADA
-    //PROCESSAMENTO
-
-
-    //SAÍDA
-    
+    let nome = prompt("Diga o seu nome:").trim();
+    let cargo = prompt("Qual seu cargo").trim();
+    let salario = Number(prompt("Qual o seu salário? ").trim().replace(",", "."));
+    let funcionario = {
+        nome,
+        cargo,
+        salario,
+        saida: function () {
+            return `Nome: ${this.nome}\nCargo: ${this.cargo}\nSalario: ${this.salario}`
+        }
+    }
+    alert(funcionario.saida())
 </script>

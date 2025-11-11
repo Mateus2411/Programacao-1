@@ -6,11 +6,21 @@
     */
 
     //ENTRADA
-
+    let frase = prompt("Digite uma frase:");
+    let letra = prompt("Digite uma letra:");
 
     //PROCESSAMENTO
-
+    function contarLetra(frase, letra) {
+        let contador = 0;
+        for (let char of frase.toLowerCase()) {
+            if (char === letra.toLowerCase()) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 
     //SAÍDA
+    alert(`A letra '${letra}' aparece ${contarLetra(frase, letra)} vezes na frase.`);
 
 </script>

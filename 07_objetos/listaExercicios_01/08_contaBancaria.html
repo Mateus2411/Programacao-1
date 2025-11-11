@@ -5,10 +5,16 @@
     Crie um objeto chamado conta com as propriedades numero, saldo, tipo, e crie um método que retorne todas as propriedades.
     */
 
-    let saldo = Math.random() * 10000 + 1000;
     let numero = Math.floor(Math.random() * 100000000000);
-    let tipo = prompt("Digite o tipo da conta (corrente ou poupança):");
-    tipo = tipo.trim().toLowerCase();
-    
-
+    let saldo = Math.random() * 10000 + 1000;
+    let tipo = prompt("Digite o tipo da conta (corrente ou poupança):").trim().toLowerCase();
+    let conta = {
+      numero,
+      saldo,
+      tipo,
+      saida: function(){
+        return `numero da conta: ${this.numero}\ntipo da conta: ${this.tipo}\nsaldo da conta: R$ ${this.saldo.toFixed(2)}`;
+      }
+    }
+    alert(conta.saida());
 </script>
