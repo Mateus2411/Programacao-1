@@ -17,7 +17,7 @@
   while (true) {
     let nome = prompt("Nome da pessoa:");
     let idd = Number(prompt("Idade da pessoa:"));
-    if (idd <= 0) break;
+    if (idd < 0) break;
     let sexo = prompt("Sexo da pessoa (M/F):").toUpperCase().trim().charAt(0);
     let salario = Number(prompt("Salário da pessoa:"));
 
