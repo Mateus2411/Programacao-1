@@ -12,15 +12,14 @@
     Finalize a entrada de dados ao ser digitada uma idade negativa.
   */
 
-  let hab = Number(prompt("Número de habitantes:"));
   let pessoas = [];
 
-  for (let i = 0; i < hab; i++) {
-    let nome = prompt(`Nome da pessoa ${i + 1}:`);
-    let idd = Number(prompt(`Idade da pessoa ${i + 1}:`));
-    if (idd < 0) break;
-    let sexo = prompt(`Sexo da pessoa ${i + 1} (M/F):`).toUpperCase().trim().charAt(0);
-    let salario = Number(prompt(`Salário da pessoa ${i + 1}:`));
+  while (true) {
+    let nome = prompt("Nome da pessoa:");
+    let idd = Number(prompt("Idade da pessoa:"));
+    if (idd <= 0) break;
+    let sexo = prompt("Sexo da pessoa (M/F):").toUpperCase().trim().charAt(0);
+    let salario = Number(prompt("Salário da pessoa:"));
 
     pessoas.push({
       nome,
@@ -36,25 +35,25 @@
   if (pessoas.length === 0) {
     alert("Nenhum dado válido foi inserido.");
   } else {
-    // Média salarial
+    // Média salarial e quantidade de mulheres
     let totalSalarios = 0;
     let mulheres = 0;
+    let maiorIdade = pessoas[0].idd;
+    let menorIdade = pessoas[0].idd;
+    let menorSalario = pessoas[0];
 
-    for (let pessoa of pessoas) {
+    let i = 0;
+    while (i < pessoas.length) {
+      let pessoa = pessoas[i];
       totalSalarios += pessoa.salario;
       if (pessoa.sexo === "F") mulheres++;
+      if (pessoa.idd > maiorIdade) maiorIdade = pessoa.idd;
+      if (pessoa.idd < menorIdade) menorIdade = pessoa.idd;
+      if (pessoa.salario < menorSalario.salario) menorSalario = pessoa;
+      i++;
     }
 
     let mediaSalarial = totalSalarios / pessoas.length;
-
-    // Maior e menor idade
-    pessoas.sort((a, b) => a.idd - b.idd);
-    let menorIdade = pessoas[0].idd;
-    let maiorIdade = pessoas[pessoas.length - 1].idd;
-
-    // Menor salário
-    pessoas.sort((a, b) => a.salario - b.salario);
-    let menorSalario = pessoas[0];
 
     // Dados gerais
     let dadosGerais = "";
