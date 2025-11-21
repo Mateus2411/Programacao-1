@@ -1,15 +1,11 @@
-// ======================================================
-// CLASSE PRINCIPAL: Calculadora
-// ======================================================
+//#region Class Calculadora
 class Calculadora {
     constructor() {
         this.display = "";
         this.configurarTeclado(); // Ativa controle de teclado
     }
-
-    // ======================================================
-    // 🖥️  SEÇÃO 1 — MANIPULAÇÃO DO DISPLAY E ERROS
-    // ======================================================
+//#region DISPLAY
+    
     atualizarDisplay() {
         const inputDisplay = document.getElementById("display");
         const cursorPos = inputDisplay.selectionStart || 0;
@@ -41,10 +37,15 @@ class Calculadora {
             this.atualizarDisplay();
         }, 2000);
     }
+//#endregion
+/*
 
-    // ======================================================
-    // 🔢  SEÇÃO 2 — INSERÇÃO DE NÚMEROS E OPERAÇÕES
-    // ======================================================
+
+
+
+
+*/
+//#region INSERÇÃO NUM/OP
     adicionarNumero(numero) {
         const inputDisplay = document.getElementById("display");
         let cursorPos = inputDisplay.selectionStart || this.display.length;
@@ -99,10 +100,15 @@ class Calculadora {
             0
         );
     }
+//#endregion
+/*
 
-    // ======================================================
-    // ⌫  SEÇÃO 3 — FUNÇÕES DE LIMPEZA
-    // ======================================================
+
+
+
+
+*/
+//#region FUNC DE LIMPEZA
     apagarUltimo() {
         this.display = this.display.slice(0, -1);
         this.limparClassesErro();
@@ -144,10 +150,15 @@ class Calculadora {
 
         this.limparClassesErro();
     }
+//#endregion
+/*
 
-    // ======================================================
-    // 🧮  SEÇÃO 4 — CÁLCULOS E VALIDAÇÃO
-    // ======================================================
+
+
+
+
+*/
+//#region  CALC/VALIDA
     calcular() {
         const inputDisplay = document.getElementById("display");
         let expressao = this.display;
@@ -217,10 +228,16 @@ class Calculadora {
         this.limparClassesErro();
         this.atualizarDisplay();
     }
+//#endregion
+/*
 
-    // ======================================================
-    // 🧪  SEÇÃO 4.1 — FUNÇÕES ESPECIAIS (%, 1/x, x², √x)
-    // ======================================================
+
+
+
+
+*/
+//#region  🧪  SEÇÃO 4.1 — FUNÇÕES ESPECIAIS (%, 1/x, x², √x)
+
     porcentagem() {
         const valor = this.obterValorAtual();
         const resultado = valor / 100;
@@ -244,7 +261,7 @@ class Calculadora {
         this.limparClassesErro();
         this.atualizarDisplay();
     }
-    // Variante com acento para compatibilidade
+
     recíproco() {
         return this.reciproco();
     }
@@ -292,10 +309,15 @@ class Calculadora {
         this.limparClassesErro();
         this.atualizarDisplay();
     }
+//#endregion
+/*
 
-    // ======================================================
-    // ⌨️  SEÇÃO 5 — SUPORTE AO TECLADO
-    // ======================================================
+
+
+
+
+*/
+//#region SUPORTE TECLADO
     configurarTeclado() {
         const inputDisplay = document.getElementById("display");
 
@@ -337,14 +359,19 @@ class Calculadora {
                     event.preventDefault();
                     this.limparDisplay();
                     break;
-            }
-        });
-    }
-}
+                }
+            });
+        }
+//#endregion
+/*
 
-// ======================================================
-// ⚙️  SEÇÃO 6 — EVENTOS DE BOTÕES NA INTERFACE
-// ======================================================
+
+
+
+*/
+}
+//#endregion
+//#region EVENTOS DE BOTÕES
 let calculadora = new Calculadora();
 
 // Botões numéricos
@@ -429,6 +456,16 @@ if (btnSqrtC)
 const fatorialBtn = document.getElementById("fatorialBtn");
 if (fatorialBtn)
     fatorialBtn.addEventListener("click", () => calculadora.fatorial());
+//#endregion
+/*
+
+
+
+
+
+*/
+//#region Menu Lateral
+
 // ======================================================
 // 📋  SEÇÃO 7 — CONTROLE DO MENU LATERAL E MODO ATIVO
 // ======================================================
@@ -513,3 +550,4 @@ if (menuLateral) {
         true
     );
 }
+// #endregion
