@@ -25,6 +25,13 @@
     quantidadeDeCandidatos = Number(prompt(`Qual a quantidade de candidatos`));
   } while (isNaN(quantidadeDeCandidatos) || quantidadeDeCandidatos <= 0);
 
+  let quantidadeDeAlunosVotantes;
+  do {
+    quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
+  } while (
+    isNaN(quantidadeDeAlunosVotantes) ||
+    quantidadeDeAlunosVotantes <= 0
+  );
   let candidatos = [];
 
   let numeroCandidato = 0;
@@ -55,13 +62,6 @@
   candidatos.push({ nome: "Branco", votos: 0, numero: numeroCandidato + 2 });
 
   // Quantidade de alunos votantes
-  let quantidadeDeAlunosVotantes;
-  do {
-    quantidadeDeAlunosVotantes = Number(prompt(`Quantos alunos votantes?`));
-  } while (
-    isNaN(quantidadeDeAlunosVotantes) ||
-    quantidadeDeAlunosVotantes <= 0
-  );
 
   // Votação
   let listaCandidatos = "";
