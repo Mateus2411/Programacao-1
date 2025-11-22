@@ -8,9 +8,28 @@
     */
 
     //ENTRADA
-    const n1 = Number(prompt(`Qual o primeiro número?`));
-    const op = prompt(`Qual operação deseja realizar?\n (+ adição; - subtração; * multiplicação; / divisão.)`);
-    const n2 = Number(prompt(`Qual o segundo número?`));
+    let n1, op, n2;
+    do {
+        n1 = prompt(`Qual o primeiro número?`);
+        n1 = Number(n1);
+        if (isNaN(n1)) {
+            alert("Número inválido. Digite um número.");
+        }
+    } while (isNaN(n1));
+    do {
+        op = prompt(`Qual operação deseja realizar?\n (+ adição; - subtração; * multiplicação; / divisão.)`).trim();
+        if (!['+', '-', '*', '/'].includes(op)) {
+            alert("Operação inválida. Use +, -, * ou /.");
+        }
+    } while (!['+', '-', '*', '/'].includes(op));
+    do {
+        n2 = prompt(`Qual o segundo número?`);
+        n2 = Number(n2);
+        if (isNaN(n2) || (op === '/' && n2 === 0)) {
+            alert("Número inválido. Digite um número (não zero para divisão).");
+            n2 = null;
+        }
+    } while (n2 === null);
 
     //PROCESSAMENTO
     let resultado = 0;

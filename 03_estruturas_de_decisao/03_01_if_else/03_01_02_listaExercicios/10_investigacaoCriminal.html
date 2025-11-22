@@ -13,11 +13,25 @@
     */
 
     //ENTRADA
-    const p1 = String(prompt(`Telefonou para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
-    const p2 = String(prompt(`Esteve no local do crime? Sim (s) ou Não (n)`)).toLowerCase().trim();
-    const p3 = String(prompt(`Mora perto da vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
-    const p4 = String(prompt(`Devia para a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
-    const p5 = String(prompt(`Já trabalhou com a vítima? Sim (s) ou Não (n)`)).toLowerCase().trim();
+    const perguntas = [
+        "Telefonou para a vítima? Sim (s) ou Não (n)",
+        "Esteve no local do crime? Sim (s) ou Não (n)",
+        "Mora perto da vítima? Sim (s) ou Não (n)",
+        "Devia para a vítima? Sim (s) ou Não (n)",
+        "Já trabalhou com a vítima? Sim (s) ou Não (n)"
+    ];
+    const respostas = [];
+    for (let i = 0; i < perguntas.length; i++) {
+        let resp;
+        do {
+            resp = prompt(perguntas[i]).toLowerCase().trim();
+            if (resp !== 's' && resp !== 'n') {
+                alert("Resposta inválida. Digite 's' para sim ou 'n' para não.");
+            }
+        } while (resp !== 's' && resp !== 'n');
+        respostas.push(resp);
+    }
+    const [p1, p2, p3, p4, p5] = respostas;
 
     //PROCESSAMENTO
     let pontos = 0;

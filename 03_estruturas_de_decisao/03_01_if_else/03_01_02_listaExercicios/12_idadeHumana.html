@@ -1,7 +1,7 @@
 <script>
     /*
     PROBLEMA: IDADE HUMANA
-    É sabido que os caẽs amadurecem mais rapidamente do que os seres humanos (na verdade, alguns seres humanos parecem nunca amadurecer).
+    É sabido que os cães amadurecem mais rapidamente do que os seres humanos (na verdade, alguns seres humanos parecem nunca amadurecer).
     Calcule a idade do seu cão, baseada nos seguintes fatores:
     - cães de porte pequeno: fator 5
     - cães de porte médio: fator 6
@@ -9,29 +9,27 @@
     */
 
     //ENTRADA
+    let iddCachorro, porteCachorro;
+    do {
+        iddCachorro = prompt(`Qual a idade do cachorro?`);
+        iddCachorro = Number(iddCachorro);
+        if (isNaN(iddCachorro) || iddCachorro <= 0) {
+            alert("Idade inválida. Digite um número positivo.");
+            iddCachorro = null;
+        }
+    } while (iddCachorro === null);
+    do {
+        porteCachorro = prompt(`Qual o porte do cachorro?\nUtilize:\nG-grande\nM-médio\nP-pequeno`).toUpperCase().trim();
+        if (porteCachorro !== 'G' && porteCachorro !== 'M' && porteCachorro !== 'P') {
+            alert("Porte inválido. Digite G, M ou P.");
+        }
+    } while (porteCachorro !== 'G' && porteCachorro !== 'M' && porteCachorro !== 'P');
 
-    const iddCachorro = Number(prompt(`Qual a idade do cachorro`));
-    const porteCachorro = prompt(`Qual o porte do cachorro\n Ultilize:\n G-grande\n M-medio\n P-pequeno`).toUpperCase().trim();
-    let idadeCachorro;
-    const G = 7;
-    const M = 6;
-    const P = 5;
+    const fatores = { G: 7, M: 6, P: 5 };
+    const idadeCachorro = iddCachorro * fatores[porteCachorro];
 
     //PROCESSAMENTO
 
-    if (porteCachorro == `G`){
-        idadeCachorro = iddCachorro * G;
-        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
-    } else if (porteCachorro == `M`){
-        idadeCachorro = iddCachorro * M;
-        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
-    } else if (porteCachorro == `P`){
-        idadeCachorro = iddCachorro * P;
-        alert(`A idade de seu cachorro sera de ${idadeCachorro} anos humanos.`);
-    } else {
-        alert(`Utilize as caracteres dentro dos parâmetros\n G-grande\n M-medio\n P-pequeno`);
-    }
-
     //SAÍDA
-
+    alert(`A idade de seu cachorro será de ${idadeCachorro} anos humanos.`);
 </script>

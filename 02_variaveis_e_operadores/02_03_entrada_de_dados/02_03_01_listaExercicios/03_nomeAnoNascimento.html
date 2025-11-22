@@ -7,10 +7,22 @@
     */
 
     //ENTRADA
+    let nome, anoNascimento;
+    do {
+        nome = prompt('Informe o seu primeiro nome:').trim();
+        if (!nome) alert('Nome não pode ser vazio.');
+    } while (!nome);
+    do {
+        anoNascimento = prompt('Informe o ano em que nasceu:').trim();
+        anoNascimento = parseInt(anoNascimento);
+        if (isNaN(anoNascimento) || anoNascimento < 1900 || anoNascimento > new Date().getFullYear()) {
+            alert('Ano inválido. Digite um ano entre 1900 e o ano atual.');
+            anoNascimento = null;
+        }
+    } while (!anoNascimento);
 
-    
     //PROCESSAMENTO
 
     //SAÍDA
-
+    document.write(`${nome}, você nasceu em ${anoNascimento}.`);
 </script>

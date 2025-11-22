@@ -10,25 +10,27 @@
     */
 
     //ENTRADA
-    const valorSaque = Number(prompt(`Digite o valor a ser sacado(Mínimo: 10 R$ ; Maximo: 600 R$)`));
+    let valorSaque;
+    do {
+        valorSaque = prompt(`Digite o valor a ser sacado (Mínimo: 10 R$ ; Máximo: 600 R$):`);
+        valorSaque = Number(valorSaque);
+        if (isNaN(valorSaque) || !Number.isInteger(valorSaque) || valorSaque < 10 || valorSaque > 600) {
+            alert("Valor inválido. Digite um valor inteiro entre 10 e 600.");
+            valorSaque = null;
+        }
+    } while (valorSaque === null);
+
     //PROCESSAMENTO
-    const valorMX = 600;
-    const valorMN = 10;
+    alert(`Transação realizada`);
 
+    const Rnota100 = Math.floor(valorSaque / 100);
+    const Rnota50 = Math.floor((valorSaque % 100) / 50);
+    const Rnota10 = Math.floor(((valorSaque % 100) % 50) / 10 );
+    const Rnota5 = Math.floor((((valorSaque % 100) % 50) % 10 ) / 5) ;
+    const Rnota1 = Math.floor(((valorSaque % 100) % 50) % 10 ) % 5 ;
 
-    if (valorSaque > valorMX || valorSaque < valorMN){
-        alert(`Digite um valor dentro dos parametros`);
-    } else {
-        alert(`Tranzação realizada`);
+    alert(` ${Rnota100} nota(s) de: R$100.\n ${Rnota50} nota(s) de: R$50.\n ${Rnota10} nota(s) de: R$10.\n ${Rnota5} nota(s) de: R$5.\n ${Rnota1} nota(s) de: R$1.`);
 
-        const Rnota100 = Math.floor(valorSaque / 100);
-        const Rnota50 = Math.floor((valorSaque % 100) / 50);
-        const Rnota10 = Math.floor(((valorSaque % 100) % 50) / 10 );
-        const Rnota5 = Math.floor((((valorSaque % 100) % 50) % 10 ) / 5) ;
-        const Rnota1 = Math.floor(((valorSaque % 100) % 50) % 10 ) % 5 ;
-
-        alert(` ${Rnota100} de notas de: R$100.\n ${Rnota50} de notas de: R$50.\n ${Rnota10} de notas de: R$10.\n ${Rnota5} de notas de: R$5.\n ${Rnota1} de notas de: R$1.`);
-    }
     //SAÍDA
 
 </script>

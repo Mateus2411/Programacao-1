@@ -1,25 +1,38 @@
 <script>
     /*
     PROBLEMA: ACRÉSCIMO DE NOTA NO PROGRAMA BB
-    Um professor instituiu o programa BB na sua disciplina. Nesse programa, um aluno com notas melhores (o big brother) “adota” um aluno com dificuldades (o little brother) e o ajuda a aprender, em troca de um incentivo em sua nota, que é dado em função de quanto ele ajudou o seu colega a melhorar o próprio resultado. Esse programa recebe a nota do little brother antes de receber ajuda, e a sua nota depois que o big brother o ajudou, e retorna o acréscimo que o big brother receberá em sua nota pela ajuda. O acréscimo é de 1/4 da diferença das notas, se for positivo.
+    Um professor instituiu o programa BB na sua disciplina. Nesse programa, um aluno com notas melhores (o big brother) "adota" um aluno com dificuldades (o little brother) e o ajuda a aprender, em troca de um incentivo em sua nota, que é dado em função de quanto ele ajudou o seu colega a melhorar o próprio resultado. Esse programa recebe a nota do little brother antes de receber ajuda, e a sua nota depois que o big brother o ajudou, e retorna o acréscimo que o big brother receberá em sua nota pela ajuda. O acréscimo é de 1/4 da diferença das notas, se for positivo.
     */
 
     //ENTRADA
-    const notaAntes = Number(prompt(`Digite a nota do "little brother" antes da ajuda`));
-    const notaDepois = Number(prompt(`Digite a nota do "little brother" depois da ajuda`));
+    let notaAntes, notaDepois;
+    do {
+        notaAntes = prompt(`Digite a nota do "little brother" antes da ajuda (0-10):`);
+        notaAntes = Number(notaAntes);
+        if (isNaN(notaAntes) || notaAntes < 0 || notaAntes > 10) {
+            alert("Nota inválida. Digite um valor entre 0 e 10.");
+            notaAntes = null;
+        }
+    } while (notaAntes === null);
+    do {
+        notaDepois = prompt(`Digite a nota do "little brother" depois da ajuda (0-10):`);
+        notaDepois = Number(notaDepois);
+        if (isNaN(notaDepois) || notaDepois < 0 || notaDepois > 10) {
+            alert("Nota inválida. Digite um valor entre 0 e 10.");
+            notaDepois = null;
+        }
+    } while (notaDepois === null);
+
     //PROCESSAMENTO
-    
-    resultado = (notaDepois - notaAntes) / 4;
-    if (notaDepois == notaAntes){
-        alert(`Big brother não receberá acrecimos, pois nao ajudou o little brother`);
-    }
-    else if (notaDepois > notaAntes){
-        alert(`Big brother fez um bom trabalho e receberá: ${resultado} ponto(s) de acrecimos na nota`);
-    }
-    else {
+    const resultado = (notaDepois - notaAntes) / 4;
+    if (notaDepois === notaAntes){
+        alert(`Big brother não receberá acréscimos, pois não ajudou o little brother`);
+    } else if (notaDepois > notaAntes){
+        alert(`Big brother fez um bom trabalho e receberá: ${resultado.toFixed(2)} ponto(s) de acréscimo(s) na nota`);
+    } else {
         alert(`Big brother piorou a situação`);
     }
-    
+
     //SAÍDA
 
 </script>

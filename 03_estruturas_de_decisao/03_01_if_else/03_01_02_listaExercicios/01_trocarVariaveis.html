@@ -6,19 +6,29 @@
     */
 
     //ENTRADA
-
-    let inteiro1 = Number(prompt("Digite o primeiro número inteiro:"));
-    let inteiro2 = Number(prompt("Digite o segundo número inteiro:"));
+    let inteiro1, inteiro2;
+    do {
+        inteiro1 = prompt("Digite o primeiro número inteiro:");
+        inteiro1 = Number(inteiro1);
+        if (isNaN(inteiro1) || !Number.isInteger(inteiro1)) {
+            alert("Entrada inválida. Digite um número inteiro.");
+            inteiro1 = null;
+        }
+    } while (inteiro1 === null);
+    do {
+        inteiro2 = prompt("Digite o segundo número inteiro:");
+        inteiro2 = Number(inteiro2);
+        if (isNaN(inteiro2) || !Number.isInteger(inteiro2)) {
+            alert("Entrada inválida. Digite um número inteiro.");
+            inteiro2 = null;
+        }
+    } while (inteiro2 === null);
 
     //PROCESSAMENTO
     if (inteiro1 === inteiro2){
-        alert(`São os mesmos numeros. \n Primeiro numero ${inteiro1} \n Segundo numero ${inteiro2}`);
-    }
-    else if (inteiro1 !== inteiro2){ 
-        alert(` Antes \n Primeiro numero ${inteiro1} \n Segundo numero ${inteiro2}\n Depois \n Segundo numero ${inteiro2} \n Primeiro numero ${inteiro1}`);
-    }
-    else {
-        alert(`Erro, refaça o questionario`);
+        alert(`São os mesmos números. \n Primeiro número ${inteiro1} \n Segundo número ${inteiro2}`);
+    } else {
+        alert(`Antes \n Primeiro número ${inteiro1} \n Segundo número ${inteiro2}\nDepois \n Primeiro número ${inteiro2} \n Segundo número ${inteiro1}`);
     }
 
     //SAÍDA

@@ -11,22 +11,28 @@
     */
 
     // ENTRADA
-    const nota = Number(prompt(`Digite a nota (0 a 10):`));
+    let nota;
+    do {
+        nota = prompt(`Digite a nota (0 a 10):`);
+        nota = Number(nota);
+        if (isNaN(nota) || nota < 0 || nota > 10) {
+            alert("Nota inválida. Digite um valor entre 0 e 10.");
+            nota = null;
+        }
+    } while (nota === null);
 
     // PROCESSAMENTO
-
-    if (nota >= 9 && nota <= 10) {
-        conceito = `A`;
-    } else if (nota >= 8 && nota < 9) {
-        conceito = `B`;
-    } else if (nota >= 7 && nota < 8) {
-        conceito = `C`;
-    } else if (nota >= 6 && nota < 7) {
-        conceito = `D`;
-    } else if (nota >= 0 && nota < 6) {
-        conceito = `E`;
+    let conceito;
+    if (nota >= 9) {
+        conceito = 'A';
+    } else if (nota >= 8) {
+        conceito = 'B';
+    } else if (nota >= 7) {
+        conceito = 'C';
+    } else if (nota >= 6) {
+        conceito = 'D';
     } else {
-        conceito = `Nota inválida`;
+        conceito = 'E';
     }
 
     // SAÍDA

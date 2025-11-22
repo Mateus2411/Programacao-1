@@ -7,11 +7,18 @@
     */
 
     //ENTRADA
+    let nome, sobrenome;
+    do {
+        nome = prompt('Informe o seu nome:').trim();
+        if (!nome) alert('Nome não pode ser vazio.');
+    } while (!nome);
+    do {
+        sobrenome = prompt('Informe o seu sobrenome:').trim();
+        if (!sobrenome) alert('Sobrenome não pode ser vazio.');
+    } while (!sobrenome);
 
-    
     //PROCESSAMENTO
 
-    
     //SAÍDA
-
+    document.write(`Nome do Autor: ${sobrenome}, ${nome}.`);
 </script>

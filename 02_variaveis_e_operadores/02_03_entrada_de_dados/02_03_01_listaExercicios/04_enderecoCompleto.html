@@ -13,11 +13,37 @@
     */
 
     //ENTRADA
+    let rua, numero, bairro, cidade, estado;
+    do {
+        rua = prompt('Informe o nome da rua:').trim();
+        if (!rua) alert('Nome da rua não pode ser vazio.');
+    } while (!rua);
+    do {
+        numero = prompt('Informe o número da casa:').trim();
+        numero = parseInt(numero);
+        if (isNaN(numero) || numero <= 0) {
+            alert('Número inválido. Digite um número positivo.');
+            numero = null;
+        }
+    } while (!numero);
+    do {
+        bairro = prompt('Informe o bairro:').trim();
+        if (!bairro) alert('Bairro não pode ser vazio.');
+    } while (!bairro);
+    do {
+        cidade = prompt('Informe a cidade:').trim();
+        if (!cidade) alert('Cidade não pode ser vazia.');
+    } while (!cidade);
+    do {
+        estado = prompt('Informe a sigla do estado (ex: SP):').trim().toUpperCase();
+        if (estado.length !== 2 || !/^[A-Z]{2}$/.test(estado)) {
+            alert('Sigla do estado inválida. Digite 2 letras maiúsculas.');
+            estado = '';
+        }
+    } while (!estado);
 
-    
     //PROCESSAMENTO
 
-    
     //SAÍDA
-
+    document.write(`Rua ${rua}, nº ${numero}, Bairro ${bairro}, Cidade de ${cidade}(${estado}).`);
 </script>

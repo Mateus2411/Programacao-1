@@ -7,7 +7,13 @@
     */
 
     //ENTRADA
-    const nome = prompt(`Informe o seu nome:`).trim();
+    let nome;
+    do {
+        nome = prompt('Informe o seu nome:').trim();
+        if (!nome) {
+            alert('Nome não pode ser vazio. Tente novamente.');
+        }
+    } while (!nome);
 
     //PROCESSAMENTO
 

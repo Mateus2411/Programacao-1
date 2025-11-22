@@ -1,4 +1,4 @@
-<meta charset=`UTF-8` />
+<meta charset="UTF-8" />
 <script>
     /*
     PROBLEMA: CLASSIFICAÇÃO DE PRODUTO
@@ -13,11 +13,18 @@
     */
 
     //ENTRADA
+    let codigo;
+    do {
+        codigo = prompt(`Informe o código do produto:`);
+        codigo = Number(codigo);
+        if (isNaN(codigo) || !Number.isInteger(codigo) || codigo < 1) {
+            alert("Código inválido. Digite um número inteiro positivo.");
+            codigo = null;
+        }
+    } while (codigo === null);
 
-    const codigo = Number(prompt(`Informe o código do produto:`));
     //PROCESSAMENTO
-
-    let classificacao = ``;
+    let classificacao;
     if (codigo === 1) {
         classificacao = `Alimento não-perecível`;
     } else if (codigo >= 2 && codigo <= 4) {
@@ -33,7 +40,7 @@
     } else {
         classificacao = `Código inválido`;
     }
+
     //SAÍDA
-    
     alert(classificacao);
 </script>

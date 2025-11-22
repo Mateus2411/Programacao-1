@@ -7,11 +7,22 @@
     */
 
     //ENTRADA
-
+    let nome, nomeMeio, ultimoNome;
+    do {
+        nome = prompt('Informe o seu nome:').trim();
+        if (!nome) alert('Nome não pode ser vazio.');
+    } while (!nome);
+    do {
+        nomeMeio = prompt('Informe o seu nome do meio:').trim();
+        if (!nomeMeio) alert('Nome do meio não pode ser vazio.');
+    } while (!nomeMeio);
+    do {
+        ultimoNome = prompt('Informe o seu último nome:').trim();
+        if (!ultimoNome) alert('Último nome não pode ser vazio.');
+    } while (!ultimoNome);
 
     //PROCESSAMENTO
 
-    
     //SAÍDA
-
+    document.write(`O seu nome completo é ${nome} ${nomeMeio} ${ultimoNome}.`);
 </script>

@@ -5,9 +5,28 @@
     */
 
     //ENTRADA
-    const nun1 = Number(prompt(`Digite o primeiro numero`));
-    const nun2 = Number(prompt(`Digite o segundo numero`));
-    const nun3 = Number(prompt(`Digite o terceiro numero`));
+    let nun1, nun2, nun3;
+    do {
+        nun1 = prompt(`Digite o primeiro número:`);
+        nun1 = Number(nun1);
+        if (isNaN(nun1)) {
+            alert("Entrada inválida. Digite um número.");
+        }
+    } while (isNaN(nun1));
+    do {
+        nun2 = prompt(`Digite o segundo número:`);
+        nun2 = Number(nun2);
+        if (isNaN(nun2)) {
+            alert("Entrada inválida. Digite um número.");
+        }
+    } while (isNaN(nun2));
+    do {
+        nun3 = prompt(`Digite o terceiro número:`);
+        nun3 = Number(nun3);
+        if (isNaN(nun3)) {
+            alert("Entrada inválida. Digite um número.");
+        }
+    } while (isNaN(nun3));
 
 
 
