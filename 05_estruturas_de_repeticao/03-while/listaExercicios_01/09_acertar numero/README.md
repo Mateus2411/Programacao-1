@@ -1,2 +1,0 @@
-## Acertar numero
-
